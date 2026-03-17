@@ -4,7 +4,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shawn Davis — Software Engineer in Test</title>
+  <title>Shawn Davis — Software Development Engineer in Test</title>
+  <meta name="description" content="Shawn Davis — Software Development Engineer in Test specializing in automation frameworks, CI/CD quality systems, and performance engineering at enterprise scale." />
+  <meta name="keywords" content="SDET, Software Engineer in Test, Selenium, Cypress, Playwright, Jenkins, CI/CD, Test Automation, Performance Testing" />
+  <meta property="og:title" content="Shawn Davis — SDET Portfolio" />
+  <meta property="og:description" content="Senior SDET specializing in automation architecture, CI/CD quality gates, and performance engineering at enterprise scale." />
+  <meta property="og:type" content="website" />
   <style>
 /* ═══════════════════════════════════════════════════════════════
    SHAWN DAVIS · SDET PORTFOLIO
@@ -905,6 +910,91 @@ margin-top: 0.5rem;
 ::-webkit-scrollbar-thumb { background: var(–border-mid); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(–text-dim); }
 
+/* ── AUTHORITY SIGNAL ─────────────────────────────────────────── */
+.hero-authority {
+display: flex;
+align-items: center;
+gap: 0.75rem;
+padding: 0.75rem 1.25rem;
+background: rgba(192,57,43,0.06);
+border: 1px solid var(–accent-dim);
+border-radius: var(–radius);
+margin-bottom: 2rem;
+font-size: 0.82rem;
+color: var(–text-mid);
+line-height: 1.5;
+}
+.hero-authority .authority-icon {
+color: var(–accent);
+font-size: 0.7rem;
+flex-shrink: 0;
+}
+
+/* ── STACK FRAMING LINE ───────────────────────────────────────── */
+.stack-framing {
+font-size: 0.78rem;
+color: var(–text-dim);
+letter-spacing: 0.03em;
+line-height: 1.65;
+margin-bottom: 1rem;
+max-width: 680px;
+}
+
+/* ── PROJECT PROOF LINKS ──────────────────────────────────────── */
+.project-links {
+display: flex;
+gap: 0.75rem;
+flex-wrap: wrap;
+padding-top: 1rem;
+margin-top: 0.5rem;
+}
+.project-link-btn {
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+font-family: var(–font-mono);
+font-size: 0.74rem;
+letter-spacing: 0.04em;
+padding: 0.5rem 1.1rem;
+border-radius: var(–radius);
+text-decoration: none;
+transition: var(–transition);
+border: 1px solid var(–accent-dim);
+background: var(–accent-glow);
+color: var(–accent);
+}
+.project-link-btn:hover {
+background: var(–accent);
+color: var(–text);
+border-color: var(–accent);
+transform: translateY(-1px);
+box-shadow: 0 6px 18px rgba(192,57,43,0.3);
+}
+.project-link-btn–ghost {
+border-color: var(–border-mid);
+background: transparent;
+color: var(–text-mid);
+}
+.project-link-btn–ghost:hover {
+background: var(–bg-elevated);
+color: var(–text);
+border-color: var(–text-dim);
+box-shadow: none;
+}
+
+/* ── MOBILE: reduce animations ────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+*, *::before, *::after {
+animation-duration: 0.01ms !important;
+transition-duration: 0.01ms !important;
+}
+}
+@media (max-width: 600px) {
+.terminal-dot { animation: none; }
+.scroll-line  { animation: none; }
+.hero-authority { font-size: 0.75rem; }
+}
+
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -943,9 +1033,9 @@ margin-top: 0.5rem;
         <h1 class="hero-name">Shawn<br /><em>Davis</em></h1>
         <p class="hero-title">Software Development Engineer in Test</p>
         <p class="hero-sub">
-          I build the systems that protect systems. Automation frameworks,
-          CI/CD quality gates, and performance infrastructure that served
-          millions of VA beneficiaries — engineered from scratch, owned end-to-end.
+          I design and scale automation and quality systems that improve release reliability,
+          reduce defect escape, and support enterprise applications serving millions of users —
+          engineered from scratch, owned end-to-end.
         </p>
         <div class="hero-stats">
           <div class="stat">
@@ -964,6 +1054,10 @@ margin-top: 0.5rem;
             <span class="stat-num">95<span class="accent">%</span></span>
             <span class="stat-label">Pre-Production Detection Rate</span>
           </div>
+        </div>
+        <div class="hero-authority">
+          <span class="authority-icon">⬡</span>
+          <span>Quality architecture trusted on mission-critical federal systems serving millions of veterans</span>
         </div>
         <div class="hero-actions">
           <a href="#projects" class="btn btn-primary">View Projects</a>
@@ -1068,6 +1162,7 @@ env:    <span class="str">‘cloud’</span>
   <section id="stack">
     <div class="container">
       <div class="section-label"><span class="mono accent">02 /</span> Technical Stack</div>
+      <p class="stack-framing mono">Focused on building scalable, maintainable test systems across UI, API, and performance layers — every tool below has been used in production at enterprise scale.</p>
       <h2 class="section-title">Tools I Own,<br />Not Just Use</h2>
       <div class="stack-grid">
 
@@ -1193,6 +1288,14 @@ env:    <span class="str">‘cloud’</span>
         <span class="tech-tag">JavaScript</span>
         <span class="tech-tag">Java</span>
       </div>
+      <div class="project-links">
+        <a href="https://github.com/shawndavis-sdet" target="_blank" rel="noopener" class="project-link-btn">
+          <span>⌥</span> View Framework Architecture
+        </a>
+        <a href="#contact" class="project-link-btn project-link-btn--ghost">
+          <span>✉</span> Request Design Doc
+        </a>
+      </div>
     </div>
   </div>
 
@@ -1287,6 +1390,11 @@ env:    <span class="str">‘cloud’</span>
         <span class="tech-tag">Cloud Infrastructure</span>
         <span class="tech-tag">SQL Server</span>
         <span class="tech-tag">Performance Baselines</span>
+      </div>
+      <div class="project-links">
+        <a href="#contact" class="project-link-btn project-link-btn--ghost">
+          <span>✉</span> Request Performance Test Sample
+        </a>
       </div>
     </div>
   </div>
@@ -1536,18 +1644,18 @@ env:    <span class="str">‘cloud’</span>
                 <span class="contact-link-value">+1 (919) 396-7443</span>
               </div>
             </a>
-            <a href="https://linkedin.com/in/shawndavis" class="contact-link" target="_blank" rel="noopener">
+            <a href="https://linkedin.com/in/shawn-davis-sdet" class="contact-link" target="_blank" rel="noopener">
               <span class="contact-icon">in</span>
               <div class="contact-link-body">
                 <span class="contact-link-label mono">LinkedIn</span>
-                <span class="contact-link-value">linkedin.com/in/shawndavis <span class="mono" style="font-size:0.7em; opacity:0.5">← update with your URL</span></span>
+                <span class="contact-link-value">linkedin.com/in/shawn-davis-sdet</span>
               </div>
             </a>
-            <a href="https://github.com/shawndavis" class="contact-link" target="_blank" rel="noopener">
+            <a href="https://github.com/shawndavis-sdet" class="contact-link" target="_blank" rel="noopener">
               <span class="contact-icon">⌥</span>
               <div class="contact-link-body">
                 <span class="contact-link-label mono">GitHub</span>
-                <span class="contact-link-value">github.com/shawndavis <span class="mono" style="font-size:0.7em; opacity:0.5">← update with your username</span></span>
+                <span class="contact-link-value">github.com/shawndavis</span>
               </div>
             </a>
             <a href="ShawnDavis_SDET_Standard.docx" class="contact-link" download>
