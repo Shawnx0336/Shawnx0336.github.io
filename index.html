@@ -11,13 +11,13 @@
   <meta property="og:description" content="Senior SDET specializing in automation architecture, CI/CD quality gates, and performance engineering at enterprise scale." />
   <meta property="og:type" content="website" />
   <style>
-/* ═══════════════════════════════════════════════════════════════
-   SHAWN DAVIS · SDET PORTFOLIO
+/* ===============================================================
+   SHAWN DAVIS . SDET PORTFOLIO
    Aesthetic: Dark Editorial-Technical
    Fonts: DM Serif Display (display) + DM Mono (code) + Outfit (body)
-   ═══════════════════════════════════════════════════════════════ */
+   =============================================================== */
 
-/* ── RESET & BASE ─────────────────────────────────────────────── */
+/* – RESET & BASE ———————————————– */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -70,7 +70,7 @@ z-index: 1000;
 opacity: 0.4;
 }
 
-/* ── UTILITIES ────────────────────────────────────────────────── */
+/* – UTILITIES ––––––––––––––––––––––––– */
 .container {
 max-width: var(–max-w);
 margin: 0 auto;
@@ -79,7 +79,7 @@ padding: 0 2rem;
 .mono   { font-family: var(–font-mono); }
 .accent { color: var(–accent); }
 
-/* ── NAV ──────────────────────────────────────────────────────── */
+/* – NAV –––––––––––––––––––––––––––– */
 #nav {
 position: fixed;
 top: 0; left: 0; right: 0;
@@ -160,7 +160,7 @@ border-radius: 2px;
 transition: var(–transition);
 }
 
-/* ── SECTION LABEL ────────────────────────────────────────────── */
+/* – SECTION LABEL ––––––––––––––––––––––– */
 .section-label {
 font-family: var(–font-mono);
 font-size: 0.75rem;
@@ -170,7 +170,7 @@ color: var(–text-dim);
 margin-bottom: 1.5rem;
 }
 
-/* ── SECTION TITLE ────────────────────────────────────────────── */
+/* – SECTION TITLE ––––––––––––––––––––––– */
 .section-title {
 font-family: var(–font-display);
 font-size: clamp(2.2rem, 4vw, 3.2rem);
@@ -179,7 +179,7 @@ color: var(–text);
 margin-bottom: 3rem;
 }
 
-/* ── HERO ─────────────────────────────────────────────────────── */
+/* – HERO —————————————————–– */
 #hero {
 min-height: 100vh;
 display: flex;
@@ -282,7 +282,7 @@ flex-wrap: wrap;
 gap: 1rem;
 }
 
-/* ── BUTTONS ──────────────────────────────────────────────────── */
+/* – BUTTONS –––––––––––––––––––––––––– */
 .btn {
 display: inline-block;
 padding: 0.7rem 1.5rem;
@@ -317,7 +317,7 @@ border-color: var(–text-mid);
 transform: translateY(-2px);
 }
 
-/* ── CODE WINDOW ──────────────────────────────────────────────── */
+/* – CODE WINDOW ———————————————— */
 .code-window {
 background: #0a0c0f;
 border: 1px solid var(–border-mid);
@@ -363,7 +363,7 @@ overflow-x: auto;
 .str { color: #a8d8a8; }
 .num { color: #f39c12; }
 
-/* ── SCROLL HINT ──────────────────────────────────────────────── */
+/* – SCROLL HINT ———————————————— */
 .hero-scroll-hint {
 position: absolute;
 bottom: 2rem; left: 2rem;
@@ -385,10 +385,10 @@ animation: scroll-pulse 2s ease-in-out infinite;
 50%       { width: 60px; opacity: 1; }
 }
 
-/* ── SHARED SECTION SPACING ───────────────────────────────────── */
+/* – SHARED SECTION SPACING ———————————–– */
 section { padding: 6rem 0; }
 
-/* ── ABOUT ────────────────────────────────────────────────────── */
+/* – ABOUT —————————————————— */
 #about { background: var(–bg-card); border-top: 1px solid var(–border); border-bottom: 1px solid var(–border); }
 .about-grid {
 display: grid;
@@ -439,7 +439,7 @@ transition: background var(–transition);
 .pillar strong { display: block; color: var(–text); font-size: 0.9rem; margin-bottom: 0.25rem; }
 .pillar span { font-size: 0.875rem; color: var(–text-mid); }
 
-/* ── STACK ────────────────────────────────────────────────────── */
+/* – STACK —————————————————— */
 .stack-grid {
 display: grid;
 grid-template-columns: repeat(3, 1fr);
@@ -484,7 +484,7 @@ transition: var(–transition);
 .pill-mono { border-color: #2a3520; background: #121a10; color: #7ec860; }
 .pill-mono:hover { border-color: #7ec860; }
 
-/* ── PROJECTS ─────────────────────────────────────────────────── */
+/* – PROJECTS ————————————————— */
 .project-card {
 margin-bottom: 1.5rem;
 background: var(–bg-card);
@@ -593,7 +593,7 @@ border-radius: 4px;
 background: var(–bg-elevated);
 }
 
-/* ── PHILOSOPHY / PYRAMID ─────────────────────────────────────── */
+/* – PHILOSOPHY / PYRAMID ————————————— */
 #philosophy { background: var(–bg-card); border-top: 1px solid var(–border); border-bottom: 1px solid var(–border); }
 .philosophy-grid {
 display: grid;
@@ -642,7 +642,7 @@ border-bottom: 1px solid var(–border);
 .principle-body h4 { color: var(–text); font-size: 0.95rem; margin-bottom: 0.4rem; font-weight: 600; }
 .principle-body p { font-size: 0.875rem; color: var(–text-mid); line-height: 1.7; }
 
-/* ── EXPERIENCE ───────────────────────────────────────────────── */
+/* – EXPERIENCE ———————————————–– */
 .experience-timeline { display: flex; flex-direction: column; gap: 0; }
 .exp-entry {
 padding: 2.5rem 0;
@@ -674,7 +674,7 @@ position: relative;
 line-height: 1.7;
 }
 .exp-bullets li::before {
-content: ‘▸’;
+content: ‘\25B8’;
 position: absolute;
 left: 0;
 color: var(–accent);
@@ -700,7 +700,7 @@ height: 1px;
 background: var(–border);
 }
 
-/* ── MILITARY ─────────────────────────────────────────────────── */
+/* – MILITARY ————————————————— */
 #military {
 background: #0b0d10;
 border-top: 1px solid var(–border);
@@ -770,7 +770,7 @@ transform: translateX(4px);
 .mil-card h4 { font-size: 0.95rem; color: var(–text); margin-bottom: 0.5rem; font-weight: 600; }
 .mil-card p  { font-size: 0.875rem; color: var(–text-mid); line-height: 1.7; }
 
-/* ── CONTACT ──────────────────────────────────────────────────── */
+/* – CONTACT –––––––––––––––––––––––––– */
 .contact-grid {
 display: grid;
 grid-template-columns: 1fr 1.5fr;
@@ -818,7 +818,7 @@ transition: var(–transition);
 .contact-link-value { font-size: 0.9rem; color: var(–text-mid); transition: color var(–transition); }
 .contact-link:hover .contact-link-value { color: var(–text); }
 
-/* ── FOOTER ───────────────────────────────────────────────────── */
+/* – FOOTER —————————————————– */
 footer {
 padding: 2rem 0;
 border-top: 1px solid var(–border);
@@ -831,7 +831,7 @@ flex-wrap: wrap;
 gap: 1rem;
 }
 
-/* ── SCROLL ANIMATIONS ────────────────────────────────────────── */
+/* – SCROLL ANIMATIONS —————————————— */
 .fade-in {
 opacity: 0;
 transform: translateY(24px);
@@ -842,7 +842,7 @@ opacity: 1;
 transform: translateY(0);
 }
 
-/* ── MOBILE ───────────────────────────────────────────────────── */
+/* – MOBILE —————————————————– */
 @media (max-width: 900px) {
 .nav-links, .nav-cta { display: none; }
 .nav-hamburger { display: flex; }
@@ -873,7 +873,7 @@ section { padding: 4rem 0; }
 .footer-inner { flex-direction: column; align-items: flex-start; }
 }
 
-/* ── MOBILE NAV OPEN ──────────────────────────────────────────── */
+/* – MOBILE NAV OPEN –––––––––––––––––––––– */
 #nav.nav-open .nav-links,
 #nav.nav-open .nav-cta {
 display: flex;
@@ -901,16 +901,16 @@ width: fit-content;
 margin-top: 0.5rem;
 }
 
-/* ── SELECTION ────────────────────────────────────────────────── */
+/* – SELECTION ––––––––––––––––––––––––– */
 ::selection { background: var(–accent); color: var(–text); }
 
-/* ── SCROLLBAR ────────────────────────────────────────────────── */
+/* – SCROLLBAR ––––––––––––––––––––––––– */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(–bg); }
 ::-webkit-scrollbar-thumb { background: var(–border-mid); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(–text-dim); }
 
-/* ── AUTHORITY SIGNAL ─────────────────────────────────────────── */
+/* – AUTHORITY SIGNAL —————————————–– */
 .hero-authority {
 display: flex;
 align-items: center;
@@ -930,7 +930,7 @@ font-size: 0.7rem;
 flex-shrink: 0;
 }
 
-/* ── STACK FRAMING LINE ───────────────────────────────────────── */
+/* – STACK FRAMING LINE —————————————– */
 .stack-framing {
 font-size: 0.78rem;
 color: var(–text-dim);
@@ -940,7 +940,7 @@ margin-bottom: 1rem;
 max-width: 680px;
 }
 
-/* ── PROJECT PROOF LINKS ──────────────────────────────────────── */
+/* – PROJECT PROOF LINKS –––––––––––––––––––– */
 .project-links {
 display: flex;
 gap: 0.75rem;
@@ -982,7 +982,7 @@ border-color: var(–text-dim);
 box-shadow: none;
 }
 
-/* ── MOBILE: reduce animations ────────────────────────────────── */
+/* – MOBILE: reduce animations ––––––––––––––––– */
 @media (prefers-reduced-motion: reduce) {
 *, *::before, *::after {
 animation-duration: 0.01ms !important;
