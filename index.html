@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -17,344 +16,344 @@
    Fonts: DM Serif Display (display) + DM Mono (code) + Outfit (body)
    =============================================================== */
 
-/* – RESET & BASE ———————————————– */
+/* - RESET & BASE ----------------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-–bg:         #0d0f12;
-–bg-card:    #131619;
-–bg-elevated:#181c20;
-–border:     #1f2429;
-–border-mid: #252b32;
-–text:       #e8ecf0;
-–text-mid:   #9ca8b4;
-–text-dim:   #5a6472;
-–accent:     #c0392b;
-–accent-glow:rgba(192,57,43,0.15);
-–accent-dim: #8b2a1f;
-–navy:       #1a2b4a;
-–green:      #2ecc71;
-–yellow:     #f39c12;
+  --bg:         #0d0f12;
+  --bg-card:    #131619;
+  --bg-elevated:#181c20;
+  --border:     #1f2429;
+  --border-mid: #252b32;
+  --text:       #e8ecf0;
+  --text-mid:   #9ca8b4;
+  --text-dim:   #5a6472;
+  --accent:     #c0392b;
+  --accent-glow:rgba(192,57,43,0.15);
+  --accent-dim: #8b2a1f;
+  --navy:       #1a2b4a;
+  --green:      #2ecc71;
+  --yellow:     #f39c12;
 
-–font-display: ‘DM Serif Display’, Georgia, serif;
-–font-body:    ‘Outfit’, system-ui, sans-serif;
-–font-mono:    ‘DM Mono’, ‘Fira Code’, monospace;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body:    'Outfit', system-ui, sans-serif;
+  --font-mono:    'DM Mono', 'Fira Code', monospace;
 
-–radius:  6px;
-–radius-lg: 12px;
-–transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
-–max-w: 1180px;
+  --radius:  6px;
+  --radius-lg: 12px;
+  --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  --max-w: 1180px;
 }
 
 html { scroll-behavior: smooth; }
 
 body {
-background: var(–bg);
-color: var(–text);
-font-family: var(–font-body);
-font-size: 16px;
-line-height: 1.7;
--webkit-font-smoothing: antialiased;
-overflow-x: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 /* Subtle grain overlay */
 body::before {
-content: ‘’;
-position: fixed;
-inset: 0;
-background-image: url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 256 256’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘noise’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23noise)’ opacity=‘0.04’/%3E%3C/svg%3E”);
-background-size: 200px;
-pointer-events: none;
-z-index: 1000;
-opacity: 0.4;
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.4;
 }
 
-/* – UTILITIES ––––––––––––––––––––––––– */
+/* - UTILITIES ----------------- */
 .container {
-max-width: var(–max-w);
-margin: 0 auto;
-padding: 0 2rem;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 2rem;
 }
-.mono   { font-family: var(–font-mono); }
-.accent { color: var(–accent); }
+.mono   { font-family: var(--font-mono); }
+.accent { color: var(--accent); }
 
-/* – NAV –––––––––––––––––––––––––––– */
+/* - NAV ----------------- */
 #nav {
-position: fixed;
-top: 0; left: 0; right: 0;
-z-index: 900;
-border-bottom: 1px solid transparent;
-transition: var(–transition);
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 900;
+  border-bottom: 1px solid transparent;
+  transition: var(--transition);
 }
 #nav.scrolled {
-background: rgba(13,15,18,0.92);
-backdrop-filter: blur(12px);
-border-bottom-color: var(–border);
+  background: rgba(13,15,18,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom-color: var(--border);
 }
 .nav-inner {
-max-width: var(–max-w);
-margin: 0 auto;
-padding: 0 2rem;
-height: 64px;
-display: flex;
-align-items: center;
-gap: 2rem;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 .nav-logo {
-font-family: var(–font-mono);
-font-size: 1.2rem;
-font-weight: 500;
-color: var(–text);
-text-decoration: none;
-letter-spacing: -0.02em;
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -0.02em;
 }
 .nav-links {
-list-style: none;
-display: flex;
-gap: 2rem;
-margin-left: auto;
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin-left: auto;
 }
 .nav-links a {
-font-family: var(–font-mono);
-font-size: 0.78rem;
-color: var(–text-mid);
-text-decoration: none;
-letter-spacing: 0.04em;
-text-transform: uppercase;
-transition: color var(–transition);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-mid);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color var(--transition);
 }
-.nav-links a:hover { color: var(–text); }
+.nav-links a:hover { color: var(--text); }
 .nav-cta {
-font-family: var(–font-mono);
-font-size: 0.78rem;
-color: var(–accent);
-text-decoration: none;
-border: 1px solid var(–accent-dim);
-padding: 0.4rem 1rem;
-border-radius: var(–radius);
-transition: var(–transition);
-letter-spacing: 0.04em;
-white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+  text-decoration: none;
+  border: 1px solid var(--accent-dim);
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius);
+  transition: var(--transition);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
 }
 .nav-cta:hover {
-background: var(–accent-glow);
-border-color: var(–accent);
+  background: var(--accent-glow);
+  border-color: var(--accent);
 }
 .nav-hamburger {
-display: none;
-flex-direction: column;
-gap: 5px;
-background: none;
-border: none;
-cursor: pointer;
-padding: 4px;
-margin-left: auto;
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  margin-left: auto;
 }
 .nav-hamburger span {
-display: block;
-width: 22px;
-height: 2px;
-background: var(–text-mid);
-border-radius: 2px;
-transition: var(–transition);
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text-mid);
+  border-radius: 2px;
+  transition: var(--transition);
 }
 
-/* – SECTION LABEL ––––––––––––––––––––––– */
+/* - SECTION LABEL ----------------- */
 .section-label {
-font-family: var(–font-mono);
-font-size: 0.75rem;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-color: var(–text-dim);
-margin-bottom: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 1.5rem;
 }
 
-/* – SECTION TITLE ––––––––––––––––––––––– */
+/* - SECTION TITLE ----------------- */
 .section-title {
-font-family: var(–font-display);
-font-size: clamp(2.2rem, 4vw, 3.2rem);
-line-height: 1.1;
-color: var(–text);
-margin-bottom: 3rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 3rem;
 }
 
-/* – HERO —————————————————–– */
+/* - HERO ----------------- */
 #hero {
-min-height: 100vh;
-display: flex;
-flex-direction: column;
-justify-content: center;
-padding: 80px 2rem 6rem;
-position: relative;
-overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 2rem 6rem;
+  position: relative;
+  overflow: hidden;
 }
 #hero::after {
-content: ‘’;
-position: absolute;
-top: 10%; right: -20%;
-width: 600px; height: 600px;
-background: radial-gradient(circle, rgba(192,57,43,0.07) 0%, transparent 70%);
-pointer-events: none;
+  content: '';
+  position: absolute;
+  top: 10%; right: -20%;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(192,57,43,0.07) 0%, transparent 70%);
+  pointer-events: none;
 }
 .hero-grid {
-max-width: var(–max-w);
-margin: 0 auto;
-width: 100%;
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 4rem;
-align-items: center;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
 }
 .hero-eyebrow {
-display: flex;
-align-items: center;
-gap: 0.75rem;
-margin-bottom: 1.5rem;
-font-size: 0.78rem;
-color: var(–text-dim);
-letter-spacing: 0.08em;
-text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 .terminal-dot {
-width: 8px; height: 8px;
-border-radius: 50%;
-background: var(–green);
-box-shadow: 0 0 8px var(–green);
-animation: pulse-dot 2s ease-in-out infinite;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+  animation: pulse-dot 2s ease-in-out infinite;
 }
 @keyframes pulse-dot {
-0%, 100% { opacity: 1; }
-50%       { opacity: 0.4; }
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
 }
 .hero-name {
-font-family: var(–font-display);
-font-size: clamp(3.5rem, 7vw, 6rem);
-line-height: 0.95;
-color: var(–text);
-margin-bottom: 1rem;
-letter-spacing: -0.02em;
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  line-height: 0.95;
+  color: var(--text);
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
 }
 .hero-name em {
-color: var(–accent);
-font-style: italic;
+  color: var(--accent);
+  font-style: italic;
 }
 .hero-title {
-font-family: var(–font-mono);
-font-size: 0.85rem;
-letter-spacing: 0.12em;
-text-transform: uppercase;
-color: var(–text-mid);
-margin-bottom: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-mid);
+  margin-bottom: 1.5rem;
 }
 .hero-sub {
-font-size: 1.05rem;
-color: var(–text-mid);
-line-height: 1.75;
-max-width: 480px;
-margin-bottom: 2.5rem;
+  font-size: 1.05rem;
+  color: var(--text-mid);
+  line-height: 1.75;
+  max-width: 480px;
+  margin-bottom: 2.5rem;
 }
 .hero-stats {
-display: grid;
-grid-template-columns: repeat(2, 1fr);
-gap: 1rem 2rem;
-margin-bottom: 2.5rem;
-padding-bottom: 2.5rem;
-border-bottom: 1px solid var(–border);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem 2rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border);
 }
 .stat { display: flex; flex-direction: column; gap: 0.2rem; }
 .stat-num {
-font-family: var(–font-display);
-font-size: 2rem;
-line-height: 1;
-color: var(–text);
+  font-family: var(--font-display);
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--text);
 }
 .stat-label {
-font-family: var(–font-mono);
-font-size: 0.7rem;
-color: var(–text-dim);
-letter-spacing: 0.06em;
-text-transform: uppercase;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 .hero-actions {
-display: flex;
-flex-wrap: wrap;
-gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-/* – BUTTONS –––––––––––––––––––––––––– */
+/* - BUTTONS ----------------- */
 .btn {
-display: inline-block;
-padding: 0.7rem 1.5rem;
-border-radius: var(–radius);
-font-family: var(–font-mono);
-font-size: 0.8rem;
-letter-spacing: 0.06em;
-text-transform: uppercase;
-text-decoration: none;
-transition: var(–transition);
-cursor: pointer;
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: var(--transition);
+  cursor: pointer;
 }
 .btn-primary {
-background: var(–accent);
-color: var(–text);
-border: 1px solid var(–accent);
+  background: var(--accent);
+  color: var(--text);
+  border: 1px solid var(--accent);
 }
 .btn-primary:hover {
-background: #a93226;
-border-color: #a93226;
-transform: translateY(-2px);
-box-shadow: 0 8px 24px rgba(192,57,43,0.3);
+  background: #a93226;
+  border-color: #a93226;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(192,57,43,0.3);
 }
 .btn-ghost {
-background: transparent;
-color: var(–text-mid);
-border: 1px solid var(–border-mid);
+  background: transparent;
+  color: var(--text-mid);
+  border: 1px solid var(--border-mid);
 }
 .btn-ghost:hover {
-color: var(–text);
-border-color: var(–text-mid);
-transform: translateY(-2px);
+  color: var(--text);
+  border-color: var(--text-mid);
+  transform: translateY(-2px);
 }
 
-/* – CODE WINDOW ———————————————— */
+/* - CODE WINDOW ----------------- */
 .code-window {
-background: #0a0c0f;
-border: 1px solid var(–border-mid);
-border-radius: var(–radius-lg);
-overflow: hidden;
-box-shadow:
-0 0 0 1px rgba(255,255,255,0.03),
-0 24px 60px rgba(0,0,0,0.6),
-0 0 40px rgba(192,57,43,0.05);
+  background: #0a0c0f;
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow:
+  0 0 0 1px rgba(255,255,255,0.03),
+  0 24px 60px rgba(0,0,0,0.6),
+  0 0 40px rgba(192,57,43,0.05);
 }
 .code-window-bar {
-display: flex;
-align-items: center;
-gap: 0.5rem;
-padding: 0.75rem 1rem;
-background: #111316;
-border-bottom: 1px solid var(–border);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: #111316;
+  border-bottom: 1px solid var(--border);
 }
 .dot {
-width: 12px; height: 12px;
-border-radius: 50%;
+  width: 12px; height: 12px;
+  border-radius: 50%;
 }
 .dot.red    { background: #ff5f57; }
 .dot.yellow { background: #febc2e; }
 .dot.green  { background: #28c840; }
 .code-window-title {
-font-family: var(–font-mono);
-font-size: 0.72rem;
-color: var(–text-dim);
-margin-left: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  margin-left: 0.5rem;
 }
 .code-block {
-padding: 1.5rem;
-font-family: var(–font-mono);
-font-size: 0.8rem;
-line-height: 1.85;
-overflow-x: auto;
+  padding: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.85;
+  overflow-x: auto;
 }
 .code-block code { display: block; }
 .c   { color: #4d6175; }
@@ -363,636 +362,636 @@ overflow-x: auto;
 .str { color: #a8d8a8; }
 .num { color: #f39c12; }
 
-/* – SCROLL HINT ———————————————— */
+/* - SCROLL HINT ----------------- */
 .hero-scroll-hint {
-position: absolute;
-bottom: 2rem; left: 2rem;
-display: flex;
-align-items: center;
-gap: 1rem;
-font-size: 0.7rem;
-color: var(–text-dim);
-letter-spacing: 0.1em;
-text-transform: uppercase;
+  position: absolute;
+  bottom: 2rem; left: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 .scroll-line {
-width: 40px; height: 1px;
-background: var(–text-dim);
-animation: scroll-pulse 2s ease-in-out infinite;
+  width: 40px; height: 1px;
+  background: var(--text-dim);
+  animation: scroll-pulse 2s ease-in-out infinite;
 }
 @keyframes scroll-pulse {
-0%, 100% { width: 40px; opacity: 0.5; }
-50%       { width: 60px; opacity: 1; }
+  0%, 100% { width: 40px; opacity: 0.5; }
+  50%       { width: 60px; opacity: 1; }
 }
 
-/* – SHARED SECTION SPACING ———————————–– */
+/* - SHARED SECTION SPACING ----------------- */
 section { padding: 6rem 0; }
 
-/* – ABOUT —————————————————— */
-#about { background: var(–bg-card); border-top: 1px solid var(–border); border-bottom: 1px solid var(–border); }
+/* - ABOUT ----------------- */
+#about { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .about-grid {
-display: grid;
-grid-template-columns: 1fr 1.7fr;
-gap: 5rem;
-align-items: start;
+  display: grid;
+  grid-template-columns: 1fr 1.7fr;
+  gap: 5rem;
+  align-items: start;
 }
 .about-left h2 {
-font-family: var(–font-display);
-font-size: clamp(2rem, 3.5vw, 3rem);
-line-height: 1.1;
-position: sticky;
-top: 90px;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1.1;
+  position: sticky;
+  top: 90px;
 }
-.about-left h2 em { color: var(–accent); font-style: italic; }
+.about-left h2 em { color: var(--accent); font-style: italic; }
 .about-right p {
-margin-bottom: 1.25rem;
-color: var(–text-mid);
-font-size: 1rem;
+  margin-bottom: 1.25rem;
+  color: var(--text-mid);
+  font-size: 1rem;
 }
-.about-right p strong { color: var(–text); }
+.about-right p strong { color: var(--text); }
 .about-lead {
-font-size: 1.15rem !important;
-color: var(–text) !important;
-font-weight: 500;
+  font-size: 1.15rem !important;
+  color: var(--text) !important;
+  font-weight: 500;
 }
 .philosophy-pillars {
-display: grid;
-grid-template-columns: 1fr;
-gap: 0;
-margin-top: 2rem;
-border: 1px solid var(–border);
-border-radius: var(–radius-lg);
-overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin-top: 2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
 }
 .pillar {
-display: grid;
-grid-template-columns: 2rem 1fr;
-gap: 1rem;
-align-items: start;
-padding: 1.25rem 1.5rem;
-border-bottom: 1px solid var(–border);
-transition: background var(–transition);
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 1rem;
+  align-items: start;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition);
 }
 .pillar:last-child { border-bottom: none; }
-.pillar:hover { background: var(–bg-elevated); }
-.pillar-icon { color: var(–accent); font-size: 0.8rem; margin-top: 0.2rem; }
-.pillar strong { display: block; color: var(–text); font-size: 0.9rem; margin-bottom: 0.25rem; }
-.pillar span { font-size: 0.875rem; color: var(–text-mid); }
+.pillar:hover { background: var(--bg-elevated); }
+.pillar-icon { color: var(--accent); font-size: 0.8rem; margin-top: 0.2rem; }
+.pillar strong { display: block; color: var(--text); font-size: 0.9rem; margin-bottom: 0.25rem; }
+.pillar span { font-size: 0.875rem; color: var(--text-mid); }
 
-/* – STACK —————————————————— */
+/* - STACK ----------------- */
 .stack-grid {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
 }
 .stack-category {
-background: var(–bg-card);
-border: 1px solid var(–border);
-border-radius: var(–radius-lg);
-padding: 1.5rem;
-transition: border-color var(–transition), box-shadow var(–transition);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
 }
 .stack-category:hover {
-border-color: var(–border-mid);
-box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  border-color: var(--border-mid);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
 }
 .stack-cat-label {
-font-family: var(–font-mono);
-font-size: 0.7rem;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-color: var(–text-dim);
-margin-bottom: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 1rem;
 }
 .stack-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .pill {
-font-family: var(–font-mono);
-font-size: 0.72rem;
-padding: 0.3rem 0.7rem;
-border-radius: 4px;
-background: var(–bg-elevated);
-border: 1px solid var(–border-mid);
-color: var(–text-mid);
-letter-spacing: 0.02em;
-transition: var(–transition);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-mid);
+  color: var(--text-mid);
+  letter-spacing: 0.02em;
+  transition: var(--transition);
 }
-.pill:hover { border-color: var(–text-dim); color: var(–text); }
+.pill:hover { border-color: var(--text-dim); color: var(--text); }
 .pill-primary { border-color: #1e3a5f; background: #0d1e33; color: #6aaddc; }
 .pill-primary:hover { border-color: #6aaddc; }
-.pill-red { border-color: var(–accent-dim); background: rgba(192,57,43,0.08); color: #e07060; }
-.pill-red:hover { border-color: var(–accent); }
+.pill-red { border-color: var(--accent-dim); background: rgba(192,57,43,0.08); color: #e07060; }
+.pill-red:hover { border-color: var(--accent); }
 .pill-mono { border-color: #2a3520; background: #121a10; color: #7ec860; }
 .pill-mono:hover { border-color: #7ec860; }
 
-/* – PROJECTS ————————————————— */
+/* - PROJECTS ----------------- */
 .project-card {
-margin-bottom: 1.5rem;
-background: var(–bg-card);
-border: 1px solid var(–border);
-border-radius: var(–radius-lg);
-overflow: hidden;
-transition: border-color var(–transition), transform var(–transition), box-shadow var(–transition);
+  margin-bottom: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
 }
 .project-card:hover {
-border-color: var(–border-mid);
-transform: translateY(-3px);
-box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+  border-color: var(--border-mid);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
 }
-.project-card–featured {
-border-color: var(–accent-dim);
+.project-card-featured {
+  border-color: var(--accent-dim);
 }
-.project-card–featured:hover {
-border-color: var(–accent);
-box-shadow: 0 16px 40px rgba(192,57,43,0.15);
+.project-card-featured:hover {
+  border-color: var(--accent);
+  box-shadow: 0 16px 40px rgba(192,57,43,0.15);
 }
 .project-card-inner { padding: 2rem 2.5rem; }
 .project-meta {
-display: flex;
-align-items: center;
-gap: 1rem;
-margin-bottom: 1rem;
-flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
-.project-num { font-size: 0.7rem; color: var(–text-dim); letter-spacing: 0.1em; }
+.project-num { font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.1em; }
 .project-tag {
-font-family: var(–font-mono);
-font-size: 0.68rem;
-letter-spacing: 0.08em;
-text-transform: uppercase;
-color: var(–accent);
-background: var(–accent-glow);
-border: 1px solid var(–accent-dim);
-padding: 0.2rem 0.6rem;
-border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-glow);
+  border: 1px solid var(--accent-dim);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
 }
 .project-org {
-font-family: var(–font-mono);
-font-size: 0.68rem;
-color: var(–text-dim);
-margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  margin-left: auto;
 }
 .project-title {
-font-family: var(–font-display);
-font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-line-height: 1.2;
-color: var(–text);
-margin-bottom: 1.75rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 1.75rem;
 }
 .project-body {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 1.5rem 2.5rem;
-margin-bottom: 1.75rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem 2.5rem;
+  margin-bottom: 1.75rem;
 }
 .project-body h4 {
-font-family: var(–font-mono);
-font-size: 0.68rem;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-color: var(–accent);
-margin-bottom: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.6rem;
 }
-.project-body p { font-size: 0.9rem; color: var(–text-mid); line-height: 1.7; }
+.project-body p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.7; }
 .project-impact { grid-column: 1 / -1; }
 .impact-metrics {
-display: flex;
-gap: 2rem;
-flex-wrap: wrap;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
 }
 .metric {
-display: flex;
-flex-direction: column;
-gap: 0.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
 }
 .metric-val {
-font-family: var(–font-display);
-font-size: 2rem;
-line-height: 1;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  line-height: 1;
 }
 .metric span:last-child {
-font-family: var(–font-mono);
-font-size: 0.7rem;
-color: var(–text-dim);
-text-transform: uppercase;
-letter-spacing: 0.06em;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 .project-tech {
-display: flex;
-flex-wrap: wrap;
-gap: 0.5rem;
-padding-top: 1.25rem;
-border-top: 1px solid var(–border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
 }
 .tech-tag {
-font-family: var(–font-mono);
-font-size: 0.7rem;
-color: var(–text-dim);
-padding: 0.2rem 0.6rem;
-border: 1px solid var(–border);
-border-radius: 4px;
-background: var(–bg-elevated);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg-elevated);
 }
 
-/* – PHILOSOPHY / PYRAMID ————————————— */
-#philosophy { background: var(–bg-card); border-top: 1px solid var(–border); border-bottom: 1px solid var(–border); }
+/* - PHILOSOPHY / PYRAMID ----------------- */
+#philosophy { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .philosophy-grid {
-display: grid;
-grid-template-columns: 1fr 1.5fr;
-gap: 5rem;
-align-items: start;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 5rem;
+  align-items: start;
 }
 .pyramid-wrapper { position: sticky; top: 90px; }
 .pyramid {
-display: flex;
-flex-direction: column;
-gap: 0.5rem;
-margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 .pyramid-level {
-display: flex;
-flex-direction: column;
-gap: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
 }
 .pyramid-label {
-font-family: var(–font-mono);
-font-size: 0.72rem;
-color: var(–text-dim);
-letter-spacing: 0.04em;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
 }
 .pyramid-bar {
-height: 32px;
-border-radius: var(–radius);
-transition: var(–transition);
+  height: 32px;
+  border-radius: var(--radius);
+  transition: var(--transition);
 }
-.pyramid-bar–1 { width: 60%;  background: linear-gradient(90deg, var(–accent-dim), var(–accent)); margin: 0 auto; }
-.pyramid-bar–2 { width: 80%;  background: linear-gradient(90deg, #2a4a7a, #4a7aaa); margin: 0 auto; }
-.pyramid-bar–3 { width: 100%; background: linear-gradient(90deg, #1a3a1a, #3a7a3a); }
+.pyramid-bar-1 { width: 60%;  background: linear-gradient(90deg, var(--accent-dim), var(--accent)); margin: 0 auto; }
+.pyramid-bar-2 { width: 80%;  background: linear-gradient(90deg, #2a4a7a, #4a7aaa); margin: 0 auto; }
+.pyramid-bar-3 { width: 100%; background: linear-gradient(90deg, #1a3a1a, #3a7a3a); }
 .pyramid-level:hover .pyramid-bar { filter: brightness(1.2); }
-.pyramid-caption { font-size: 0.72rem; color: var(–text-dim); line-height: 1.6; }
+.pyramid-caption { font-size: 0.72rem; color: var(--text-dim); line-height: 1.6; }
 .philosophy-principles { display: flex; flex-direction: column; gap: 0; }
 .principle {
-display: grid;
-grid-template-columns: 2.5rem 1fr;
-gap: 1rem;
-padding: 1.5rem 0;
-border-bottom: 1px solid var(–border);
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: 1rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
 }
 .principle:last-child { border-bottom: none; }
 .principle-num { font-size: 0.8rem; font-weight: 500; padding-top: 0.15rem; }
-.principle-body h4 { color: var(–text); font-size: 0.95rem; margin-bottom: 0.4rem; font-weight: 600; }
-.principle-body p { font-size: 0.875rem; color: var(–text-mid); line-height: 1.7; }
+.principle-body h4 { color: var(--text); font-size: 0.95rem; margin-bottom: 0.4rem; font-weight: 600; }
+.principle-body p { font-size: 0.875rem; color: var(--text-mid); line-height: 1.7; }
 
-/* – EXPERIENCE ———————————————–– */
+/* - EXPERIENCE ----------------- */
 .experience-timeline { display: flex; flex-direction: column; gap: 0; }
 .exp-entry {
-padding: 2.5rem 0;
+  padding: 2.5rem 0;
 }
 .exp-header {
-display: flex;
-justify-content: space-between;
-align-items: flex-start;
-margin-bottom: 1.25rem;
-gap: 1rem;
-flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 .exp-title-block { display: flex; flex-direction: column; gap: 0.25rem; }
-.exp-title-block h3 { font-size: 1.2rem; font-weight: 600; color: var(–text); }
-.exp-company { font-family: var(–font-mono); font-size: 0.8rem; color: var(–accent); }
-.exp-date { font-size: 0.78rem; color: var(–text-dim); letter-spacing: 0.06em; white-space: nowrap; }
+.exp-title-block h3 { font-size: 1.2rem; font-weight: 600; color: var(--text); }
+.exp-company { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); }
+.exp-date { font-size: 0.78rem; color: var(--text-dim); letter-spacing: 0.06em; white-space: nowrap; }
 .exp-bullets {
-list-style: none;
-display: flex;
-flex-direction: column;
-gap: 0.6rem;
-margin-bottom: 1.25rem;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
 }
 .exp-bullets li {
-font-size: 0.9rem;
-color: var(–text-mid);
-padding-left: 1.25rem;
-position: relative;
-line-height: 1.7;
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  padding-left: 1.25rem;
+  position: relative;
+  line-height: 1.7;
 }
 .exp-bullets li::before {
-content: ‘\25B8’;
-position: absolute;
-left: 0;
-color: var(–accent);
-font-size: 0.7rem;
-top: 0.3rem;
+  content: '\25B8';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 0.7rem;
+  top: 0.3rem;
 }
 .exp-stack {
-display: flex;
-flex-wrap: wrap;
-gap: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 .exp-stack span {
-font-family: var(–font-mono);
-font-size: 0.68rem;
-color: var(–text-dim);
-padding: 0.2rem 0.55rem;
-border: 1px solid var(–border);
-border-radius: 4px;
-background: var(–bg-card);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg-card);
 }
 .exp-divider {
-height: 1px;
-background: var(–border);
+  height: 1px;
+  background: var(--border);
 }
 
-/* – MILITARY ————————————————— */
+/* - MILITARY ----------------- */
 #military {
-background: #0b0d10;
-border-top: 1px solid var(–border);
-border-bottom: 1px solid var(–border);
-position: relative;
-overflow: hidden;
+  background: #0b0d10;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
 }
 #military::before {
-content: ‘USMC’;
-position: absolute;
-right: -2%;
-top: 50%;
-transform: translateY(-50%);
-font-family: var(–font-display);
-font-size: 18vw;
-color: rgba(255,255,255,0.015);
-pointer-events: none;
-line-height: 1;
-letter-spacing: -0.05em;
+  content: 'USMC';
+  position: absolute;
+  right: -2%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: 18vw;
+  color: rgba(255,255,255,0.015);
+  pointer-events: none;
+  line-height: 1;
+  letter-spacing: -0.05em;
 }
 .military-grid {
-display: grid;
-grid-template-columns: 1fr 2fr;
-gap: 5rem;
-align-items: start;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 5rem;
+  align-items: start;
 }
 .military-left h2 {
-font-family: var(–font-display);
-font-size: clamp(1.8rem, 3vw, 2.8rem);
-line-height: 1.1;
-margin-bottom: 2rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  line-height: 1.1;
+  margin-bottom: 2rem;
 }
-.military-left h2 em { color: var(–accent); font-style: italic; }
+.military-left h2 em { color: var(--accent); font-style: italic; }
 .military-badge {
-display: flex;
-flex-direction: column;
-gap: 0.4rem;
-padding: 1.25rem;
-border: 1px solid var(–border-mid);
-border-radius: var(–radius);
-background: var(–bg-card);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius);
+  background: var(--bg-card);
 }
-.military-branch { font-size: 1.2rem; font-weight: 500; color: var(–text); letter-spacing: 0.1em; }
-.military-rank   { font-size: 0.85rem; color: var(–text-mid); }
-.military-mos    { font-size: 0.72rem; color: var(–text-dim); letter-spacing: 0.08em; }
+.military-branch { font-size: 1.2rem; font-weight: 500; color: var(--text); letter-spacing: 0.1em; }
+.military-rank   { font-size: 0.85rem; color: var(--text-mid); }
+.military-mos    { font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.08em; }
 .military-honor  { font-size: 0.78rem; font-weight: 600; margin-top: 0.25rem; }
 .military-lead {
-font-size: 1.1rem;
-color: var(–text-mid);
-margin-bottom: 2rem;
-padding-bottom: 2rem;
-border-bottom: 1px solid var(–border);
-font-style: italic;
+  font-size: 1.1rem;
+  color: var(--text-mid);
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+  font-style: italic;
 }
 .military-cards { display: flex; flex-direction: column; gap: 1rem; }
 .mil-card {
-padding: 1.5rem;
-background: var(–bg-card);
-border: 1px solid var(–border);
-border-radius: var(–radius);
-transition: border-color var(–transition), transform var(–transition);
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color var(--transition), transform var(--transition);
 }
 .mil-card:hover {
-border-color: var(–accent-dim);
-transform: translateX(4px);
+  border-color: var(--accent-dim);
+  transform: translateX(4px);
 }
-.mil-card h4 { font-size: 0.95rem; color: var(–text); margin-bottom: 0.5rem; font-weight: 600; }
-.mil-card p  { font-size: 0.875rem; color: var(–text-mid); line-height: 1.7; }
+.mil-card h4 { font-size: 0.95rem; color: var(--text); margin-bottom: 0.5rem; font-weight: 600; }
+.mil-card p  { font-size: 0.875rem; color: var(--text-mid); line-height: 1.7; }
 
-/* – CONTACT –––––––––––––––––––––––––– */
+/* - CONTACT ----------------- */
 .contact-grid {
-display: grid;
-grid-template-columns: 1fr 1.5fr;
-gap: 5rem;
-align-items: start;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 5rem;
+  align-items: start;
 }
 .contact-left h2 {
-font-family: var(–font-display);
-font-size: clamp(2rem, 3.5vw, 3rem);
-line-height: 1.1;
-margin-bottom: 1rem;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1.1;
+  margin-bottom: 1rem;
 }
-.contact-left h2 em { color: var(–accent); font-style: italic; }
-.contact-left p { color: var(–text-mid); font-size: 0.95rem; }
+.contact-left h2 em { color: var(--accent); font-style: italic; }
+.contact-left p { color: var(--text-mid); font-size: 0.95rem; }
 .contact-links { display: flex; flex-direction: column; gap: 0; }
 .contact-link {
-display: flex;
-align-items: center;
-gap: 1.25rem;
-padding: 1.25rem 0;
-border-bottom: 1px solid var(–border);
-text-decoration: none;
-transition: var(–transition);
-color: var(–text);
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  transition: var(--transition);
+  color: var(--text);
 }
-.contact-link:first-child { border-top: 1px solid var(–border); }
+.contact-link:first-child { border-top: 1px solid var(--border); }
 .contact-link:hover { padding-left: 0.75rem; }
 .contact-icon {
-width: 36px; height: 36px;
-border: 1px solid var(–border-mid);
-border-radius: var(–radius);
-display: flex;
-align-items: center;
-justify-content: center;
-font-family: var(–font-mono);
-font-size: 0.8rem;
-color: var(–text-mid);
-background: var(–bg-card);
-flex-shrink: 0;
-transition: var(–transition);
+  width: 36px; height: 36px;
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-mid);
+  background: var(--bg-card);
+  flex-shrink: 0;
+  transition: var(--transition);
 }
-.contact-link:hover .contact-icon { border-color: var(–accent-dim); color: var(–accent); background: var(–accent-glow); }
+.contact-link:hover .contact-icon { border-color: var(--accent-dim); color: var(--accent); background: var(--accent-glow); }
 .contact-link-body { display: flex; flex-direction: column; gap: 0.15rem; }
-.contact-link-label { font-size: 0.68rem; color: var(–text-dim); letter-spacing: 0.1em; text-transform: uppercase; }
-.contact-link-value { font-size: 0.9rem; color: var(–text-mid); transition: color var(–transition); }
-.contact-link:hover .contact-link-value { color: var(–text); }
+.contact-link-label { font-size: 0.68rem; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; }
+.contact-link-value { font-size: 0.9rem; color: var(--text-mid); transition: color var(--transition); }
+.contact-link:hover .contact-link-value { color: var(--text); }
 
-/* – FOOTER —————————————————– */
+/* - FOOTER ----------------- */
 footer {
-padding: 2rem 0;
-border-top: 1px solid var(–border);
+  padding: 2rem 0;
+  border-top: 1px solid var(--border);
 }
 .footer-inner {
-display: flex;
-justify-content: space-between;
-align-items: center;
-flex-wrap: wrap;
-gap: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-/* – SCROLL ANIMATIONS —————————————— */
+/* - SCROLL ANIMATIONS ----------------- */
 .fade-in {
-opacity: 0;
-transform: translateY(24px);
-transition: opacity 0.6s ease, transform 0.6s ease;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 .fade-in.visible {
-opacity: 1;
-transform: translateY(0);
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* – MOBILE —————————————————– */
+/* - MOBILE ----------------- */
 @media (max-width: 900px) {
-.nav-links, .nav-cta { display: none; }
-.nav-hamburger { display: flex; }
-.hero-grid { grid-template-columns: 1fr; gap: 3rem; }
-.hero-visual { display: none; }
-.hero-stats { grid-template-columns: repeat(2, 1fr); }
-.about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-.about-left h2 { position: static; }
-.stack-grid { grid-template-columns: repeat(2, 1fr); }
-.project-body { grid-template-columns: 1fr; }
-.philosophy-grid { grid-template-columns: 1fr; gap: 3rem; }
-.pyramid-wrapper { position: static; }
-.military-grid { grid-template-columns: 1fr; gap: 3rem; }
-.contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-#military::before { display: none; }
-.exp-header { flex-direction: column; gap: 0.25rem; }
+  .nav-links, .nav-cta { display: none; }
+  .nav-hamburger { display: flex; }
+  .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .hero-visual { display: none; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .about-left h2 { position: static; }
+  .stack-grid { grid-template-columns: repeat(2, 1fr); }
+  .project-body { grid-template-columns: 1fr; }
+  .philosophy-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .pyramid-wrapper { position: static; }
+  .military-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+  #military::before { display: none; }
+  .exp-header { flex-direction: column; gap: 0.25rem; }
 }
 
 @media (max-width: 600px) {
-.stack-grid { grid-template-columns: 1fr; }
-.hero-stats { grid-template-columns: 1fr 1fr; }
-.hero-name { font-size: 3rem; }
-.impact-metrics { flex-direction: column; gap: 1rem; }
-.project-card-inner { padding: 1.5rem; }
-.project-org { display: none; }
-section { padding: 4rem 0; }
-.hero-scroll-hint { display: none; }
-.footer-inner { flex-direction: column; align-items: flex-start; }
+  .stack-grid { grid-template-columns: 1fr; }
+  .hero-stats { grid-template-columns: 1fr 1fr; }
+  .hero-name { font-size: 3rem; }
+  .impact-metrics { flex-direction: column; gap: 1rem; }
+  .project-card-inner { padding: 1.5rem; }
+  .project-org { display: none; }
+  section { padding: 4rem 0; }
+  .hero-scroll-hint { display: none; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
 }
 
-/* – MOBILE NAV OPEN –––––––––––––––––––––– */
+/* - MOBILE NAV OPEN ----------------- */
 #nav.nav-open .nav-links,
 #nav.nav-open .nav-cta {
-display: flex;
+  display: flex;
 }
 #nav.nav-open {
-background: var(–bg);
+  background: var(--bg);
 }
 #nav.nav-open .nav-inner {
-flex-wrap: wrap;
-height: auto;
-padding-bottom: 1rem;
+  flex-wrap: wrap;
+  height: auto;
+  padding-bottom: 1rem;
 }
 #nav.nav-open .nav-links {
-flex-direction: column;
-width: 100%;
-order: 3;
-gap: 1rem;
-padding-top: 0.5rem;
-border-top: 1px solid var(–border);
+  flex-direction: column;
+  width: 100%;
+  order: 3;
+  gap: 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
 }
 #nav.nav-open .nav-links a { font-size: 1rem; }
 #nav.nav-open .nav-cta {
-order: 4;
-width: fit-content;
-margin-top: 0.5rem;
+  order: 4;
+  width: fit-content;
+  margin-top: 0.5rem;
 }
 
-/* – SELECTION ––––––––––––––––––––––––– */
-::selection { background: var(–accent); color: var(–text); }
+/* - SELECTION ----------------- */
+::selection { background: var(--accent); color: var(--text); }
 
-/* – SCROLLBAR ––––––––––––––––––––––––– */
+/* - SCROLLBAR ----------------- */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(–bg); }
-::-webkit-scrollbar-thumb { background: var(–border-mid); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(–text-dim); }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-mid); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
 
-/* – AUTHORITY SIGNAL —————————————–– */
+/* - AUTHORITY SIGNAL ----------------- */
 .hero-authority {
-display: flex;
-align-items: center;
-gap: 0.75rem;
-padding: 0.75rem 1.25rem;
-background: rgba(192,57,43,0.06);
-border: 1px solid var(–accent-dim);
-border-radius: var(–radius);
-margin-bottom: 2rem;
-font-size: 0.82rem;
-color: var(–text-mid);
-line-height: 1.5;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(192,57,43,0.06);
+  border: 1px solid var(--accent-dim);
+  border-radius: var(--radius);
+  margin-bottom: 2rem;
+  font-size: 0.82rem;
+  color: var(--text-mid);
+  line-height: 1.5;
 }
 .hero-authority .authority-icon {
-color: var(–accent);
-font-size: 0.7rem;
-flex-shrink: 0;
+  color: var(--accent);
+  font-size: 0.7rem;
+  flex-shrink: 0;
 }
 
-/* – STACK FRAMING LINE —————————————– */
+/* - STACK FRAMING LINE ----------------- */
 .stack-framing {
-font-size: 0.78rem;
-color: var(–text-dim);
-letter-spacing: 0.03em;
-line-height: 1.65;
-margin-bottom: 1rem;
-max-width: 680px;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  letter-spacing: 0.03em;
+  line-height: 1.65;
+  margin-bottom: 1rem;
+  max-width: 680px;
 }
 
-/* – PROJECT PROOF LINKS –––––––––––––––––––– */
+/* - PROJECT PROOF LINKS ----------------- */
 .project-links {
-display: flex;
-gap: 0.75rem;
-flex-wrap: wrap;
-padding-top: 1rem;
-margin-top: 0.5rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding-top: 1rem;
+  margin-top: 0.5rem;
 }
 .project-link-btn {
-display: inline-flex;
-align-items: center;
-gap: 0.5rem;
-font-family: var(–font-mono);
-font-size: 0.74rem;
-letter-spacing: 0.04em;
-padding: 0.5rem 1.1rem;
-border-radius: var(–radius);
-text-decoration: none;
-transition: var(–transition);
-border: 1px solid var(–accent-dim);
-background: var(–accent-glow);
-color: var(–accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: var(--transition);
+  border: 1px solid var(--accent-dim);
+  background: var(--accent-glow);
+  color: var(--accent);
 }
 .project-link-btn:hover {
-background: var(–accent);
-color: var(–text);
-border-color: var(–accent);
-transform: translateY(-1px);
-box-shadow: 0 6px 18px rgba(192,57,43,0.3);
+  background: var(--accent);
+  color: var(--text);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(192,57,43,0.3);
 }
-.project-link-btn–ghost {
-border-color: var(–border-mid);
-background: transparent;
-color: var(–text-mid);
+.project-link-btn-ghost {
+  border-color: var(--border-mid);
+  background: transparent;
+  color: var(--text-mid);
 }
-.project-link-btn–ghost:hover {
-background: var(–bg-elevated);
-color: var(–text);
-border-color: var(–text-dim);
-box-shadow: none;
+.project-link-btn-ghost:hover {
+  background: var(--bg-elevated);
+  color: var(--text);
+  border-color: var(--text-dim);
+  box-shadow: none;
 }
 
-/* – MOBILE: reduce animations ––––––––––––––––– */
+/* - MOBILE: reduce animations ----------------- */
 @media (prefers-reduced-motion: reduce) {
-*, *::before, *::after {
-animation-duration: 0.01ms !important;
-transition-duration: 0.01ms !important;
-}
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 @media (max-width: 600px) {
-.terminal-dot { animation: none; }
-.scroll-line  { animation: none; }
-.hero-authority { font-size: 0.75rem; }
+  .terminal-dot { animation: none; }
+  .scroll-line  { animation: none; }
+  .hero-authority { font-size: 0.75rem; }
 }
 
 </style>
@@ -1002,8 +1001,7 @@ transition-duration: 0.01ms !important;
 </head>
 <body>
 
-  <!-- ░░ NAV ░░ -->
-
+  <!-- NAV -->
   <nav id="nav">
     <div class="nav-inner">
       <a href="#hero" class="nav-logo">SD<span class="accent">.</span></a>
@@ -1021,8 +1019,7 @@ transition-duration: 0.01ms !important;
     </div>
   </nav>
 
-  <!-- ░░ HERO ░░ -->
-
+  <!-- HERO -->
   <section id="hero">
     <div class="hero-grid">
       <div class="hero-content">
@@ -1074,38 +1071,36 @@ transition-duration: 0.01ms !important;
           <pre class="code-block"><code><span class="c">// VA Appeals Modernization · 2021–2025</span>
 <span class="kw">class</span> <span class="fn">QualityArchitect</span> {
 
-<span class="fn">constructor</span>() {
-<span class="kw">this</span>.frameworks  = [<span class="str">‘Selenium’</span>, <span class="str">‘Cypress’</span>];
-<span class="kw">this</span>.coverage    = <span class="num">0.40</span>; <span class="c">// +40%</span>
-<span class="kw">this</span>.releases    = <span class="num">3</span>;    <span class="c">// major</span>
-<span class="kw">this</span>.pipeline    = <span class="str">‘Jenkins + Git’</span>;
-}
+  <span class="fn">constructor</span>() {
+    <span class="kw">this</span>.frameworks  = [<span class="str">'Selenium'</span>, <span class="str">'Cypress'</span>];
+    <span class="kw">this</span>.coverage    = <span class="num">0.40</span>; <span class="c">// +40%</span>
+    <span class="kw">this</span>.releases    = <span class="num">3</span>;    <span class="c">// major</span>
+    <span class="kw">this</span>.pipeline    = <span class="str">'Jenkins + Git'</span>;
+  }
 
-<span class="fn">shiftLeft</span>(defect) {
-<span class="c">// Catch it before UAT does.</span>
-<span class="kw">return</span> defect.<span class="fn">resolveIn</span>(<span class="str">‘development’</span>);
-}
+  <span class="fn">shiftLeft</span>(defect) {
+    <span class="c">// Catch it before UAT does.</span>
+    <span class="kw">return</span> defect.<span class="fn">resolveIn</span>(<span class="str">'development'</span>);
+  }
 
-<span class="fn">validateAtScale</span>(users = <span class="num">15000</span>) {
-<span class="kw">return</span> <span class="fn">LoadRunner</span>.simulate(users, {
-target: <span class="str">‘zero-downtime’</span>,
-env:    <span class="str">‘cloud’</span>
-});
-}
+  <span class="fn">validateAtScale</span>(users = <span class="num">15000</span>) {
+    <span class="kw">return</span> <span class="fn">LoadRunner</span>.simulate(users, {
+      target: <span class="str">'zero-downtime'</span>,
+      env:    <span class="str">'cloud'</span>
+    });
+  }
 
 }</code></pre>
-</div>
-</div>
-</div>
-<div class="hero-scroll-hint">
-<span class="mono">scroll</span>
-<div class="scroll-line"></div>
-</div>
-
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span class="mono">scroll</span>
+      <div class="scroll-line"></div>
+    </div>
   </section>
 
-  <!-- ░░ ABOUT / PHILOSOPHY ░░ -->
-
+  <!-- ABOUT -->
   <section id="about">
     <div class="container">
       <div class="section-label"><span class="mono accent">01 /</span> Engineering Philosophy</div>
@@ -1157,430 +1152,254 @@ env:    <span class="str">‘cloud’</span>
     </div>
   </section>
 
-  <!-- ░░ TECH STACK ░░ -->
-
+  <!-- STACK -->
   <section id="stack">
     <div class="container">
       <div class="section-label"><span class="mono accent">02 /</span> Technical Stack</div>
       <p class="stack-framing mono">Focused on building scalable, maintainable test systems across UI, API, and performance layers — every tool below has been used in production at enterprise scale.</p>
       <h2 class="section-title">Tools I Own,<br />Not Just Use</h2>
       <div class="stack-grid">
-
-```
-    <div class="stack-category">
-      <h3 class="stack-cat-label">Automation Frameworks</h3>
-      <div class="stack-pills">
-        <div class="pill pill-primary">Selenium WebDriver</div>
-        <div class="pill pill-primary">Cypress</div>
-        <div class="pill pill-primary">Playwright</div>
-        <div class="pill pill-primary">Appium</div>
+        <div class="stack-category">
+          <h3 class="stack-cat-label">Automation Frameworks</h3>
+          <div class="stack-pills">
+            <div class="pill pill-primary">Selenium WebDriver</div>
+            <div class="pill pill-primary">Cypress</div>
+            <div class="pill pill-primary">Playwright</div>
+            <div class="pill pill-primary">Appium</div>
+          </div>
+        </div>
+        <div class="stack-category">
+          <h3 class="stack-cat-label">Performance Engineering</h3>
+          <div class="stack-pills">
+            <div class="pill pill-red">LoadRunner Enterprise</div>
+            <div class="pill pill-red">Cloud Load Simulation</div>
+            <div class="pill pill-red">Concurrency Modeling</div>
+          </div>
+        </div>
+        <div class="stack-category">
+          <h3 class="stack-cat-label">Languages</h3>
+          <div class="stack-pills">
+            <div class="pill pill-mono">Java</div>
+            <div class="pill pill-mono">JavaScript</div>
+            <div class="pill pill-mono">SQL</div>
+            <div class="pill pill-mono">CSS</div>
+          </div>
+        </div>
+        <div class="stack-category">
+          <h3 class="stack-cat-label">CI/CD & DevOps</h3>
+          <div class="stack-pills">
+            <div class="pill">Jenkins</div>
+            <div class="pill">Git</div>
+            <div class="pill">Azure DevOps</div>
+            <div class="pill">AWS</div>
+          </div>
+        </div>
+        <div class="stack-category">
+          <h3 class="stack-cat-label">API & Data Validation</h3>
+          <div class="stack-pills">
+            <div class="pill">Postman</div>
+            <div class="pill">REST API Testing</div>
+            <div class="pill">SQL Server</div>
+            <div class="pill">Oracle DB</div>
+          </div>
+        </div>
+        <div class="stack-category">
+          <h3 class="stack-cat-label">Process & Methodology</h3>
+          <div class="stack-pills">
+            <div class="pill">Agile / Scrum</div>
+            <div class="pill">DevOps</div>
+            <div class="pill">Shift-Left Testing</div>
+            <div class="pill">BDD</div>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="stack-category">
-      <h3 class="stack-cat-label">Performance Engineering</h3>
-      <div class="stack-pills">
-        <div class="pill pill-red">LoadRunner Enterprise</div>
-        <div class="pill pill-red">Cloud Load Simulation</div>
-        <div class="pill pill-red">Concurrency Modeling</div>
-      </div>
-    </div>
-
-    <div class="stack-category">
-      <h3 class="stack-cat-label">Languages</h3>
-      <div class="stack-pills">
-        <div class="pill pill-mono">Java</div>
-        <div class="pill pill-mono">JavaScript</div>
-        <div class="pill pill-mono">SQL</div>
-        <div class="pill pill-mono">CSS</div>
-      </div>
-    </div>
-
-    <div class="stack-category">
-      <h3 class="stack-cat-label">CI/CD & DevOps</h3>
-      <div class="stack-pills">
-        <div class="pill">Jenkins</div>
-        <div class="pill">Git</div>
-        <div class="pill">Azure DevOps</div>
-        <div class="pill">AWS (DevOps Pro — In Progress)</div>
-      </div>
-    </div>
-
-    <div class="stack-category">
-      <h3 class="stack-cat-label">API & Data Validation</h3>
-      <div class="stack-pills">
-        <div class="pill">Postman</div>
-        <div class="pill">REST API Testing</div>
-        <div class="pill">SQL Server</div>
-        <div class="pill">Oracle DB</div>
-        <div class="pill">ETL Validation</div>
-      </div>
-    </div>
-
-    <div class="stack-category">
-      <h3 class="stack-cat-label">Process & Methodology</h3>
-      <div class="stack-pills">
-        <div class="pill">Agile / Scrum</div>
-        <div class="pill">DevOps</div>
-        <div class="pill">Shift-Left Testing</div>
-        <div class="pill">BDD</div>
-        <div class="pill">Jira</div>
-      </div>
-    </div>
-
-  </div>
-</div>
-```
-
   </section>
 
-  <!-- ░░ PROJECTS ░░ -->
-
+  <!-- PROJECTS -->
   <section id="projects">
     <div class="container">
       <div class="section-label"><span class="mono accent">03 /</span> Featured Projects</div>
       <h2 class="section-title">Systems I<br />Architected</h2>
 
-```
-  <!-- PROJECT 1 -->
-  <div class="project-card project-card--featured">
-    <div class="project-card-inner">
-      <div class="project-meta">
-        <span class="project-num mono">P-01</span>
-        <span class="project-tag">Automation Architecture</span>
-        <span class="project-org">Booz Allen Hamilton · VA</span>
-      </div>
-      <h3 class="project-title">Hybrid Automation Framework for Federal Appeals Modernization</h3>
-      <div class="project-body">
-        <div class="project-problem">
-          <h4>Problem</h4>
-          <p>
-            The VA Appeals Modernization program operated on an accelerating release cadence with insufficient
-            automated coverage — manual regression was the primary safety net for a government system used
-            by millions of veterans. Defect escape rate into UAT was unacceptably high, slowing delivery
-            and eroding confidence in quality gates.
-          </p>
-        </div>
-        <div class="project-approach">
-          <h4>Architecture & Approach</h4>
-          <p>
-            Designed and implemented a hybrid Selenium-Cypress framework from scratch, combining
-            Selenium's cross-browser depth with Cypress's speed and developer ergonomics. Built
-            modular test utilities enabling rapid test authorship by onshore and offshore contributors.
-            Established framework conventions, code review gates, and CI-integrated execution — making
-            automated testing a continuous, non-negotiable part of every deployment.
-          </p>
-        </div>
-        <div class="project-impact">
-          <h4>Measurable Impact</h4>
-          <div class="impact-metrics">
-            <div class="metric"><span class="metric-val accent">40%</span><span>Regression Coverage Increase</span></div>
-            <div class="metric"><span class="metric-val accent">3</span><span>Major Releases Protected</span></div>
-            <div class="metric"><span class="metric-val accent">30%</span><span>Reduction in UAT Defect Volume</span></div>
+      <!-- PROJECT 1 -->
+      <div class="project-card project-card-featured">
+        <div class="project-card-inner">
+          <div class="project-meta">
+            <span class="project-num mono">P-01</span>
+            <span class="project-tag">Automation Architecture</span>
+            <span class="project-org">Booz Allen Hamilton · VA</span>
+          </div>
+          <h3 class="project-title">Hybrid Automation Framework for Federal Appeals Modernization</h3>
+          <div class="project-body">
+            <div class="project-problem">
+              <h4>Problem</h4>
+              <p>The VA Appeals Modernization program operated on an accelerating release cadence with insufficient automated coverage. Defect escape rate into UAT was unacceptably high.</p>
+            </div>
+            <div class="project-approach">
+              <h4>Architecture & Approach</h4>
+              <p>Designed and implemented a hybrid Selenium-Cypress framework from scratch. Built modular test utilities enabling rapid test authorship and established CI-integrated execution.</p>
+            </div>
+            <div class="project-impact">
+              <h4>Measurable Impact</h4>
+              <div class="impact-metrics">
+                <div class="metric"><span class="metric-val accent">40%</span><span>Regression Coverage Increase</span></div>
+                <div class="metric"><span class="metric-val accent">3</span><span>Major Releases Protected</span></div>
+                <div class="metric"><span class="metric-val accent">30%</span><span>Reduction in UAT Defect Volume</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">Selenium WebDriver</span>
+            <span class="tech-tag">Cypress</span>
+            <span class="tech-tag">Jenkins</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Java</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/shawndavis-sdet" target="_blank" rel="noopener" class="project-link-btn">
+              <span>⌥</span> View Framework Architecture
+            </a>
+            <a href="#contact" class="project-link-btn project-link-btn-ghost">
+              <span>✉</span> Request Design Doc
+            </a>
           </div>
         </div>
       </div>
-      <div class="project-tech">
-        <span class="tech-tag">Selenium WebDriver</span>
-        <span class="tech-tag">Cypress</span>
-        <span class="tech-tag">Jenkins</span>
-        <span class="tech-tag">Git</span>
-        <span class="tech-tag">JavaScript</span>
-        <span class="tech-tag">Java</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/shawndavis-sdet" target="_blank" rel="noopener" class="project-link-btn">
-          <span>⌥</span> View Framework Architecture
-        </a>
-        <a href="#contact" class="project-link-btn project-link-btn--ghost">
-          <span>✉</span> Request Design Doc
-        </a>
-      </div>
-    </div>
-  </div>
 
-  <!-- PROJECT 2 -->
-  <div class="project-card">
-    <div class="project-card-inner">
-      <div class="project-meta">
-        <span class="project-num mono">P-02</span>
-        <span class="project-tag">CI/CD Quality Engineering</span>
-        <span class="project-org">Booz Allen Hamilton · VA</span>
-      </div>
-      <h3 class="project-title">CI/CD Quality Gate Integration — Jenkins Pipeline Architecture</h3>
-      <div class="project-body">
-        <div class="project-problem">
-          <h4>Problem</h4>
-          <p>
-            Automated tests existed in isolation — run manually, inconsistently, and disconnected
-            from the deployment pipeline. Release confidence depended on human judgment rather than
-            systematic validation. Deployment cycle times were bottlenecked by late-stage manual
-            testing phases that couldn't scale with sprint velocity.
-          </p>
-        </div>
-        <div class="project-approach">
-          <h4>Architecture & Approach</h4>
-          <p>
-            Engineered automated test execution directly into Jenkins CI/CD pipelines, creating
-            mandatory quality gates at every deployment stage. Tests ran on every code push,
-            produced structured pass/fail signals, and blocked promotions on regression failures.
-            Established parallel execution strategies to reduce feedback loop time without
-            sacrificing coverage depth.
-          </p>
-        </div>
-        <div class="project-impact">
-          <h4>Measurable Impact</h4>
-          <div class="impact-metrics">
-            <div class="metric"><span class="metric-val accent">25%</span><span>Reduction in Deployment Cycle Time</span></div>
-            <div class="metric"><span class="metric-val accent">100%</span><span>Pipeline Gate Coverage on Critical Paths</span></div>
+      <!-- PROJECT 2 -->
+      <div class="project-card">
+        <div class="project-card-inner">
+          <div class="project-meta">
+            <span class="project-num mono">P-02</span>
+            <span class="project-tag">CI/CD Quality Engineering</span>
+            <span class="project-org">Booz Allen Hamilton · VA</span>
+          </div>
+          <h3 class="project-title">CI/CD Quality Gate Integration — Jenkins Pipeline Architecture</h3>
+          <div class="project-body">
+            <div class="project-problem">
+              <h4>Problem</h4>
+              <p>Automated tests existed in isolation and release confidence depended on human judgment rather than systematic validation.</p>
+            </div>
+            <div class="project-approach">
+              <h4>Architecture & Approach</h4>
+              <p>Engineered automated test execution directly into Jenkins CI/CD pipelines, creating mandatory quality gates at every deployment stage.</p>
+            </div>
+            <div class="project-impact">
+              <h4>Measurable Impact</h4>
+              <div class="impact-metrics">
+                <div class="metric"><span class="metric-val accent">25%</span><span>Reduction in Cycle Time</span></div>
+                <div class="metric"><span class="metric-val accent">100%</span><span>Gate Coverage on Critical Paths</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">Jenkins</span>
+            <span class="tech-tag">Git</span>
+            <span class="tech-tag">Azure DevOps</span>
+            <span class="tech-tag">Selenium</span>
           </div>
         </div>
       </div>
-      <div class="project-tech">
-        <span class="tech-tag">Jenkins</span>
-        <span class="tech-tag">Git</span>
-        <span class="tech-tag">Azure DevOps</span>
-        <span class="tech-tag">Selenium</span>
-        <span class="tech-tag">Cypress</span>
-        <span class="tech-tag">Java</span>
-      </div>
     </div>
-  </div>
-
-  <!-- PROJECT 3 -->
-  <div class="project-card">
-    <div class="project-card-inner">
-      <div class="project-meta">
-        <span class="project-num mono">P-03</span>
-        <span class="project-tag">Performance Engineering</span>
-        <span class="project-org">Booz Allen Hamilton · VA</span>
-      </div>
-      <h3 class="project-title">Enterprise Performance Validation Under 15K Concurrent Users</h3>
-      <div class="project-body">
-        <div class="project-problem">
-          <h4>Problem</h4>
-          <p>
-            The VA appeals platform faced peak usage events — claims filing deadlines, policy
-            announcements — that would drive sudden concurrent load spikes. Without validated
-            performance baselines, production incidents during high-traffic windows were a
-            real and unacceptable risk for a system serving veterans in time-sensitive situations.
-          </p>
-        </div>
-        <div class="project-approach">
-          <h4>Architecture & Approach</h4>
-          <p>
-            Led cloud-based performance test design using LoadRunner Enterprise. Modeled realistic
-            user journeys across core application flows, designed ramp-up/ramp-down load profiles,
-            and executed sustained concurrency scenarios at 15,000+ simulated users. Analyzed
-            transaction response times, server resource utilization, and error rate thresholds to
-            establish documented production-ready performance baselines.
-          </p>
-        </div>
-        <div class="project-impact">
-          <h4>Measurable Impact</h4>
-          <div class="impact-metrics">
-            <div class="metric"><span class="metric-val accent">15K+</span><span>Concurrent Users Simulated</span></div>
-            <div class="metric"><span class="metric-val accent">0</span><span>Downtime on Launch</span></div>
-            <div class="metric"><span class="metric-val accent">Cloud</span><span>Scalable Test Environment</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="project-tech">
-        <span class="tech-tag">LoadRunner Enterprise</span>
-        <span class="tech-tag">Cloud Infrastructure</span>
-        <span class="tech-tag">SQL Server</span>
-        <span class="tech-tag">Performance Baselines</span>
-      </div>
-      <div class="project-links">
-        <a href="#contact" class="project-link-btn project-link-btn--ghost">
-          <span>✉</span> Request Performance Test Sample
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- PROJECT 4 -->
-  <div class="project-card">
-    <div class="project-card-inner">
-      <div class="project-meta">
-        <span class="project-num mono">P-04</span>
-        <span class="project-tag">Data & BI Validation</span>
-        <span class="project-org">Booz Allen Hamilton · VA</span>
-      </div>
-      <h3 class="project-title">ETL & Business Intelligence Validation Framework</h3>
-      <div class="project-body">
-        <div class="project-problem">
-          <h4>Problem</h4>
-          <p>
-            Government compliance reporting pipelines demanded end-to-end data accuracy across
-            complex ETL transformations. Errors in BI output didn't just affect dashboards —
-            they affected policy decisions, resource allocation, and veteran services. Standard
-            UI-layer testing was insufficient to validate data integrity at the pipeline level.
-          </p>
-        </div>
-        <div class="project-approach">
-          <h4>Architecture & Approach</h4>
-          <p>
-            Designed and executed SQL-based ETL validation workflows targeting the data at
-            every transformation stage — source, transformation logic, and final report output.
-            Built parameterized validation queries that compared expected vs. actual data
-            states across compliance reporting cycles. Integrated validation checkpoints into
-            the release pipeline to prevent bad data from reaching production reporting.
-          </p>
-        </div>
-        <div class="project-impact">
-          <h4>Measurable Impact</h4>
-          <div class="impact-metrics">
-            <div class="metric"><span class="metric-val accent">100%</span><span>BI Report Accuracy on Audited Cycles</span></div>
-            <div class="metric"><span class="metric-val accent">Gov</span><span>Compliance-Grade Data Validation</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="project-tech">
-        <span class="tech-tag">SQL Server</span>
-        <span class="tech-tag">Oracle DB</span>
-        <span class="tech-tag">ETL Validation</span>
-        <span class="tech-tag">Postman</span>
-        <span class="tech-tag">Jira</span>
-      </div>
-    </div>
-  </div>
-
-</div>
-```
-
   </section>
 
-  <!-- ░░ TESTING PHILOSOPHY / PYRAMID ░░ -->
-
+  <!-- PHILOSOPHY / PYRAMID -->
   <section id="philosophy">
     <div class="container">
       <div class="section-label"><span class="mono accent">04 /</span> Testing Architecture</div>
       <h2 class="section-title">How I Think<br />About Quality at Scale</h2>
       <div class="philosophy-grid">
+        <div class="pyramid-wrapper">
+          <div class="pyramid">
+            <div class="pyramid-level">
+              <span class="pyramid-label">E2E · Cypress / Selenium</span>
+              <div class="pyramid-bar pyramid-bar-1"></div>
+            </div>
+            <div class="pyramid-level">
+              <span class="pyramid-label">Integration · Postman / API</span>
+              <div class="pyramid-bar pyramid-bar-2"></div>
+            </div>
+            <div class="pyramid-level">
+              <span class="pyramid-label">Unit · CI-Integrated</span>
+              <div class="pyramid-bar pyramid-bar-3"></div>
+            </div>
+          </div>
+          <p class="pyramid-caption mono">The pyramid is a philosophy, not a ratio. Every layer earns its cost.</p>
+        </div>
 
-```
-    <div class="pyramid-wrapper">
-      <div class="pyramid">
-        <div class="pyramid-level pyramid-l1">
-          <span class="pyramid-label">E2E · Cypress / Selenium</span>
-          <div class="pyramid-bar pyramid-bar--1"></div>
-        </div>
-        <div class="pyramid-level pyramid-l2">
-          <span class="pyramid-label">Integration · Postman / API</span>
-          <div class="pyramid-bar pyramid-bar--2"></div>
-        </div>
-        <div class="pyramid-level pyramid-l3">
-          <span class="pyramid-label">Unit · CI-Integrated / Fast Feedback</span>
-          <div class="pyramid-bar pyramid-bar--3"></div>
-        </div>
-      </div>
-      <p class="pyramid-caption mono">The pyramid is a philosophy, not a ratio. Every layer earns its cost.</p>
-    </div>
-
-    <div class="philosophy-principles">
-      <div class="principle">
-        <div class="principle-num mono accent">01</div>
-        <div class="principle-body">
-          <h4>Fast Feedback First</h4>
-          <p>Unit and integration tests must be fast enough that developers don't skip them. I design suite architecture around execution time — long-running tests run in parallel, never as blockers.</p>
-        </div>
-      </div>
-      <div class="principle">
-        <div class="principle-num mono accent">02</div>
-        <div class="principle-body">
-          <h4>Pipeline-Native Testing</h4>
-          <p>Tests that aren't in the pipeline don't count. My CI/CD integration at Booz Allen proved that automated gates — not manual checkpoints — are the only reliable quality mechanism at scale.</p>
-        </div>
-      </div>
-      <div class="principle">
-        <div class="principle-num mono accent">03</div>
-        <div class="principle-body">
-          <h4>Flakiness is a Production Bug</h4>
-          <p>A flaky test is worse than no test — it erodes trust in the entire suite. I treat flaky tests with the same urgency as production incidents: root cause, fix, or quarantine.</p>
-        </div>
-      </div>
-      <div class="principle">
-        <div class="principle-num mono accent">04</div>
-        <div class="principle-body">
-          <h4>Data Integrity is a First-Class Concern</h4>
-          <p>UI tests catch presentation bugs. SQL-layer ETL validation catches the errors that actually break compliance reporting. Both layers matter — I own both.</p>
-        </div>
-      </div>
-      <div class="principle">
-        <div class="principle-num mono accent">05</div>
-        <div class="principle-body">
-          <h4>Performance is a Feature</h4>
-          <p>15,000 concurrent users crashing a government benefits system isn't a performance problem — it's a mission failure. Performance validation belongs in every release cycle, not just launch week.</p>
+        <div class="philosophy-principles">
+          <div class="principle">
+            <div class="principle-num mono accent">01</div>
+            <div class="principle-body">
+              <h4>Fast Feedback First</h4>
+              <p>Unit and integration tests must be fast enough that developers don't skip them. I design suite architecture around execution time.</p>
+            </div>
+          </div>
+          <div class="principle">
+            <div class="principle-num mono accent">02</div>
+            <div class="principle-body">
+              <h4>Pipeline-Native Testing</h4>
+              <p>Tests that aren't in the pipeline don't count. Automated gates are the only reliable quality mechanism at scale.</p>
+            </div>
+          </div>
+          <div class="principle">
+            <div class="principle-num mono accent">03</div>
+            <div class="principle-body">
+              <h4>Flakiness is a Production Bug</h4>
+              <p>A flaky test erodes trust in the entire suite. I treat flaky tests with the same urgency as production incidents.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-  </div>
-</div>
-```
-
   </section>
 
-  <!-- ░░ EXPERIENCE SNAPSHOT ░░ -->
-
+  <!-- EXPERIENCE -->
   <section id="experience">
     <div class="container">
       <div class="section-label"><span class="mono accent">05 /</span> Experience</div>
       <h2 class="section-title">Where I've<br />Owned Quality</h2>
       <div class="experience-timeline">
-
-```
-    <div class="exp-entry">
-      <div class="exp-header">
-        <div class="exp-title-block">
-          <h3>Lead Software Engineer in Test</h3>
-          <span class="exp-company">Booz Allen Hamilton</span>
+        <div class="exp-entry">
+          <div class="exp-header">
+            <div class="exp-title-block">
+              <h3>Lead Software Engineer in Test</h3>
+              <span class="exp-company">Booz Allen Hamilton</span>
+            </div>
+            <div class="exp-date mono">Jun 2021 – May 2025</div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Architected hybrid Selenium-Cypress framework for VA federal releases.</li>
+            <li>Engineered Jenkins CI/CD quality gates, reducing cycle time by 25%.</li>
+            <li>Designed performance tests for 15,000+ concurrent users using LoadRunner.</li>
+          </ul>
+          <div class="exp-stack">
+            <span>Selenium</span><span>Cypress</span><span>Jenkins</span><span>LoadRunner</span><span>SQL Server</span>
+          </div>
         </div>
-        <div class="exp-date mono">Jun 2021 – May 2025</div>
-      </div>
-      <ul class="exp-bullets">
-        <li>Architected and owned a hybrid Selenium-Cypress framework that became the quality infrastructure backbone for 3 major VA federal releases reaching millions of beneficiaries.</li>
-        <li>Engineered end-to-end CI/CD quality gates in Jenkins, reducing deployment cycle time by 25% while maintaining zero-regression on compliance-critical workflows.</li>
-        <li>Designed cloud-based performance test topologies using LoadRunner Enterprise — validated 15,000+ concurrent users with zero-downtime on production launch.</li>
-        <li>Drove shift-left validation strategy with product leadership, reducing UAT defect volume by 30% and compressing delivery timelines across the program.</li>
-        <li>Led and mentored onshore/offshore engineering teams across concurrent Agile programs; established automation standards adopted org-wide.</li>
-        <li>Owned SQL-based ETL and BI validation pipelines for government compliance reporting.</li>
-      </ul>
-      <div class="exp-stack">
-        <span>Selenium</span><span>Cypress</span><span>Appium</span><span>Jenkins</span><span>LoadRunner Enterprise</span><span>SQL Server</span><span>Git</span>
+        <div class="exp-divider"></div>
+        <div class="exp-entry">
+          <div class="exp-header">
+            <div class="exp-title-block">
+              <h3>Software Engineer in Test</h3>
+              <span class="exp-company">BAE Systems</span>
+            </div>
+            <div class="exp-date mono">Dec 2019 – Jun 2021</div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Achieved 95% pre-production defect detection rate for web platforms.</li>
+            <li>Automated UI regression using Selenium and Playwright.</li>
+          </ul>
+          <div class="exp-stack">
+            <span>Selenium</span><span>Playwright</span><span>Jira</span><span>JavaScript</span>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="exp-divider"></div>
-
-    <div class="exp-entry">
-      <div class="exp-header">
-        <div class="exp-title-block">
-          <h3>Software Engineer in Test</h3>
-          <span class="exp-company">BAE Systems</span>
-        </div>
-        <div class="exp-date mono">Dec 2019 – Jun 2021</div>
-      </div>
-      <ul class="exp-bullets">
-        <li>Designed 200+ structured test cases for defense-adjacent web and mobile platforms, achieving a 95% pre-production defect detection rate.</li>
-        <li>Automated UI regression using Selenium and Playwright across 10+ device/browser configurations, reducing manual testing overhead by 15%.</li>
-        <li>Partnered with engineering to identify and close 50+ high-severity defects — delivered root cause analysis that reduced mean bug resolution time by 10%.</li>
-        <li>Owned Jira-based defect reporting infrastructure; produced quality metrics consumed by engineering leadership for release decisions.</li>
-      </ul>
-      <div class="exp-stack">
-        <span>Selenium</span><span>Playwright</span><span>Jira</span><span>Postman</span><span>JavaScript</span><span>Java</span>
-      </div>
-    </div>
-
-  </div>
-</div>
-```
-
   </section>
 
-  <!-- ░░ MILITARY ░░ -->
-
+  <!-- MILITARY -->
   <section id="military">
     <div class="container">
       <div class="section-label"><span class="mono accent">06 /</span> Military Background</div>
@@ -1595,22 +1414,15 @@ env:    <span class="str">‘cloud’</span>
           </div>
         </div>
         <div class="military-right">
-          <p class="military-lead">
-            Aviation Maintenance Administration Specialist. A role where documentation errors
-            don't cause bad deploys — they ground aircraft.
-          </p>
+          <p class="military-lead">Aviation Maintenance Administration Specialist. A role where precision is mission-critical.</p>
           <div class="military-cards">
             <div class="mil-card">
               <h4>Zero-Defect Mindset</h4>
-              <p>Managing mission-critical maintenance documentation means one missed field, one wrong entry, has operational consequences. That precision — applied to test design and data validation — is what separates adequate QA from engineering-grade quality systems.</p>
+              <p>Precision applied to data validation is what separates adequate QA from engineering-grade quality systems.</p>
             </div>
             <div class="mil-card">
               <h4>Leadership Under Pressure</h4>
-              <p>The Marine Corps doesn't give you perfect information or unlimited time. Neither does an incident at 2am on a government benefits platform. I've been trained to make disciplined decisions fast, communicate clearly upward, and own outcomes.</p>
-            </div>
-            <div class="mil-card">
-              <h4>Earned, Not Given</h4>
-              <p>A Meritorious Promotion is awarded by competitive selection — not tenure, not luck. It reflects performance in the top tier of a cohort that already operates at a high standard. I bring that competitive drive into every engineering team I'm part of.</p>
+              <p>Trained to make disciplined decisions fast and own outcomes in mission-critical situations.</p>
             </div>
           </div>
         </div>
@@ -1618,15 +1430,14 @@ env:    <span class="str">‘cloud’</span>
     </div>
   </section>
 
-  <!-- ░░ CONTACT ░░ -->
-
+  <!-- CONTACT -->
   <section id="contact">
     <div class="container">
       <div class="section-label"><span class="mono accent">07 /</span> Contact</div>
       <div class="contact-grid">
         <div class="contact-left">
           <h2>Let's build<br />something<br /><em>reliable.</em></h2>
-          <p>Open to senior and staff SDET roles, quality architecture consulting, and engineering leadership opportunities.</p>
+          <p>Open to senior SDET roles and quality architecture consulting.</p>
         </div>
         <div class="contact-right">
           <div class="contact-links">
@@ -1635,13 +1446,6 @@ env:    <span class="str">‘cloud’</span>
               <div class="contact-link-body">
                 <span class="contact-link-label mono">Email</span>
                 <span class="contact-link-value">shawn.davis2402@gmail.com</span>
-              </div>
-            </a>
-            <a href="tel:+19193967443" class="contact-link">
-              <span class="contact-icon">↗</span>
-              <div class="contact-link-body">
-                <span class="contact-link-label mono">Phone</span>
-                <span class="contact-link-value">+1 (919) 396-7443</span>
               </div>
             </a>
             <a href="https://linkedin.com/in/shawn-davis-sdet" class="contact-link" target="_blank" rel="noopener">
@@ -1655,14 +1459,7 @@ env:    <span class="str">‘cloud’</span>
               <span class="contact-icon">⌥</span>
               <div class="contact-link-body">
                 <span class="contact-link-label mono">GitHub</span>
-                <span class="contact-link-value">github.com/shawndavis</span>
-              </div>
-            </a>
-            <a href="ShawnDavis_SDET_Standard.docx" class="contact-link" download>
-              <span class="contact-icon">↓</span>
-              <div class="contact-link-body">
-                <span class="contact-link-label mono">Resume</span>
-                <span class="contact-link-value">Download .docx</span>
+                <span class="contact-link-value">github.com/shawndavis-sdet</span>
               </div>
             </a>
           </div>
@@ -1671,8 +1468,7 @@ env:    <span class="str">‘cloud’</span>
     </div>
   </section>
 
-  <!-- ░░ FOOTER ░░ -->
-
+  <!-- FOOTER -->
   <footer>
     <div class="container">
       <div class="footer-inner">
@@ -1683,11 +1479,7 @@ env:    <span class="str">‘cloud’</span>
   </footer>
 
   <script>
-/* ═══════════════════════════════════════════════════════════════
-   SHAWN DAVIS PORTFOLIO · script.js
-   ═══════════════════════════════════════════════════════════════ */
-
-// ── NAV: scroll state ──────────────────────────────────────────
+/* NAV: scroll state */
 const nav = document.getElementById('nav');
 const hamburger = document.getElementById('hamburger');
 
@@ -1699,43 +1491,35 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 
-// ── NAV: mobile toggle ─────────────────────────────────────────
 hamburger.addEventListener('click', () => {
   nav.classList.toggle('nav-open');
 });
 
-// Close mobile nav when a link is clicked
 document.querySelectorAll('.nav-links a, .nav-cta').forEach(link => {
   link.addEventListener('click', () => {
     nav.classList.remove('nav-open');
   });
 });
 
-// ── SCROLL ANIMATIONS ──────────────────────────────────────────
-// Add fade-in class to elements we want to animate
+/* SCROLL ANIMATIONS */
 const animatedSelectors = [
   '.stat', '.pillar', '.stack-category', '.project-card',
   '.principle', '.mil-card', '.exp-entry', '.contact-link',
   '.about-right p', '.hero-eyebrow', '.hero-name',
   '.hero-title', '.hero-sub', '.hero-stats', '.hero-actions',
-  '.section-label', '.section-title', '.about-left h2',
-  '.military-left h2', '.military-badge', '.military-lead',
-  '.contact-left h2', '.pyramid-wrapper', '.pyramid-caption'
+  '.section-label', '.section-title', '.about-left h2'
 ];
 
-// Only animate elements not already in the viewport
 function initAnimations() {
   animatedSelectors.forEach(selector => {
     document.querySelectorAll(selector).forEach((el, i) => {
       el.classList.add('fade-in');
-      // stagger delay for grouped elements
       const delay = Math.min(i * 60, 300);
       el.style.transitionDelay = delay + 'ms';
     });
   });
 }
 
-// IntersectionObserver for scroll-triggered reveals
 function initObserver() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -1752,7 +1536,7 @@ function initObserver() {
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 }
 
-// ── ACTIVE NAV LINK ────────────────────────────────────────────
+/* ACTIVE NAV LINK */
 function initActiveNav() {
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
@@ -1773,7 +1557,7 @@ function initActiveNav() {
   sections.forEach(s => observer.observe(s));
 }
 
-// ── SMOOTH SCROLL OFFSET (account for fixed nav) ───────────────
+/* SMOOTH SCROLL */
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', (e) => {
     const id = link.getAttribute('href').slice(1);
@@ -1786,35 +1570,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
   });
 });
 
-// ── HERO CODE WINDOW: subtle typing cursor ─────────────────────
-function initCodeCursor() {
-  const codeBlock = document.querySelector('.code-block code');
-  if (!codeBlock) return;
-
-  const cursor = document.createElement('span');
-  cursor.style.cssText = `
-    display: inline-block;
-    width: 8px;
-    height: 1.1em;
-    background: var(--accent);
-    vertical-align: text-bottom;
-    margin-left: 2px;
-    animation: blink 1.1s step-end infinite;
-  `;
-
-  // Inject blink keyframe
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: 0; }
-    }
-  `;
-  document.head.appendChild(style);
-  codeBlock.appendChild(cursor);
-}
-
-// ── STAT COUNTER ANIMATION ─────────────────────────────────────
+/* STAT COUNTER */
 function initCounters() {
   const statNums = document.querySelectorAll('.stat-num');
 
@@ -1834,20 +1590,13 @@ function initCounters() {
       function tick(now) {
         const elapsed = now - start;
         const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3); // ease-out-cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
         const current = rawNum * eased;
-
-        // Format: integers stay integers, decimals get 1 place
-        const formatted = Number.isInteger(rawNum)
-          ? Math.round(current)
-          : current.toFixed(0);
-
+        const formatted = Number.isInteger(rawNum) ? Math.round(current) : current.toFixed(0);
         el.innerHTML = formatted + suffix;
-
         if (progress < 1) requestAnimationFrame(tick);
-        else el.innerHTML = text; // restore exact original
+        else el.innerHTML = text;
       }
-
       requestAnimationFrame(tick);
       observer.unobserve(el);
     });
@@ -1856,53 +1605,15 @@ function initCounters() {
   statNums.forEach(el => observer.observe(el));
 }
 
-// ── METRIC VAL ANIMATION ───────────────────────────────────────
-function initMetricCounters() {
-  const metrics = document.querySelectorAll('.metric-val');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      const original = el.textContent;
-      const numMatch = original.match(/^[\d]+/);
-      if (!numMatch) return;
-
-      const rawNum = parseInt(numMatch[0]);
-      const suffix = original.slice(numMatch[0].length);
-      const duration = 900;
-      const start = performance.now();
-
-      function tick(now) {
-        const progress = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        el.textContent = Math.round(rawNum * eased) + suffix;
-        if (progress < 1) requestAnimationFrame(tick);
-        else el.textContent = original;
-      }
-
-      requestAnimationFrame(tick);
-      observer.unobserve(el);
-    });
-  }, { threshold: 0.6 });
-
-  metrics.forEach(el => observer.observe(el));
-}
-
-// ── INIT ───────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   initAnimations();
-  // Small delay so initial paint isn't blocked
   requestAnimationFrame(() => {
     initObserver();
     initActiveNav();
-    initCodeCursor();
     initCounters();
-    initMetricCounters();
   });
 });
-
 </script>
-
 </body>
 </html>
+
