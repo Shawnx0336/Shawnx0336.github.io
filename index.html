@@ -1,1349 +1,1797 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shawn Davis — Software Development Engineer in Test</title>
-  <meta name="description" content="Shawn Davis — Software Development Engineer in Test specializing in automation frameworks, CI/CD quality systems, and performance engineering at enterprise scale." />
-  <meta name="keywords" content="SDET, Software Engineer in Test, Selenium, Cypress, Playwright, Jenkins, CI/CD, Test Automation, Performance Testing" />
-  <meta property="og:title" content="Shawn Davis — SDET Portfolio" />
-  <meta property="og:description" content="Senior SDET specializing in automation architecture, CI/CD quality gates, and performance engineering at enterprise scale." />
-  <meta property="og:type" content="website" />
-  <style>
-/* ===============================================================
-   SHAWN DAVIS . SDET PORTFOLIO
-   Aesthetic: Dark Editorial-Technical
-   =============================================================== */
-
-/* - RESET & BASE ----------------- */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --bg:         #0d0f12;
-  --bg-card:    #131619;
-  --bg-elevated:#181c20;
-  --border:     #1f2429;
-  --border-mid: #252b32;
-  --text:       #e8ecf0;
-  --text-mid:   #9ca8b4;
-  --text-dim:   #5a6472;
-  --accent:     #c0392b;
-  --accent-glow:rgba(192,57,43,0.15);
-  --accent-dim: #8b2a1f;
-  --navy:       #1a2b4a;
-  --green:      #2ecc71;
-  --yellow:     #f39c12;
-
-  --font-display: 'DM Serif Display', Georgia, serif;
-  --font-body:    'Outfit', system-ui, sans-serif;
-  --font-mono:    'DM Mono', 'Fira Code', monospace;
-
-  --radius:  6px;
-  --radius-lg: 12px;
-  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --max-w: 1180px;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-
-/* Subtle grain overlay */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  background-size: 200px;
-  pointer-events: none;
-  z-index: 1000;
-  opacity: 0.3;
-}
-
-/* - UTILITIES ----------------- */
-.container {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-.mono   { font-family: var(--font-mono); }
-.accent { color: var(--accent); }
-
-/* - NAV ----------------- */
-#nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 900;
-  border-bottom: 1px solid transparent;
-  transition: var(--transition);
-}
-#nav.scrolled {
-  background: rgba(13,15,18,0.95);
-  backdrop-filter: blur(12px);
-  border-bottom-color: var(--border);
-}
-.nav-inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 0 2rem;
-  height: 72px;
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-.nav-logo {
-  font-family: var(--font-mono);
-  font-size: 1.3rem;
-  font-weight: 500;
-  color: var(--text);
-  text-decoration: none;
-  letter-spacing: -0.02em;
-}
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 2rem;
-  margin-left: auto;
-}
-.nav-links a {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--text-mid);
-  text-decoration: none;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  transition: color var(--transition);
-}
-.nav-links a:hover { color: var(--text); }
-.nav-cta {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--accent);
-  text-decoration: none;
-  border: 1px solid var(--accent-dim);
-  padding: 0.5rem 1.2rem;
-  border-radius: var(--radius);
-  transition: var(--transition);
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-}
-.nav-cta:hover {
-  background: var(--accent-glow);
-  border-color: var(--accent);
-}
-.nav-hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 6px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-  margin-left: auto;
-  z-index: 1001;
-}
-.nav-hamburger span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: var(--text);
-  border-radius: 2px;
-  transition: var(--transition);
-}
-
-/* - SECTION LABEL ----------------- */
-.section-label {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  margin-bottom: 1.5rem;
-}
-
-/* - SECTION TITLE ----------------- */
-.section-title {
-  font-family: var(--font-display);
-  font-size: clamp(2.4rem, 5vw, 3.5rem);
-  line-height: 1.1;
-  color: var(--text);
-  margin-bottom: 3.5rem;
-}
-
-/* - HERO ----------------- */
-#hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 120px 2rem 6rem;
-  position: relative;
-  overflow: hidden;
-}
-#hero::after {
-  content: '';
-  position: absolute;
-  top: 10%; right: -15%;
-  width: 700px; height: 700px;
-  background: radial-gradient(circle, rgba(192,57,43,0.08) 0%, transparent 70%);
-  pointer-events: none;
-}
-.hero-grid {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 5rem;
-  align-items: center;
-}
-.hero-eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
-  font-size: 0.8rem;
-  color: var(--text-dim);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-.terminal-dot {
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 0 10px var(--green);
-  animation: pulse-dot 2s ease-in-out infinite;
-}
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; filter: brightness(1); }
-  50%       { opacity: 0.5; filter: brightness(1.5); }
-}
-.hero-name {
-  font-family: var(--font-display);
-  font-size: clamp(3.5rem, 8vw, 6.5rem);
-  line-height: 0.9;
-  color: var(--text);
-  margin-bottom: 1.5rem;
-  letter-spacing: -0.02em;
-}
-.hero-name em {
-  color: var(--accent);
-  font-style: italic;
-}
-.hero-title {
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--text-mid);
-  margin-bottom: 1.5rem;
-}
-.hero-sub {
-  font-size: 1.1rem;
-  color: var(--text-mid);
-  line-height: 1.75;
-  max-width: 520px;
-  margin-bottom: 3rem;
-}
-.hero-stats {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem 3rem;
-  margin-bottom: 3rem;
-  padding-bottom: 3rem;
-  border-bottom: 1px solid var(--border);
-}
-.stat { display: flex; flex-direction: column; gap: 0.3rem; }
-.stat-num {
-  font-family: var(--font-display);
-  font-size: 2.2rem;
-  line-height: 1;
-  color: var(--text);
-}
-.stat-label {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-dim);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-.hero-authority {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem 1.5rem;
-  background: rgba(192,57,43,0.06);
-  border: 1px solid var(--accent-dim);
-  border-radius: var(--radius);
-  margin-bottom: 2.5rem;
-  font-size: 0.85rem;
-  color: var(--text-mid);
-  line-height: 1.5;
-}
-.hero-authority .authority-icon {
-  color: var(--accent);
-  font-size: 0.8rem;
-  flex-shrink: 0;
-}
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.25rem;
-}
-
-/* - BUTTONS ----------------- */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.85rem 1.8rem;
-  border-radius: var(--radius);
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: var(--transition);
-  cursor: pointer;
-  border: 1px solid transparent;
-}
-.btn-primary {
-  background: var(--accent);
-  color: var(--text);
-  border-color: var(--accent);
-}
-.btn-primary:hover {
-  background: #a93226;
-  border-color: #a93226;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(192,57,43,0.3);
-}
-.btn-ghost {
-  background: transparent;
-  color: var(--text-mid);
-  border-color: var(--border-mid);
-}
-.btn-ghost:hover {
-  color: var(--text);
-  border-color: var(--text-mid);
-  transform: translateY(-2px);
-  background: rgba(255,255,255,0.03);
-}
-
-/* - CODE WINDOW ----------------- */
-.code-window {
-  background: #0a0c0f;
-  border: 1px solid var(--border-mid);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow:
-  0 0 0 1px rgba(255,255,255,0.03),
-  0 30px 70px rgba(0,0,0,0.6),
-  0 0 50px rgba(192,57,43,0.08);
-}
-.code-window-bar {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.9rem 1.25rem;
-  background: #111316;
-  border-bottom: 1px solid var(--border);
-}
-.dot {
-  width: 12px; height: 12px;
-  border-radius: 50%;
-}
-.dot.red    { background: #ff5f57; }
-.dot.yellow { background: #febc2e; }
-.dot.green  { background: #28c840; }
-.code-window-title {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-dim);
-  margin-left: 0.75rem;
-}
-.code-block {
-  padding: 2rem;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  line-height: 1.8;
-  overflow-x: auto;
-  margin: 0;
-}
-.code-block code { display: block; }
-.c   { color: #4d6175; }
-.kw  { color: #c0392b; }
-.fn  { color: #7ec8e3; }
-.str { color: #a8d8a8; }
-.num { color: #f39c12; }
-
-/* - SCROLL HINT ----------------- */
-.hero-scroll-hint {
-  position: absolute;
-  bottom: 2.5rem; left: 2.5rem;
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  font-size: 0.75rem;
-  color: var(--text-dim);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-.scroll-line {
-  width: 45px; height: 1px;
-  background: var(--text-dim);
-  animation: scroll-pulse 2s ease-in-out infinite;
-}
-@keyframes scroll-pulse {
-  0%, 100% { width: 45px; opacity: 0.4; }
-  50%       { width: 65px; opacity: 1; }
-}
-
-/* - SHARED SECTION SPACING ----------------- */
-section { padding: 8rem 0; }
-
-/* - ABOUT ----------------- */
-#about { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.6fr;
-  gap: 6rem;
-  align-items: start;
-}
-.about-left h2 {
-  font-family: var(--font-display);
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  line-height: 1.1;
-  position: sticky;
-  top: 120px;
-}
-.about-left h2 em { color: var(--accent); font-style: italic; }
-.about-right p {
-  margin-bottom: 1.5rem;
-  color: var(--text-mid);
-  font-size: 1.05rem;
-}
-.about-right p strong { color: var(--text); }
-.about-lead {
-  font-size: 1.25rem !important;
-  color: var(--text) !important;
-  font-weight: 500;
-  margin-bottom: 2rem !important;
-}
-.philosophy-pillars {
-  display: grid;
-  grid-template-columns: 1fr;
-  margin-top: 3rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-}
-.pillar {
-  display: grid;
-  grid-template-columns: 2.5rem 1fr;
-  gap: 1.25rem;
-  align-items: start;
-  padding: 1.75rem 2rem;
-  border-bottom: 1px solid var(--border);
-  transition: background var(--transition);
-}
-.pillar:last-child { border-bottom: none; }
-.pillar:hover { background: var(--bg-elevated); }
-.pillar-icon { color: var(--accent); font-size: 0.9rem; margin-top: 0.25rem; }
-.pillar strong { display: block; color: var(--text); font-size: 1rem; margin-bottom: 0.4rem; }
-.pillar span { font-size: 0.9rem; color: var(--text-mid); }
-
-/* - STACK ----------------- */
-.stack-framing {
-  font-size: 0.85rem;
-  color: var(--text-dim);
-  letter-spacing: 0.03em;
-  line-height: 1.65;
-  margin-bottom: 1.5rem;
-  max-width: 720px;
-}
-.stack-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
-}
-.stack-category {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 2rem;
-  transition: border-color var(--transition), box-shadow var(--transition);
-}
-.stack-category:hover {
-  border-color: var(--border-mid);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
-}
-.stack-cat-label {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  margin-bottom: 1.5rem;
-}
-.stack-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
-.pill {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  padding: 0.4rem 0.85rem;
-  border-radius: 4px;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-mid);
-  color: var(--text-mid);
-  letter-spacing: 0.02em;
-  transition: var(--transition);
-}
-.pill:hover { border-color: var(--text-dim); color: var(--text); background: rgba(255,255,255,0.05); }
-.pill-primary { border-color: #1e3a5f; background: #0d1e33; color: #6aaddc; }
-.pill-primary:hover { border-color: #6aaddc; }
-.pill-red { border-color: var(--accent-dim); background: rgba(192,57,43,0.08); color: #e07060; }
-.pill-red:hover { border-color: var(--accent); }
-.pill-mono { border-color: #2a3520; background: #121a10; color: #7ec860; }
-.pill-mono:hover { border-color: #7ec860; }
-
-/* - PROJECTS ----------------- */
-.project-card {
-  margin-bottom: 2rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
-}
-.project-card:hover {
-  border-color: var(--border-mid);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-}
-.project-card-featured {
-  border-color: var(--accent-dim);
-}
-.project-card-featured:hover {
-  border-color: var(--accent);
-  box-shadow: 0 20px 50px rgba(192,57,43,0.18);
-}
-.project-card-inner { padding: 3rem; }
-.project-meta {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-}
-.project-num { font-size: 0.75rem; color: var(--text-dim); letter-spacing: 0.12em; }
-.project-tag {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent);
-  background: var(--accent-glow);
-  border: 1px solid var(--accent-dim);
-  padding: 0.25rem 0.75rem;
-  border-radius: 4px;
-}
-.project-org {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-dim);
-  margin-left: auto;
-}
-.project-title {
-  font-family: var(--font-display);
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  line-height: 1.2;
-  color: var(--text);
-  margin-bottom: 2.5rem;
-}
-.project-body {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem 4rem;
-  margin-bottom: 2.5rem;
-}
-.project-body h4 {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 0.8rem;
-}
-.project-body p { font-size: 0.95rem; color: var(--text-mid); line-height: 1.75; }
-.project-impact { grid-column: 1 / -1; margin-top: 1rem; }
-.impact-metrics {
-  display: flex;
-  gap: 3.5rem;
-  flex-wrap: wrap;
-}
-.metric {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-.metric-val {
-  font-family: var(--font-display);
-  font-size: 2.2rem;
-  line-height: 1;
-}
-.metric span:last-child {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-.project-tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--border);
-}
-.tech-tag {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-dim);
-  padding: 0.3rem 0.75rem;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  background: var(--bg-elevated);
-}
-.project-links {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-top: 1.5rem;
-}
-.project-link-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.04em;
-  padding: 0.6rem 1.4rem;
-  border-radius: var(--radius);
-  text-decoration: none;
-  transition: var(--transition);
-  border: 1px solid var(--accent-dim);
-  background: var(--accent-glow);
-  color: var(--accent);
-}
-.project-link-btn:hover {
-  background: var(--accent);
-  color: var(--text);
-  border-color: var(--accent);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(192,57,43,0.3);
-}
-.project-link-btn-ghost {
-  border-color: var(--border-mid);
-  background: transparent;
-  color: var(--text-mid);
-}
-.project-link-btn-ghost:hover {
-  background: rgba(255,255,255,0.05);
-  color: var(--text);
-  border-color: var(--text-dim);
-}
-
-/* - PHILOSOPHY / PYRAMID ----------------- */
-#philosophy { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.philosophy-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 6rem;
-  align-items: start;
-}
-.pyramid-wrapper { position: sticky; top: 120px; }
-.pyramid {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
-}
-.pyramid-level {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.pyramid-label {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-dim);
-  letter-spacing: 0.06em;
-}
-.pyramid-bar {
-  height: 36px;
-  border-radius: var(--radius);
-  transition: var(--transition);
-}
-.pyramid-bar-1 { width: 60%;  background: linear-gradient(90deg, var(--accent-dim), var(--accent)); margin: 0 auto; }
-.pyramid-bar-2 { width: 80%;  background: linear-gradient(90deg, #2a4a7a, #4a7aaa); margin: 0 auto; }
-.pyramid-bar-3 { width: 100%; background: linear-gradient(90deg, #1a3a1a, #3a7a3a); }
-.pyramid-level:hover .pyramid-bar { filter: brightness(1.3); transform: scaleX(1.02); }
-.pyramid-caption { font-size: 0.75rem; color: var(--text-dim); line-height: 1.6; }
-
-.principle {
-  display: grid;
-  grid-template-columns: 3rem 1fr;
-  gap: 1.5rem;
-  padding: 2rem 0;
-  border-bottom: 1px solid var(--border);
-}
-.principle:last-child { border-bottom: none; }
-.principle:first-child { padding-top: 0; }
-.principle-num { font-size: 0.9rem; font-weight: 500; padding-top: 0.2rem; }
-.principle-body h4 { color: var(--text); font-size: 1.1rem; margin-bottom: 0.6rem; font-weight: 600; }
-.principle-body p { font-size: 0.95rem; color: var(--text-mid); line-height: 1.75; }
-
-/* - EXPERIENCE ----------------- */
-.exp-entry { padding: 3rem 0; }
-.exp-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 1.5rem;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-.exp-title-block h3 { font-size: 1.4rem; font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
-.exp-company { font-family: var(--font-mono); font-size: 0.9rem; color: var(--accent); letter-spacing: 0.04em; }
-.exp-date { font-size: 0.85rem; color: var(--text-dim); letter-spacing: 0.08em; white-space: nowrap; }
-.exp-bullets {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
-}
-.exp-bullets li {
-  font-size: 1rem;
-  color: var(--text-mid);
-  padding-left: 1.75rem;
-  position: relative;
-  line-height: 1.7;
-}
-.exp-bullets li::before {
-  content: '\25B8';
-  position: absolute;
-  left: 0;
-  color: var(--accent);
-  font-size: 0.8rem;
-  top: 0.3rem;
-}
-.exp-stack { display: flex; flex-wrap: wrap; gap: 0.6rem; }
-.exp-stack span {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-dim);
-  padding: 0.25rem 0.7rem;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  background: var(--bg-card);
-}
-.exp-divider { height: 1px; background: var(--border); }
-
-/* - MILITARY ----------------- */
-#military { background: #0b0d10; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
-#military::before {
-  content: 'USMC';
-  position: absolute;
-  right: -5%;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: var(--font-display);
-  font-size: 22vw;
-  color: rgba(255,255,255,0.012);
-  pointer-events: none;
-  line-height: 1;
-  letter-spacing: -0.05em;
-}
-.military-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; align-items: start; }
-.military-badge {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 1.75rem;
-  border: 1px solid var(--border-mid);
-  border-radius: var(--radius);
-  background: var(--bg-card);
-  margin-top: 2rem;
-}
-.military-branch { font-size: 1.3rem; font-weight: 500; color: var(--text); letter-spacing: 0.15em; }
-.military-rank   { font-size: 0.9rem; color: var(--text-mid); }
-.military-mos    { font-size: 0.75rem; color: var(--text-dim); letter-spacing: 0.1em; }
-.military-honor  { font-size: 0.8rem; font-weight: 600; margin-top: 0.5rem; }
-.military-lead { font-size: 1.25rem; color: var(--text-mid); margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--border); font-style: italic; }
-.military-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-.mil-card { padding: 2rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); transition: var(--transition); }
-.mil-card:hover { border-color: var(--accent-dim); transform: translateY(-4px); }
-.mil-card h4 { font-size: 1.1rem; color: var(--text); margin-bottom: 0.75rem; font-weight: 600; }
-.mil-card p  { font-size: 0.95rem; color: var(--text-mid); line-height: 1.7; }
-
-/* - CONTACT ----------------- */
-.contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 6rem; align-items: start; }
-.contact-left p { color: var(--text-mid); font-size: 1.1rem; margin-top: 1rem; }
-.contact-link {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 1.5rem 0;
-  border-bottom: 1px solid var(--border);
-  text-decoration: none;
-  transition: var(--transition);
-  color: var(--text);
-}
-.contact-link:first-child { border-top: 1px solid var(--border); }
-.contact-link:hover { padding-left: 1rem; }
-.contact-icon {
-  width: 44px; height: 44px;
-  border: 1px solid var(--border-mid);
-  border-radius: var(--radius);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  color: var(--text-mid);
-  background: var(--bg-card);
-  flex-shrink: 0;
-  transition: var(--transition);
-}
-.contact-link:hover .contact-icon { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
-.contact-link-label { font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.2rem; display: block; }
-.contact-link-value { font-size: 1rem; color: var(--text-mid); transition: color var(--transition); }
-.contact-link:hover .contact-link-value { color: var(--text); }
-
-/* - FOOTER ----------------- */
-footer { padding: 4rem 0; border-top: 1px solid var(--border); }
-.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
-
-/* - ANIMATIONS ----------------- */
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* - MOBILE ----------------- */
-@media (max-width: 1024px) {
-  .hero-grid { gap: 3rem; }
-  .about-grid, .philosophy-grid, .military-grid, .contact-grid { gap: 4rem; }
-}
-
-@media (max-width: 900px) {
-  .nav-links, .nav-cta { display: none; }
-  .nav-hamburger { display: flex; }
-  .hero-grid { grid-template-columns: 1fr; gap: 4rem; }
-  .hero-visual { display: none; }
-  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .about-left h2 { position: static; }
-  .stack-grid { grid-template-columns: repeat(2, 1fr); }
-  .project-body { grid-template-columns: 1fr; gap: 2rem; }
-  .philosophy-grid { grid-template-columns: 1fr; gap: 4rem; }
-  .pyramid-wrapper { position: static; }
-  .military-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .military-cards { grid-template-columns: 1fr; }
-  .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-  #military::before { display: none; }
-}
-
-@media (max-width: 600px) {
-  section { padding: 5rem 0; }
-  .container { padding: 0 1.5rem; }
-  .hero-name { font-size: 3.5rem; }
-  .stack-grid { grid-template-columns: 1fr; }
-  .hero-stats { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-  .impact-metrics { gap: 2rem; }
-  .project-card-inner { padding: 2rem 1.5rem; }
-  .project-org { display: none; }
-  .hero-scroll-hint { display: none; }
-  .exp-header { flex-direction: column; gap: 0.5rem; }
-  .footer-inner { flex-direction: column; align-items: flex-start; }
-}
-
-/* MOBILE NAV OPENED */
-#nav.nav-open {
-  background: var(--bg) !important;
-  height: 100vh;
-  overflow-y: auto;
-}
-#nav.nav-open .nav-inner {
-  flex-direction: column;
-  align-items: flex-start;
-  height: auto;
-  padding-top: 1.5rem;
-}
-#nav.nav-open .nav-links {
-  display: flex;
-  flex-direction: column;
-  margin: 3rem 0;
-  width: 100%;
-  gap: 2rem;
-}
-#nav.nav-open .nav-links a { font-size: 1.5rem; }
-#nav.nav-open .nav-cta {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  padding: 1.25rem;
-}
-#nav.nav-open .nav-hamburger span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-#nav.nav-open .nav-hamburger span:nth-child(2) { opacity: 0; }
-#nav.nav-open .nav-hamburger span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-/* SELECTION */
-::selection { background: var(--accent); color: var(--text); }
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border-mid); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-</style>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
-</head>
-<body>
-
-  <!-- NAV -->
-  <nav id="nav">
-    <div class="nav-inner">
-      <a href="#hero" class="nav-logo">SD<span class="accent">.</span></a>
-      <ul class="nav-links">
-        <li><a href="#about">Philosophy</a></li>
-        <li><a href="#stack">Stack</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <a href="ShawnDavis_SDET_Standard.docx" class="nav-cta" download>Resume ↓</a>
-      <button class="nav-hamburger" aria-label="Toggle menu" id="hamburger">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-grid">
-      <div class="hero-content">
-        <div class="hero-eyebrow">
-          <span class="terminal-dot"></span>
-          <span class="mono">USMC Veteran · 6 Years Enterprise-Scale QA</span>
-        </div>
-        <h1 class="hero-name">Shawn<br /><em>Davis</em></h1>
-        <p class="hero-title">Software Development Engineer in Test</p>
-        <p class="hero-sub">
-          I design and scale automation and quality systems that improve release reliability,
-          reduce defect escape, and support enterprise applications serving millions of users.
-        </p>
-        <div class="hero-stats">
-          <div class="stat">
-            <span class="stat-num" data-val="40">0%</span>
-            <span class="stat-label">Regression Coverage Increase</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num" data-val="15">0K+</span>
-            <span class="stat-label">Concurrent Users Validated</span>
-          </div>
-        </div>
-        <div class="hero-authority">
-          <span class="authority-icon">⬡</span>
-          <span>Quality architecture trusted on mission-critical federal systems serving millions of veterans</span>
-        </div>
-        <div class="hero-actions">
-          <a href="#projects" class="btn btn-primary">View Projects</a>
-          <a href="ShawnDavis_SDET_Standard.docx" class="btn btn-ghost" download>Download Resume</a>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="code-window">
-          <div class="code-window-bar">
-            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-            <span class="code-window-title">framework.architect.js</span>
-          </div>
-          <pre class="code-block"><code><span class="c">// VA Appeals Modernization · 2021–2025</span>
-<span class="kw">class</span> <span class="fn">QualityArchitect</span> {
-
-  <span class="fn">constructor</span>() {
-    <span class="kw">this</span>.frameworks  = [<span class="str">'Selenium'</span>, <span class="str">'Cypress'</span>];
-    <span class="kw">this</span>.coverage    = <span class="num">0.40</span>; <span class="c">// +40%</span>
-    <span class="kw">this</span>.pipeline    = <span class="str">'Jenkins + Git'</span>;
-  }
-
-  <span class="fn">shiftLeft</span>(defect) {
-    <span class="c">// Catch it before UAT does.</span>
-    <span class="kw">return</span> defect.<span class="fn">resolveIn</span>(<span class="str">'development'</span>);
-  }
-
-  <span class="fn">validateAtScale</span>(users = <span class="num">15000</span>) {
-    <span class="kw">return</span> <span class="fn">LoadRunner</span>.simulate(users, {
-      target: <span class="str">'zero-downtime'</span>,
-      env:    <span class="str">'cloud'</span>
-    });
-  }
-
-}</code></pre>
-        </div>
-      </div>
-    </div>
-    <div class="hero-scroll-hint">
-      <span class="mono">scroll</span>
-      <div class="scroll-line"></div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="container">
-      <div class="section-label"><span class="mono accent">01 /</span> Engineering Philosophy</div>
-      <div class="about-grid">
-        <div class="about-left">
-          <h2>Quality isn't a<br /><em>phase.</em><br />It's the architecture.</h2>
-        </div>
-        <div class="about-right">
-          <p class="about-lead">
-            Most engineering teams treat quality as something that happens after the code is written.
-            I've spent six years proving that's the wrong model.
-          </p>
-          <p>
-            My approach starts at the framework level — designing test infrastructure that slots into
-            the delivery pipeline as a first-class citizen. When I joined the VA
-            Appeals Modernization program, I architected a hybrid Selenium-Cypress framework 
-            from the ground up, integrated it with Jenkins CI/CD, and established the 
-            quality gate that protected every subsequent major release.
-          </p>
-          <div class="philosophy-pillars">
-            <div class="pillar">
-              <span class="pillar-icon">⬡</span>
-              <div>
-                <strong>Shift Left</strong>
-                <span>Defects are cheapest in development. I build systems that find them there.</span>
-              </div>
-            </div>
-            <div class="pillar">
-              <span class="pillar-icon">⬡</span>
-              <div>
-                <strong>Own the Pipeline</strong>
-                <span>Test code is production code. CI/CD gates are engineering work, not configuration.</span>
-              </div>
-            </div>
-            <div class="pillar">
-              <span class="pillar-icon">⬡</span>
-              <div>
-                <strong>Metrics Over Coverage</strong>
-                <span>100% coverage of the wrong things is noise. I optimize for defect signal.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STACK -->
-  <section id="stack">
-    <div class="container">
-      <div class="section-label"><span class="mono accent">02 /</span> Technical Stack</div>
-      <p class="stack-framing mono">Focused on building scalable, maintainable test systems across UI, API, and performance layers.</p>
-      <h2 class="section-title">Tools I Own,<br />Not Just Use</h2>
-      <div class="stack-grid">
-        <div class="stack-category">
-          <h3 class="stack-cat-label">Automation Frameworks</h3>
-          <div class="stack-pills">
-            <div class="pill pill-primary">Selenium</div>
-            <div class="pill pill-primary">Cypress</div>
-            <div class="pill pill-primary">Playwright</div>
-            <div class="pill pill-primary">Appium</div>
-          </div>
-        </div>
-        <div class="stack-category">
-          <h3 class="stack-cat-label">Performance Engineering</h3>
-          <div class="stack-pills">
-            <div class="pill pill-red">LoadRunner</div>
-            <div class="pill pill-red">Cloud Simulation</div>
-            <div class="pill pill-red">Concurrency</div>
-          </div>
-        </div>
-        <div class="stack-category">
-          <h3 class="stack-cat-label">Languages</h3>
-          <div class="stack-pills">
-            <div class="pill pill-mono">Java</div>
-            <div class="pill pill-mono">JavaScript</div>
-            <div class="pill pill-mono">SQL</div>
-            <div class="pill pill-mono">Python</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="container">
-      <div class="section-label"><span class="mono accent">03 /</span> Featured Projects</div>
-      <h2 class="section-title">Systems I<br />Architected</h2>
-
-      <div class="project-card project-card-featured">
-        <div class="project-card-inner">
-          <div class="project-meta">
-            <span class="project-num mono">P-01</span>
-            <span class="project-tag">Automation Architecture</span>
-            <span class="project-org">Booz Allen Hamilton · VA</span>
-          </div>
-          <h3 class="project-title">Hybrid Automation Framework for Federal Appeals Modernization</h3>
-          <div class="project-body">
-            <div>
-              <h4>Problem</h4>
-              <p>The program operated on an accelerating release cadence with insufficient coverage. Defect escape into UAT was high.</p>
-            </div>
-            <div>
-              <h4>Approach</h4>
-              <p>Designed and implemented a hybrid Selenium-Cypress framework. Built modular test utilities enabling rapid authorship.</p>
-            </div>
-            <div class="project-impact">
-              <h4>Impact</h4>
-              <div class="impact-metrics">
-                <div class="metric"><span class="metric-val accent" data-val="40">0%</span><span>Regression Increase</span></div>
-                <div class="metric"><span class="metric-val accent" data-val="30">0%</span><span>UAT Defect Reduction</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="project-tech">
-            <span class="tech-tag">Selenium</span>
-            <span class="tech-tag">Cypress</span>
-            <span class="tech-tag">Jenkins</span>
-            <span class="tech-tag">JavaScript</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/shawndavis-sdet" target="_blank" rel="noopener" class="project-link-btn">
-              <span>⌥</span> View Framework Code
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <div class="container">
-      <div class="section-label"><span class="mono accent">04 /</span> Experience</div>
-      <h2 class="section-title">Professional<br />History</h2>
-      <div class="experience-timeline">
-        <div class="exp-entry">
-          <div class="exp-header">
-            <div class="exp-title-block">
-              <h3>Lead Software Engineer in Test</h3>
-              <span class="exp-company">Booz Allen Hamilton</span>
-            </div>
-            <div class="exp-date mono">2021 – 2025</div>
-          </div>
-          <ul class="exp-bullets">
-            <li>Architected hybrid automation framework for VA federal releases.</li>
-            <li>Engineered Jenkins CI/CD quality gates, reducing cycle time by 25%.</li>
-            <li>Designed performance tests for 15,000+ concurrent users.</li>
-          </ul>
-        </div>
-        <div class="exp-divider"></div>
-        <div class="exp-entry">
-          <div class="exp-header">
-            <div class="exp-title-block">
-              <h3>Software Engineer in Test</h3>
-              <span class="exp-company">BAE Systems</span>
-            </div>
-            <div class="exp-date mono">2019 – 2021</div>
-          </div>
-          <ul class="exp-bullets">
-            <li>Achieved 95% pre-production defect detection rate for web platforms.</li>
-            <li>Automated UI regression using Selenium and Playwright.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MILITARY -->
-  <section id="military">
-    <div class="container">
-      <div class="section-label"><span class="mono accent">05 /</span> Military Service</div>
-      <div class="military-grid">
-        <div class="military-left">
-          <h2>The discipline<br />that makes<br /><em>systems reliable.</em></h2>
-          <div class="military-badge">
-            <span class="military-branch mono">USMC</span>
-            <span class="military-rank">Corporal (E-4)</span>
-            <span class="military-mos mono">MOS 6046</span>
-            <span class="military-honor accent">Meritorious Promotion</span>
-          </div>
-        </div>
-        <div class="military-right">
-          <p class="military-lead">Aviation Maintenance Administration Specialist. Precision in mission-critical data environments.</p>
-          <div class="military-cards">
-            <div class="mil-card">
-              <h4>Zero-Defect Mindset</h4>
-              <p>Precision applied to data validation separates adequate QA from engineering-grade quality systems.</p>
-            </div>
-            <div class="mil-card">
-              <h4>Systemic Discipline</h4>
-              <p>Trained to own outcomes and maintain standard operating procedures under operational pressure.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="container">
-      <div class="section-label"><span class="mono accent">06 /</span> Contact</div>
-      <div class="contact-grid">
-        <div class="contact-left">
-          <h2>Let's build<br />something<br /><em>reliable.</em></h2>
-          <p>Open to senior SDET roles and quality architecture consulting.</p>
-        </div>
-        <div class="contact-right">
-          <div class="contact-links">
-            <a href="mailto:shawn.davis2402@gmail.com" class="contact-link">
-              <span class="contact-icon">✉</span>
-              <div>
-                <span class="contact-link-label mono">Email</span>
-                <span class="contact-link-value">shawn.davis2402@gmail.com</span>
-              </div>
-            </a>
-            <a href="https://linkedin.com/in/shawn-davis-sdet" class="contact-link" target="_blank" rel="noopener">
-              <span class="contact-icon">in</span>
-              <div>
-                <span class="contact-link-label mono">LinkedIn</span>
-                <span class="contact-link-value">linkedin.com/in/shawn-davis-sdet</span>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <span class="mono" style="color: var(--text-dim);">Shawn Davis · SDET · Clayton, NC</span>
-        <span class="mono" style="color: var(--text-dim); font-size: 0.75rem;">© 2025 · Built for performance.</span>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-/* - NAV MANAGEMENT - */
-const nav = document.getElementById('nav');
-const hamburger = document.getElementById('hamburger');
-
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 40) nav.classList.add('scrolled');
-  else nav.classList.remove('scrolled');
-}, { passive: true });
-
-hamburger.addEventListener('click', () => {
-  nav.classList.toggle('nav-open');
-  document.body.style.overflow = nav.classList.contains('nav-open') ? 'hidden' : '';
-});
-
-document.querySelectorAll('.nav-links a, .nav-cta').forEach(link => {
-  link.addEventListener('click', () => {
-    nav.classList.remove('nav-open');
-    document.body.style.overflow = '';
-  });
-});
-
-/* - SCROLL REVEAL - */
-const animatedElements = [
-  '.hero-content > *', '.code-window', '.about-left', '.about-right > *', 
-  '.stack-category', '.project-card', '.exp-entry', '.military-left', 
-  '.mil-card', '.contact-left', '.contact-link'
-];
-
-function initReveal() {
-  animatedElements.forEach(sel => {
-    document.querySelectorAll(sel).forEach((el, i) => {
-      el.classList.add('fade-in');
-      el.style.transitionDelay = (i % 3 * 100) + 'ms';
-    });
-  });
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-}
-
-/* - COUNTERS - */
-function initCounters() {
-  const counterItems = document.querySelectorAll('[data-val]');
-  
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        const target = parseInt(el.getAttribute('data-val'));
-        const suffix = el.innerText.replace('0', '');
-        let start = 0;
-        const duration = 1500;
-        const startTime = performance.now();
-
-        function update(now) {
-          const elapsed = now - startTime;
-          const progress = Math.min(elapsed / duration, 1);
-          const ease = 1 - Math.pow(1 - progress, 3);
-          const current = Math.floor(ease * target);
-          el.innerText = current + suffix;
-          if (progress < 1) requestAnimationFrame(update);
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aegis Federal Quality Systems, LLC | Federal IT QA, UAT & Delivery Support</title>
+    
+    <!-- Meta & SEO -->
+    <meta name="description" content="Aegis Federal Quality Systems, LLC provides specialized federal IT quality assurance, user acceptance testing (UAT), defect management, and software delivery support services. UEI: E13HDMQHBRH5. Raeford, NC.">
+    <meta name="keywords" content="Federal IT Quality Assurance, Government Software Testing, Federal UAT Services, Defect Management, IT Delivery Support, Raeford NC, SDVOSB IT Services, Small Disadvantaged Business">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://aegisfederalqa.com">
+    
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="Aegis Federal Quality Systems, LLC | Federal IT Quality Assurance">
+    <meta property="og:description" content="Confidence in Every Delivery. Specialized federal IT QA, software testing, and UAT coordination.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aegisfederalqa.com">
+    <meta property="og:site_name" content="Aegis Federal Quality Systems">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#101C31', // Midnight navy
+                            800: '#172B45', // Deep navy
+                            700: '#233A5C',
+                            600: '#324E78'
+                        },
+                        gold: {
+                            DEFAULT: '#C8AD76', // Warm champagne gold
+                            light: '#DFCB9C',
+                            dark: '#A68D59'
+                        },
+                        slate: {
+                            50: '#F8FAFC',
+                            100: '#F1F5F9',
+                            500: '#64748B',
+                            900: '#0F172A'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                        heading: ['Manrope', 'Inter', 'sans-serif']
+                    }
+                }
+            }
         }
-        requestAnimationFrame(update);
-        obs.unobserve(el);
-      }
-    });
-  }, { threshold: 0.5 });
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- jsPDF & html2canvas for browser-side PDF creation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-  counterItems.forEach(item => obs.observe(item));
-}
+    <style>
+        .gold-border-gradient {
+            border-image: linear-gradient(to right, #C8AD76, #DFCB9C, #A68D59) 1;
+        }
+        .hero-pattern {
+            background-color: #101C31;
+            background-image: radial-gradient(rgba(200, 173, 118, 0.08) 1px, transparent 0);
+            background-size: 32px 32px;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101C31;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #233A5C;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #C8AD76;
+        }
+        @media print {
+            header, footer, nav, button, .no-print {
+                display: none !important;
+            }
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            #pdf-document {
+                box-shadow: none !important;
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-900 flex flex-col min-h-screen antialiased">
 
-document.addEventListener('DOMContentLoaded', () => {
-  initReveal();
-  initCounters();
-});
-</script>
+    <!-- TOP PROCUREMENT QUICK-STRIP -->
+    <div class="bg-navy-900 border-b border-navy-700 text-slate-300 text-xs py-2 px-4">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-4">
+                <span class="inline-flex items-center text-gold font-medium">
+                    <i class="fa-solid fa-shield-halved mr-1.5">
+                    </i> Federal IT Quality Systems Partner
+                </span>
+                <span class="hidden md:inline text-slate-500">|</span>
+                <span class="hidden md:inline">
+                    UEI: <strong class="text-white tracking-wider font-mono">E13HDMQHBRH5</strong>
+                </span>
+                <span class="hidden md:inline text-slate-500">|</span>
+                <span class="hidden md:inline">
+                    CAGE: <span class="text-amber-400 font-medium">Pending</span>
+                </span>
+                <span class="hidden md:inline text-slate-500">|</span>
+                <span class="hidden lg:inline text-slate-300">
+                    SAM Status: <span class="text-emerald-400 font-medium">Submitted (TIN Validated)</span>
+                </span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span>Raeford, North Carolina</span>
+                <button onclick="copyToClipboard('E13HDMQHBRH5', 'UEI Code')" class="hover:text-gold transition-colors text-xs flex items-center gap-1 font-mono bg-navy-800 px-2 py-0.5 rounded border border-navy-700">
+                    <i class="fa-regular fa-copy"></i> Copy UEI
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN STICKY NAVIGATION -->
+    <header class="sticky top-0 z-50 bg-navy-900/95 backdrop-blur border-b border-slate-800 text-white shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- BRAND LOGO -->
+                <a href="#home" onclick="navigateTo('home')" class="flex items-center space-x-3 group">
+                    <div class="relative w-10 h-10 flex items-center justify-center bg-gradient-to-br from-navy-800 to-navy-900 border border-gold/40 rounded shadow-md group-hover:border-gold transition-colors">
+                        <!-- Shield Logo SVG -->
+                        <svg class="w-6 h-6 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <path d="M12 8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="font-heading font-bold text-lg text-white leading-tight tracking-tight flex items-center gap-1">
+                            AEGIS <span class="text-gold font-light">FEDERAL</span>
+                        </div>
+                        <div class="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">Quality Systems</div>
+                    </div>
+                </a>
+
+                <!-- DESKTOP NAVIGATION LINKS -->
+                <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2 text-sm font-medium">
+                    <button onclick="navigateTo('home')" id="nav-home" class="nav-btn px-3 py-2 rounded text-slate-300 hover:text-white hover:bg-navy-800 transition-all">Home</button>
+                    <button onclick="navigateTo('about')" id="nav-about" class="nav-btn px-3 py-2 rounded text-slate-300 hover:text-white hover:bg-navy-800 transition-all">About Us</button>
+                    <button onclick="navigateTo('capabilities')" id="nav-capabilities" class="nav-btn px-3 py-2 rounded text-slate-300 hover:text-white hover:bg-navy-800 transition-all">Capabilities</button>
+                    <button onclick="navigateTo('industries')" id="nav-industries" class="nav-btn px-3 py-2 rounded text-slate-300 hover:text-white hover:bg-navy-800 transition-all">Industries</button>
+                    <button onclick="navigateTo('capability-statement')" id="nav-capability-statement" class="nav-btn px-3 py-2 rounded text-slate-300 hover:text-white hover:bg-navy-800 transition-all">Capability Statement</button>
+                    <button onclick="navigateTo('contracting')" id="nav-contracting" class="nav-btn px-3 py-2 rounded text-slate-300 hover:text-white hover:bg-navy-800 transition-all">Contracting</button>
+                    <button onclick="navigateTo('contact')" id="nav-contact" class="nav-btn px-3 py-2 rounded text-slate-300 hover:text-white hover:bg-navy-800 transition-all">Contact</button>
+                </nav>
+
+                <!-- HEADER ACTION BUTTON -->
+                <div class="hidden lg:flex items-center">
+                    <button onclick="navigateTo('capability-statement')" class="bg-gradient-to-r from-gold to-gold-dark hover:from-gold-light hover:to-gold text-navy-900 font-semibold text-xs uppercase tracking-wider px-4 py-2.5 rounded shadow-lg transition-all transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-file-pdf mr-1.5"></i> Capability Statement
+                    </button>
+                </div>
+
+                <!-- MOBILE HAMBURGER MENU BUTTON -->
+                <div class="lg:hidden">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded text-slate-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-gold" aria-label="Toggle Navigation">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon-open"></i>
+                        <i class="fa-solid fa-xmark text-xl hidden" id="menu-icon-close"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MOBILE DROPDOWN NAVIGATION -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-navy-900 border-b border-slate-800 px-4 pt-2 pb-6 space-y-2">
+            <button onclick="navigateTo('home')" class="block w-full text-left px-3 py-2.5 rounded text-slate-200 hover:bg-navy-800 text-base font-medium">Home</button>
+            <button onclick="navigateTo('about')" class="block w-full text-left px-3 py-2.5 rounded text-slate-200 hover:bg-navy-800 text-base font-medium">About Us</button>
+            <button onclick="navigateTo('capabilities')" class="block w-full text-left px-3 py-2.5 rounded text-slate-200 hover:bg-navy-800 text-base font-medium">Capabilities</button>
+            <button onclick="navigateTo('industries')" class="block w-full text-left px-3 py-2.5 rounded text-slate-200 hover:bg-navy-800 text-base font-medium">Industries</button>
+            <button onclick="navigateTo('capability-statement')" class="block w-full text-left px-3 py-2.5 rounded text-slate-200 hover:bg-navy-800 text-base font-medium">Capability Statement</button>
+            <button onclick="navigateTo('contracting')" class="block w-full text-left px-3 py-2.5 rounded text-slate-200 hover:bg-navy-800 text-base font-medium">Contracting</button>
+            <button onclick="navigateTo('contact')" class="block w-full text-left px-3 py-2.5 rounded text-slate-200 hover:bg-navy-800 text-base font-medium">Contact</button>
+            <div class="pt-2">
+                <button onclick="navigateTo('capability-statement')" class="w-full text-center bg-gold text-navy-900 font-bold py-3 rounded text-sm uppercase tracking-wider">
+                    <i class="fa-solid fa-download mr-1.5"></i> Download PDF Capability Statement
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- NOTIFICATION SYSTEM / TOAST BENCH -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+    <!-- MAIN CONTENT CONTAINER - PAGE SECTIONS -->
+    <main class="flex-grow">
+
+        <!-- ========================================== -->
+        <!-- 1. HOMEPAGE VIEW                           -->
+        <!-- ========================================== -->
+        <section id="page-home" class="page-view">
+            
+            <!-- Hero Section -->
+            <div class="hero-pattern text-white py-20 lg:py-28 relative overflow-hidden border-b border-navy-700">
+                <div class="absolute inset-0 bg-gradient-to-r from-navy-900 via-navy-900/90 to-transparent z-0"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-7 space-y-6 text-left">
+                            <div class="inline-flex items-center space-x-2 bg-navy-800/80 border border-gold/30 rounded-full px-3.5 py-1 text-xs text-gold font-medium uppercase tracking-wider">
+                                <span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+                                <span>Federal Technology Assurance Partner</span>
+                            </div>
+                            
+                            <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+                                Confidence in <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-gold">Every Delivery.</span>
+                            </h1>
+                            
+                            <p class="text-slate-300 text-lg sm:text-xl font-light leading-relaxed max-w-2xl">
+                                Aegis Federal Quality Systems delivers specialized federal IT quality assurance, user acceptance testing, software testing, and delivery support services that help technology programs achieve greater quality, accountability, and operational confidence.
+                            </p>
+                            
+                            <div class="pt-4 flex flex-col sm:flex-row gap-4">
+                                <button onclick="navigateTo('capabilities')" class="bg-gradient-to-r from-gold to-gold-dark hover:from-gold-light hover:to-gold text-navy-900 font-bold px-8 py-4 rounded shadow-lg hover:shadow-gold/20 transition-all flex items-center justify-center gap-2 text-sm uppercase tracking-wider">
+                                    Explore Our Capabilities <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                                <button onclick="navigateTo('capability-statement')" class="border border-slate-600 hover:border-gold bg-navy-800/50 hover:bg-navy-800 text-white font-semibold px-8 py-4 rounded transition-all flex items-center justify-center gap-2 text-sm uppercase tracking-wider">
+                                    <i class="fa-solid fa-file-pdf text-gold"></i> Capability Statement
+                                </button>
+                            </div>
+
+                            <!-- Small highlights -->
+                            <div class="pt-6 grid grid-cols-2 sm:grid-cols-3 gap-4 border-t border-navy-700/60 text-xs text-slate-400">
+                                <div>
+                                    <div class="font-semibold text-slate-200">North Carolina LLC</div>
+                                    <div>State of Formation</div>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-slate-200">SAM Registration</div>
+                                    <div>Submitted (TIN Validated)</div>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-slate-200">Service Focused</div>
+                                    <div>QA / UAT / Testing</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hero Technical Graphic -->
+                        <div class="lg:col-span-5 relative hidden lg:block">
+                            <div class="relative mx-auto w-full max-w-md bg-gradient-to-b from-navy-800 to-navy-900 border border-slate-700/80 rounded-xl p-6 shadow-2xl shadow-black/50">
+                                <div class="flex items-center justify-between border-b border-slate-700/60 pb-4 mb-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                        <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
+                                        <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                                    </div>
+                                    <span class="text-xs font-mono text-gold font-semibold uppercase tracking-wider">Sample Quality Control Workflow</span>
+                                </div>
+
+                                <div class="space-y-3 font-mono text-xs">
+                                    <div class="text-[11px] text-slate-400 font-sans italic mb-1">Standard Deliverable Framework Structure:</div>
+                                    <div class="p-3 bg-navy-900/90 rounded border border-navy-700 flex items-center justify-between">
+                                        <span class="text-slate-300">1. Requirement Traceability Matrix</span>
+                                        <span class="text-emerald-400 font-bold"><i class="fa-solid fa-check"></i> Standard Process</span>
+                                    </div>
+                                    <div class="p-3 bg-navy-900/90 rounded border border-navy-700 flex items-center justify-between">
+                                        <span class="text-slate-300">2. Functional & Integration Test</span>
+                                        <span class="text-emerald-400 font-bold"><i class="fa-solid fa-check"></i> Standard Process</span>
+                                    </div>
+                                    <div class="p-3 bg-navy-900/90 rounded border border-gold/40 flex items-center justify-between">
+                                        <span class="text-gold font-semibold">3. UAT Execution & Signoff</span>
+                                        <span class="text-gold font-bold">Standard Process</span>
+                                    </div>
+                                    <div class="p-3 bg-navy-900/90 rounded border border-navy-700 flex items-center justify-between">
+                                        <span class="text-slate-400">4. Release Gate Audit</span>
+                                        <span class="text-slate-400">Standard Process</span>
+                                    </div>
+                                </div>
+
+                                <div class="mt-5 pt-3 border-t border-slate-700/60 flex items-center justify-between text-[11px] text-slate-400">
+                                    <span>Framework Target Objective</span>
+                                    <span class="text-gold font-bold">Defect Minimization</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Company Introduction Banner -->
+            <section class="py-16 bg-white border-b border-slate-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-3xl mx-auto text-center space-y-4">
+                        <h2 class="text-xs uppercase tracking-widest text-gold font-extrabold">Foundational Philosophy</h2>
+                        <h3 class="text-3xl font-heading font-bold text-navy-900 sm:text-4xl">
+                            “Quality Is Not an Afterthought. <br class="hidden sm:inline">It’s a Mission Requirement.”
+                        </h3>
+                        <div class="w-16 h-1 bg-gold mx-auto my-4"></div>
+                        <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+                            Federal software initiatives require disciplined rigor to prevent costly re-work, mission downtime, and compliance vulnerabilities. Aegis Federal Quality Systems operates as a dedicated testing and quality engineering partner—ensuring requirements are thoroughly validated, software is systematically tested, user acceptance testing (UAT) is expertly orchestrated, and releases proceed with documented confidence.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Core Capabilities Preview Cards -->
+            <section class="py-20 bg-slate-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-gold font-extrabold">Service Capabilities</span>
+                            <h2 class="text-3xl font-heading font-bold text-navy-900 mt-1">Core Areas of Expertise</h2>
+                        </div>
+                        <button onclick="navigateTo('capabilities')" class="mt-4 md:mt-0 text-navy-900 hover:text-gold font-semibold text-sm flex items-center gap-1 group">
+                            View Full Capability Catalog <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Card 1 -->
+                        <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group hover:border-navy-700">
+                            <div>
+                                <div class="w-12 h-12 rounded-lg bg-navy-900/5 text-navy-900 flex items-center justify-center text-xl mb-5 group-hover:bg-navy-900 group-hover:text-gold transition-colors">
+                                    <i class="fa-solid fa-list-check"></i>
+                                </div>
+                                <h3 class="font-heading font-bold text-xl text-navy-900 mb-2">QA & Software Testing</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                    Functional, integration, and regression testing built on rigorous requirement traceability and formal test documentation.
+                                </p>
+                            </div>
+                            <button onclick="navigateTo('capabilities')" class="text-xs font-bold text-navy-800 uppercase tracking-wider flex items-center gap-1 group-hover:text-gold">
+                                Learn More <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </button>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group hover:border-navy-700">
+                            <div>
+                                <div class="w-12 h-12 rounded-lg bg-navy-900/5 text-navy-900 flex items-center justify-center text-xl mb-5 group-hover:bg-navy-900 group-hover:text-gold transition-colors">
+                                    <i class="fa-solid fa-user-check"></i>
+                                </div>
+                                <h3 class="font-heading font-bold text-xl text-navy-900 mb-2">User Acceptance Testing</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                    End-to-end UAT strategy, scenario development, stakeholder onboarding, and business requirements verification.
+                                </p>
+                            </div>
+                            <button onclick="navigateTo('capabilities')" class="text-xs font-bold text-navy-800 uppercase tracking-wider flex items-center gap-1 group-hover:text-gold">
+                                Learn More <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </button>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group hover:border-navy-700">
+                            <div>
+                                <div class="w-12 h-12 rounded-lg bg-navy-900/5 text-navy-900 flex items-center justify-center text-xl mb-5 group-hover:bg-navy-900 group-hover:text-gold transition-colors">
+                                    <i class="fa-solid fa-bug-slash"></i>
+                                </div>
+                                <h3 class="font-heading font-bold text-xl text-navy-900 mb-2">Defect & Quality Mgmt</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                    Structured defect lifecycles, triage orchestration, severity assessment, trend analysis, and objective metrics.
+                                </p>
+                            </div>
+                            <button onclick="navigateTo('capabilities')" class="text-xs font-bold text-navy-800 uppercase tracking-wider flex items-center gap-1 group-hover:text-gold">
+                                Learn More <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </button>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group hover:border-navy-700">
+                            <div>
+                                <div class="w-12 h-12 rounded-lg bg-navy-900/5 text-navy-900 flex items-center justify-center text-xl mb-5 group-hover:bg-navy-900 group-hover:text-gold transition-colors">
+                                    <i class="fa-solid fa-diagram-project"></i>
+                                </div>
+                                <h3 class="font-heading font-bold text-xl text-navy-900 mb-2">IT Delivery Support</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                    Agile release readiness validation, quality governance, process improvement, and programmatic coordination.
+                                </p>
+                            </div>
+                            <button onclick="navigateTo('capabilities')" class="text-xs font-bold text-navy-800 uppercase tracking-wider flex items-center gap-1 group-hover:text-gold">
+                                Learn More <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Differentiators Section -->
+            <section class="py-20 bg-navy-900 text-white relative">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <span class="text-xs uppercase tracking-widest text-gold font-extrabold">Value Proposition</span>
+                        <h2 class="text-3xl font-heading font-bold mt-2">Why Partner with Aegis Federal</h2>
+                        <p class="text-slate-300 mt-4 text-sm sm:text-base">
+                            Built upon founder-led accountability and rigorous testing frameworks, Aegis provides prime contractors and agency leads with predictable quality execution.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="bg-navy-800/60 border border-slate-700/80 p-8 rounded-xl space-y-3">
+                            <div class="w-10 h-10 rounded bg-gold/10 text-gold flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-bullseye"></i>
+                            </div>
+                            <h3 class="font-heading font-bold text-lg text-white">Specialized QA & UAT Focus</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                Unlike generalized IT staffing, our focus remains exclusively dedicated to software quality assurance, acceptance verification, and defect mitigation.
+                            </p>
+                        </div>
+
+                        <div class="bg-navy-800/60 border border-slate-700/80 p-8 rounded-xl space-y-3">
+                            <div class="w-10 h-10 rounded bg-gold/10 text-gold flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-user-shield"></i>
+                            </div>
+                            <h3 class="font-heading font-bold text-lg text-white">Founder-Led Accountability</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                Direct oversight by owner Shawn Davis ensures that every test scenario, audit trail, and delivery report meets high operational standards.
+                            </p>
+                        </div>
+
+                        <div class="bg-navy-800/60 border border-slate-700/80 p-8 rounded-xl space-y-3">
+                            <div class="w-10 h-10 rounded bg-gold/10 text-gold flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-arrows-spin"></i>
+                            </div>
+                            <h3 class="font-heading font-bold text-lg text-white">Repeatable Quality Framework</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                Standardized methodology for defect logging, requirement mapping, and release readiness signoffs designed for federal IT compliance.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Procurement & Contracting Snapshot -->
+            <section class="py-16 bg-white border-t border-slate-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="bg-slate-50 border border-slate-200 rounded-2xl p-8 lg:p-10 shadow-sm">
+                        <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+                            <div class="space-y-4 max-w-2xl">
+                                <span class="bg-navy-900 text-gold text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">Procurement Quick-Reference</span>
+                                <h3 class="text-2xl font-heading font-bold text-navy-900">Ready for Federal Teaming & Subcontracting</h3>
+                                <p class="text-slate-600 text-sm leading-relaxed">
+                                    Aegis Federal Quality Systems has submitted registration in SAM.gov and is prepared to support prime contractors and government program managers seeking specialized IT quality testing.
+                                </p>
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs pt-2">
+                                    <div class="bg-white p-3 rounded border border-slate-200">
+                                        <div class="text-slate-400 font-semibold">UEI</div>
+                                        <div class="font-mono font-bold text-navy-900 text-sm">E13HDMQHBRH5</div>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border border-slate-200">
+                                        <div class="text-slate-400 font-semibold">CAGE CODE</div>
+                                        <div class="font-bold text-amber-600 text-sm">Pending</div>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border border-slate-200">
+                                        <div class="text-slate-400 font-semibold">PRIMARY NAICS</div>
+                                        <div class="font-mono font-bold text-navy-900 text-sm">541511</div>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border border-slate-200">
+                                        <div class="text-slate-400 font-semibold">SAM STATUS</div>
+                                        <div class="font-bold text-emerald-700 text-sm">Submitted (TIN Validated)</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col sm:flex-row lg:flex-col gap-3 w-full lg:w-auto">
+                                <button onclick="navigateTo('contracting')" class="w-full sm:w-auto bg-navy-900 hover:bg-navy-800 text-white font-bold px-6 py-3.5 rounded text-xs uppercase tracking-wider text-center">
+                                    Subcontracting Inquiries
+                                </button>
+                                <button onclick="navigateTo('capability-statement')" class="w-full sm:w-auto border border-navy-900 text-navy-900 hover:bg-navy-900 hover:text-white font-bold px-6 py-3.5 rounded text-xs uppercase tracking-wider text-center transition-colors">
+                                    View Capability PDF
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- 2. ABOUT US VIEW                           -->
+        <!-- ========================================== -->
+        <section id="page-about" class="page-view hidden">
+            <div class="bg-navy-900 text-white py-16 border-b border-navy-700">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <span class="text-gold text-xs uppercase tracking-widest font-bold">About The Company</span>
+                    <h1 class="text-4xl font-heading font-extrabold mt-2">Corporate Profile & Mission</h1>
+                    <p class="text-slate-300 mt-2 max-w-2xl text-base">
+                        Dedicated to strengthening technology outcomes across federal programs through structured, repeatable quality systems.
+                    </p>
+                </div>
+            </div>
+
+            <div class="py-16 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+                    
+                    <!-- Overview & Founding -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-7 space-y-4">
+                            <h2 class="text-2xl font-heading font-bold text-navy-900">Company Overview</h2>
+                            <p class="text-slate-600 leading-relaxed">
+                                Formed on October 16, 2026, in North Carolina, <strong>Aegis Federal Quality Systems, LLC</strong> was established to meet the federal sector's critical requirement for rigorous, independent, and accountable software quality assurance.
+                            </p>
+                            <p class="text-slate-600 leading-relaxed">
+                                Modern government IT modernizations often face cost overruns and delays stem from late-stage defect discovery during user acceptance testing. Aegis bridges the gap between software development and operational deployment by embedding disciplined QA practices, clear defect triage protocols, and comprehensive UAT governance throughout the project life cycle.
+                            </p>
+                            <div class="p-4 bg-slate-50 border-l-4 border-gold text-slate-700 text-sm">
+                                <strong>Compliance Notice:</strong> SAM.gov registration submitted October 31, 2026; IRS TIN validation passed November 2, 2026. CAGE assignment and active SAM listing remain pending. Self-certified business classifications selected in SAM.gov include Veteran-Owned, Service-Disabled Veteran-Owned, Minority-Owned (Black American), and Small Disadvantaged Business designations. <em>Self-certified SAM designations do not constitute formal SBA VetCert accreditation.</em>
+                            </div>
+                        </div>
+
+                        <!-- Info Snapshot Box -->
+                        <div class="lg:col-span-5 bg-navy-900 text-white rounded-xl p-8 space-y-6 shadow-xl">
+                            <h3 class="font-heading font-bold text-xl text-gold border-b border-slate-700 pb-3">Entity Details</h3>
+                            <div class="space-y-3 text-xs sm:text-sm">
+                                <div class="flex justify-between border-b border-navy-800 pb-2">
+                                    <span class="text-slate-400">Legal Name</span>
+                                    <span class="font-semibold text-right">Aegis Federal Quality Systems, LLC</span>
+                                </div>
+                                <div class="flex justify-between border-b border-navy-800 pb-2">
+                                    <span class="text-slate-400">Location</span>
+                                    <span class="font-semibold text-right">Raeford, NC, USA</span>
+                                </div>
+                                <div class="flex justify-between border-b border-navy-800 pb-2">
+                                    <span class="text-slate-400">State of Formation</span>
+                                    <span class="font-semibold text-right">North Carolina</span>
+                                </div>
+                                <div class="flex justify-between border-b border-navy-800 pb-2">
+                                    <span class="text-slate-400">Entity Start Date</span>
+                                    <span class="font-semibold text-right">October 16, 2026</span>
+                                </div>
+                                <div class="flex justify-between border-b border-navy-800 pb-2">
+                                    <span class="text-slate-400">SAM.gov Unique Entity ID</span>
+                                    <span class="font-mono text-gold font-bold">E13HDMQHBRH5</span>
+                                </div>
+                                <div class="flex justify-between border-b border-navy-800 pb-2">
+                                    <span class="text-slate-400">CAGE Code Status</span>
+                                    <span class="text-amber-400 font-semibold">Pending</span>
+                                </div>
+                                <div class="flex justify-between pb-2">
+                                    <span class="text-slate-400">SAM Registration</span>
+                                    <span class="text-emerald-400 font-semibold">Submitted (TIN Validated)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mission & Vision Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-slate-50 border border-slate-200 rounded-xl p-8">
+                            <div class="w-12 h-12 rounded bg-navy-900 text-gold flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-flag"></i>
+                            </div>
+                            <h3 class="font-heading font-bold text-2xl text-navy-900 mb-3">Our Mission</h3>
+                            <p class="text-slate-600 leading-relaxed">
+                                To strengthen federal technology delivery through disciplined quality assurance, effective testing practices, and reliable IT support services.
+                            </p>
+                        </div>
+
+                        <div class="bg-slate-50 border border-slate-200 rounded-xl p-8">
+                            <div class="w-12 h-12 rounded bg-navy-900 text-gold flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-eye"></i>
+                            </div>
+                            <h3 class="font-heading font-bold text-2xl text-navy-900 mb-3">Our Vision</h3>
+                            <p class="text-slate-600 leading-relaxed">
+                                To become a trusted federal technology partner recognized for advancing software quality, delivery confidence, and operational excellence.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Core Values Grid -->
+                    <div>
+                        <div class="text-center max-w-2xl mx-auto mb-10">
+                            <h2 class="text-2xl font-heading font-bold text-navy-900">Core Values</h2>
+                            <p class="text-slate-500 text-sm mt-1">Guiding principles across every client engagement</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="p-6 bg-white border border-slate-200 rounded-lg shadow-sm">
+                                <div class="font-bold text-navy-900 text-lg mb-1 flex items-center gap-2">
+                                    <i class="fa-solid fa-shield text-gold text-sm"></i> Integrity
+                                </div>
+                                <p class="text-slate-600 text-xs sm:text-sm">Transparent quality metrics and truthful reporting regarding software readiness and defect severity.</p>
+                            </div>
+                            <div class="p-6 bg-white border border-slate-200 rounded-lg shadow-sm">
+                                <div class="font-bold text-navy-900 text-lg mb-1 flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-check text-gold text-sm"></i> Accountability
+                                </div>
+                                <p class="text-slate-600 text-xs sm:text-sm">Founder-led oversight taking direct responsibility for testing thoroughness and traceability.</p>
+                            </div>
+                            <div class="p-6 bg-white border border-slate-200 rounded-lg shadow-sm">
+                                <div class="font-bold text-navy-900 text-lg mb-1 flex items-center gap-2">
+                                    <i class="fa-solid fa-bullseye text-gold text-sm"></i> Precision
+                                </div>
+                                <p class="text-slate-600 text-xs sm:text-sm">Structured test case development mapping precisely to functional specifications and compliance requirements.</p>
+                            </div>
+                            <div class="p-6 bg-white border border-slate-200 rounded-lg shadow-sm">
+                                <div class="font-bold text-navy-900 text-lg mb-1 flex items-center gap-2">
+                                    <i class="fa-solid fa-clock-rotate-left text-gold text-sm"></i> Reliability
+                                </div>
+                                <p class="text-slate-600 text-xs sm:text-sm">Dependable delivery support adhering strictly to project timelines, release cycles, and milestone gates.</p>
+                            </div>
+                            <div class="p-6 bg-white border border-slate-200 rounded-lg shadow-sm">
+                                <div class="font-bold text-navy-900 text-lg mb-1 flex items-center gap-2">
+                                    <i class="fa-solid fa-chart-line text-gold text-sm"></i> Continuous Improvement
+                                </div>
+                                <p class="text-slate-600 text-xs sm:text-sm">Refining testing methodologies, adopting modern frameworks, and improving defect remediation speeds.</p>
+                            </div>
+                            <div class="p-6 bg-white border border-slate-200 rounded-lg shadow-sm">
+                                <div class="font-bold text-navy-900 text-lg mb-1 flex items-center gap-2">
+                                    <i class="fa-solid fa-crosshairs text-gold text-sm"></i> Mission Focus
+                                </div>
+                                <p class="text-slate-600 text-xs sm:text-sm">Aligning technical software validation with end-user operational mandates and agency goals.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Leadership Section -->
+                    <div class="bg-navy-900 text-white rounded-2xl p-8 sm:p-12">
+                        <div class="max-w-3xl">
+                            <span class="text-gold text-xs uppercase tracking-widest font-bold">Leadership & Ownership</span>
+                            <h2 class="text-3xl font-heading font-bold mt-1 mb-4">Shawn Davis</h2>
+                            <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                                Founder & Owner of Aegis Federal Quality Systems, LLC. Dedicated to building a premier federal contracting small business focused on IT software quality assurance, user acceptance testing coordination, and technology delivery support.
+                            </p>
+                            <div class="inline-flex items-center gap-3 bg-navy-800 px-4 py-2 rounded-lg border border-slate-700 text-xs text-slate-300">
+                                <i class="fa-solid fa-user-check text-gold"></i>
+                                <span>Direct Engagement & Founder-Led Program Oversight</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- 3. CAPABILITIES CATALOG VIEW               -->
+        <!-- ========================================== -->
+        <section id="page-capabilities" class="page-view hidden">
+            <div class="bg-navy-900 text-white py-16 border-b border-navy-700">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <span class="text-gold text-xs uppercase tracking-widest font-bold">Services Catalog</span>
+                    <h1 class="text-4xl font-heading font-extrabold mt-2">Capabilities & Technical Services</h1>
+                    <p class="text-slate-300 mt-2 max-w-3xl text-base">
+                        Specialized quality control, software testing, user acceptance verification, and delivery support designed for complex federal IT environments.
+                    </p>
+                </div>
+            </div>
+
+            <div class="py-16 bg-slate-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                    
+                    <!-- Capability 1 -->
+                    <div class="bg-white rounded-2xl p-8 lg:p-10 border border-slate-200 shadow-sm space-y-6">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-100 pb-6 gap-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-14 h-14 rounded-xl bg-navy-900 text-gold flex items-center justify-center text-2xl shrink-0">
+                                    <i class="fa-solid fa-vial-circle-check"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs font-mono uppercase tracking-wider text-slate-400">Service Code: CAP-QA-01</span>
+                                    <h2 class="text-2xl font-heading font-bold text-navy-900">Quality Assurance & Software Testing</h2>
+                                </div>
+                            </div>
+                            <span class="inline-block bg-slate-100 text-navy-800 text-xs font-semibold px-3 py-1 rounded">Primary NAICS: 541511</span>
+                        </div>
+
+                        <p class="text-slate-600 leading-relaxed">
+                            Structured functional, integration, and regression testing designed to verify system compliance against documented requirements. We build comprehensive test strategies, write explicit test cases, and execute test runs to ensure software integrity prior to deployment.
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                                <h3 class="font-bold text-navy-900 text-sm mb-2 text-gold">Core Technical Scope</h3>
+                                <ul class="text-xs text-slate-600 space-y-1.5 list-disc list-inside">
+                                    <li>Functional & non-functional testing</li>
+                                    <li>System integration testing (SIT)</li>
+                                    <li>Automated & manual regression testing</li>
+                                    <li>Test strategy & planning development</li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                                <h3 class="font-bold text-navy-900 text-sm mb-2 text-gold">Key Deliverables</h3>
+                                <ul class="text-xs text-slate-600 space-y-1.5 list-disc list-inside">
+                                    <li>Requirement Traceability Matrix (RTM)</li>
+                                    <li>Master Test Plans & Test Cases</li>
+                                    <li>Test Execution Reports & Metrics</li>
+                                    <li>Quality Control Audits</li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                                <h3 class="font-bold text-navy-900 text-sm mb-2 text-gold">Value to Program</h3>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    Eliminates software regressions, lowers lifecycle maintenance costs, and verifies functional compliance prior to production release.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Capability 2 -->
+                    <div class="bg-white rounded-2xl p-8 lg:p-10 border border-slate-200 shadow-sm space-y-6">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-100 pb-6 gap-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-14 h-14 rounded-xl bg-navy-900 text-gold flex items-center justify-center text-2xl shrink-0">
+                                    <i class="fa-solid fa-users-gear"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs font-mono uppercase tracking-wider text-slate-400">Service Code: CAP-UAT-02</span>
+                                    <h2 class="text-2xl font-heading font-bold text-navy-900">User Acceptance Testing (UAT) Coordination</h2>
+                                </div>
+                            </div>
+                            <span class="inline-block bg-slate-100 text-navy-800 text-xs font-semibold px-3 py-1 rounded">Primary NAICS: 541512</span>
+                        </div>
+
+                        <p class="text-slate-600 leading-relaxed">
+                            End-to-end management of User Acceptance Testing campaigns. We align technical system behavior with business user expectations, onboard federal stakeholders, draft realistic scenario workflows, and validate mission compliance.
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                                <h3 class="font-bold text-navy-900 text-sm mb-2 text-gold">Core Technical Scope</h3>
+                                <ul class="text-xs text-slate-600 space-y-1.5 list-disc list-inside">
+                                    <li>UAT plan & schedule coordination</li>
+                                    <li>Business scenario & script drafting</li>
+                                    <li>Tester onboarding & user facilitation</li>
+                                    <li>Acceptance criteria validation</li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                                <h3 class="font-bold text-navy-900 text-sm mb-2 text-gold">Key Deliverables</h3>
+                                <ul class="text-xs text-slate-600 space-y-1.5 list-disc list-inside">
+                                    <li>UAT Execution Frameworks</li>
+                                    <li>User Feedback & Observation Logs</li>
+                                    <li>Test Evidence Documentation</li>
+                                    <li>Formal UAT Signoff Briefings</li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                                <h3 class="font-bold text-navy-900 text-sm mb-2 text-gold">Value to Program</h3>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    Ensures agency end-users receive functional systems that directly fulfill mission workflows while accelerating user adoption.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Capability 3 -->
+                    <div class="bg-white rounded-2xl p-8 lg:p-10 border border-slate-200 shadow-sm space-y-6">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-100 pb-6 gap-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-14 h-14 rounded-xl bg-navy-900 text-gold flex items-center justify-center text-2xl shrink-0">
+                                    <i class="fa-solid fa-triangle-exclamation"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs font-mono uppercase tracking-wider text-slate-400">Service Code: CAP-DEF-03</span>
+                                    <h2 class="text-2xl font-heading font-bold text-navy-900">Defect Management & Quality Reporting</h2>
+                                </div>
+                            </div>
+                            <span class="inline-block bg-slate-100 text-navy-800 text-xs font-semibold px-3 py-1 rounded">Primary NAICS: 541519</span>
+                        </div>
+
+                        <p class="text-slate-600 leading-relaxed">
+                            Systematic defect tracking throughout the software engineering lifecycle. We establish severity definitions, facilitate defect triage meetings between developers and agency stakeholders, and track fixes through complete re-testing.
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                                <h3 class="font-bold text-navy-900 text-sm mb-2 text-gold">Core Technical Scope</h3>
+                                <ul class="text-xs text-slate-600 space-y-1.5 list-disc list-inside">
+                                    <li>Defect logging & categorization</li>
+                                    <li>Severity & priority triage facilitation</li>
+                                    <li>Root-cause categorization</li>
+                                    <li>Retesting & defect verification</li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                                <h3 class="font-bold text-navy-900 text-sm mb-2 text-gold">Key Deliverables</h3>
+                                <ul class="text-xs text-slate-600 space-y-1.5 list-disc list-inside">
+                                    <li>Defect Triage Dashboards</li>
+                                    <li>Defect Density & Trend Metrics</li>
+                                    <li>Quality Risk & Issue Logs</li>
+                                    <li>Release Blocker Reports</li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                                <h3 class="font-bold text-navy-900 text-sm mb-2 text-gold">Value to Program</h3>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    Provides program leadership with complete visibility into defect resolution progress and clear release readiness indicators.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Capability 4 -->
+                    <div class="bg-white rounded-2xl p-8 lg:p-10 border border-slate-200 shadow-sm space-y-6">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-100 pb-6 gap-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-14 h-14 rounded-xl bg-navy-900 text-gold flex items-center justify-center text-2xl shrink-0">
+                                    <i class="fa-solid fa-rocket"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs font-mono uppercase tracking-wider text-slate-400">Service Code: CAP-DEL-04</span>
+                                    <h2 class="text-2xl font-heading font-bold text-navy-900">IT Delivery & Program Support</h2>
+                                </div>
+                            </div>
+                            <span class="inline-block bg-slate-100 text-navy-800 text-xs font-semibold px-3 py-1 rounded">Primary NAICS: 541611</span>
+                        </div>
+
+                        <p class="text-slate-600 leading-relaxed">
+                            Quality governance and delivery support embedded within Agile, Scaled Agile (SAFe), or traditional Waterfall IT environments. We assist release managers with readiness checklists, project documentation, and requirement verification.
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                                <h3 class="font-bold text-navy-900 text-sm mb-2 text-gold">Core Technical Scope</h3>
+                                <ul class="text-xs text-slate-600 space-y-1.5 list-disc list-inside">
+                                    <li>Agile release readiness audits</li>
+                                    <li>User story acceptance criteria review</li>
+                                    <li>Technical project documentation</li>
+                                    <li>Quality process improvement</li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                                <h3 class="font-bold text-navy-900 text-sm mb-2 text-gold">Key Deliverables</h3>
+                                <ul class="text-xs text-slate-600 space-y-1.5 list-disc list-inside">
+                                    <li>Go / No-Go Readiness Checklists</li>
+                                    <li>Quality Gate Documentation</li>
+                                    <li>Standard Operating Procedures (SOP)</li>
+                                    <li>Post-Implementation Review Notes</li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                                <h3 class="font-bold text-navy-900 text-sm mb-2 text-gold">Value to Program</h3>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    Ensures smooth release deployments with documented compliance, protecting systems from post-launch instability.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- 4. INDUSTRIES & TARGET SECTORS VIEW        -->
+        <!-- ========================================== -->
+        <section id="page-industries" class="page-view hidden">
+            <div class="bg-navy-900 text-white py-16 border-b border-navy-700">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <span class="text-gold text-xs uppercase tracking-widest font-bold">Target Sectors</span>
+                    <h1 class="text-4xl font-heading font-extrabold mt-2">Industries & Agency Environments</h1>
+                    <p class="text-slate-300 mt-2 max-w-2xl text-base">
+                        Tailored quality assurance capabilities for federal civilian agencies, defense systems, and major prime integration programs.
+                    </p>
+                </div>
+            </div>
+
+            <div class="py-16 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                    
+                    <div class="max-w-3xl">
+                        <p class="text-slate-600 text-base leading-relaxed">
+                            Aegis Federal Quality Systems is structured to align with federal procurement standards, security parameters, and agency-specific software lifecycles. We support prime contractors and agency leaders across several key domains:
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        
+                        <div class="border border-slate-200 rounded-xl p-8 bg-slate-50 hover:border-gold transition-colors space-y-4">
+                            <div class="w-12 h-12 rounded bg-navy-900 text-gold flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-user-doctor"></i>
+                            </div>
+                            <h2 class="text-xl font-heading font-bold text-navy-900">Department of Veterans Affairs (VA)</h2>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Aligning software testing with VA health IT modernizations, electronic health record workflows, and veteran portal usability. Providing rigorous UAT to ensure system changes support mission critical care delivery without operational disruption.
+                            </p>
+                            <span class="inline-block text-xs font-semibold text-slate-500 bg-white px-3 py-1 rounded border border-slate-200">
+                                Target Area: Healthcare IT Modernization
+                            </span>
+                        </div>
+
+                        <div class="border border-slate-200 rounded-xl p-8 bg-slate-50 hover:border-gold transition-colors space-y-4">
+                            <div class="w-12 h-12 rounded bg-navy-900 text-gold flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <h2 class="text-xl font-heading font-bold text-navy-900">Department of Defense (DoD)</h2>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Quality assurance support for defense administrative, logistics, and non-tactical software programs. Emphasizing strict requirement traceability, clear defect logging, and release gate compliance.
+                            </p>
+                            <span class="inline-block text-xs font-semibold text-slate-500 bg-white px-3 py-1 rounded border border-slate-200">
+                                Target Area: Defense Business Systems
+                            </span>
+                        </div>
+
+                        <div class="border border-slate-200 rounded-xl p-8 bg-slate-50 hover:border-gold transition-colors space-y-4">
+                            <div class="w-12 h-12 rounded bg-navy-900 text-gold flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-building-columns"></i>
+                            </div>
+                            <h2 class="text-xl font-heading font-bold text-navy-900">Federal Civilian Agencies</h2>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Independent quality testing for civilian agency cloud migrations, web applications, case management systems, and public-facing portals requiring strict functional compliance and accessibility checks.
+                            </p>
+                            <span class="inline-block text-xs font-semibold text-slate-500 bg-white px-3 py-1 rounded border border-slate-200">
+                                Target Area: Enterprise IT Systems
+                            </span>
+                        </div>
+
+                        <div class="border border-slate-200 rounded-xl p-8 bg-slate-50 hover:border-gold transition-colors space-y-4">
+                            <div class="w-12 h-12 rounded bg-navy-900 text-gold flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-handshake font-bold"></i>
+                            </div>
+                            <h2 class="text-xl font-heading font-bold text-navy-900">Systems Integrators & Prime Contractors</h2>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Serving as a reliable, specialized subcontractor for large federal IT prime contractors. Adding dedicated QA and UAT execution capacity to fulfill small business goals while maintaining high quality deliverables.
+                            </p>
+                            <span class="inline-block text-xs font-semibold text-slate-500 bg-white px-3 py-1 rounded border border-slate-200">
+                                Target Area: Subcontracting Partnerships
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="bg-navy-900 text-white rounded-xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div>
+                            <h3 class="text-lg font-heading font-bold text-gold">Seeking Subcontracting or Teaming Opportunities</h3>
+                            <p class="text-slate-300 text-xs sm:text-sm mt-1">Aegis is prepared to join prime teams as a specialized software testing subcontractor.</p>
+                        </div>
+                        <button onclick="navigateTo('contracting')" class="bg-gold hover:bg-gold-light text-navy-900 font-bold px-6 py-3 rounded text-xs uppercase tracking-wider shrink-0">
+                            Partner With Us
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- 5. CAPABILITY STATEMENT & PDF VIEWER VIEW  -->
+        <!-- ========================================== -->
+        <section id="page-capability-statement" class="page-view hidden">
+            <div class="bg-navy-900 text-white py-16 border-b border-navy-700">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div>
+                        <span class="text-gold text-xs uppercase tracking-widest font-bold">Official Document</span>
+                        <h1 class="text-4xl font-heading font-extrabold mt-2">Corporate Capability Statement</h1>
+                        <p class="text-slate-300 mt-2 max-w-xl text-base">
+                            Interactive digital viewer and downloadable PDF for procurement officers and prime contractor partners.
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button onclick="downloadPDF()" class="bg-gradient-to-r from-gold to-gold-dark hover:from-gold-light hover:to-gold text-navy-900 font-bold px-6 py-3.5 rounded shadow-lg flex items-center gap-2 text-xs uppercase tracking-wider">
+                            <i class="fa-solid fa-download"></i> Download Real PDF
+                        </button>
+                        <button onclick="printPDF()" class="bg-navy-800 hover:bg-navy-700 text-white border border-slate-700 font-semibold px-4 py-3.5 rounded flex items-center gap-2 text-xs uppercase tracking-wider">
+                            <i class="fa-solid fa-print"></i> Print
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="py-12 bg-slate-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <!-- Document Controls Bar -->
+                    <div class="bg-white border border-slate-200 rounded-t-xl p-4 flex flex-wrap items-center justify-between gap-4 text-xs">
+                        <div class="flex items-center gap-3 text-slate-600 font-medium">
+                            <span><i class="fa-solid fa-file-pdf text-red-600 mr-1.5"></i> Aegis_Federal_Capability_Statement.pdf</span>
+                            <span class="text-slate-300">|</span>
+                            <span>US Letter Size</span>
+                            <span class="text-slate-300">|</span>
+                            <span>Single Page Official Format</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="zoomPDF(1.1)" class="p-2 hover:bg-slate-100 rounded text-slate-700" title="Zoom In"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                            <button onclick="zoomPDF(0.9)" class="p-2 hover:bg-slate-100 rounded text-slate-700" title="Zoom Out"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                            <button onclick="resetPDFZoom()" class="p-2 hover:bg-slate-100 rounded text-slate-700" title="Reset Zoom"><i class="fa-solid fa-rotate-left"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- PDF VIEWPORT CONTAINING RENDERED CAPABILITY SHEET -->
+                    <div class="bg-slate-300 p-4 sm:p-8 rounded-b-xl overflow-x-auto shadow-inner flex justify-center">
+                        
+                        <!-- REAL PDF DOCUMENT CONTAINER (RENDERABLE & PRINTABLE) -->
+                        <div id="pdf-document" class="bg-white text-navy-900 w-[800px] min-h-[1030px] p-10 shadow-2xl relative font-sans flex flex-col justify-between transition-transform duration-200 origin-top">
+                            
+                            <div>
+                                <!-- Header Strip -->
+                                <div class="border-b-2 border-navy-900 pb-6 mb-6 flex justify-between items-start">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-14 h-14 bg-navy-900 border-2 border-gold rounded flex items-center justify-center text-gold">
+                                            <svg class="w-8 h-8 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                                <path d="M12 8v8"/>
+                                                <path d="M8 12h8"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h1 class="text-2xl font-heading font-extrabold text-navy-900 tracking-tight">AEGIS FEDERAL QUALITY SYSTEMS, LLC</h1>
+                                            <p class="text-xs font-semibold text-gold tracking-widest uppercase">Federal IT Quality Assurance • UAT • Testing • Delivery Support</p>
+                                        </div>
+                                    </div>
+                                    <div class="text-right text-[11px] text-slate-600 leading-tight">
+                                        <div class="font-bold text-navy-900">CAPABILITY STATEMENT</div>
+                                        <div>UEI: <strong class="text-navy-900 font-mono">E13HDMQHBRH5</strong></div>
+                                        <div>CAGE: <span class="text-amber-700 font-bold">Pending</span></div>
+                                        <div>Raeford, North Carolina</div>
+                                    </div>
+                                </div>
+
+                                <!-- Executive Overview -->
+                                <div class="mb-6">
+                                    <h2 class="text-xs font-bold uppercase tracking-wider text-navy-900 border-b border-gold pb-1 mb-2">Corporate Overview</h2>
+                                    <p class="text-[12px] text-slate-700 leading-relaxed">
+                                        Aegis Federal Quality Systems provides specialized quality assurance, software testing, user acceptance testing (UAT), and IT delivery support services designed to strengthen federal technology programs and improve software delivery outcomes. Founder-led and based in North Carolina, Aegis delivers disciplined testing methodologies that reduce defect counts, maintain requirement traceability, and ensure compliance before deployment.
+                                    </p>
+                                </div>
+
+                                <!-- Two Column Layout: Core Competencies & Differentiators -->
+                                <div class="grid grid-cols-2 gap-6 mb-6">
+                                    
+                                    <!-- Core Competencies -->
+                                    <div class="bg-slate-50 p-4 rounded border border-slate-200">
+                                        <h2 class="text-xs font-bold uppercase tracking-wider text-navy-900 border-b border-gold pb-1 mb-3">Core Competencies</h2>
+                                        <ul class="text-[11px] text-slate-700 space-y-2">
+                                            <li class="flex items-start gap-1.5">
+                                                <i class="fa-solid fa-check text-gold text-[10px] mt-0.5"></i>
+                                                <span><strong>Software Quality Assurance:</strong> Functional, integration, system, and regression testing.</span>
+                                            </li>
+                                            <li class="flex items-start gap-1.5">
+                                                <i class="fa-solid fa-check text-gold text-[10px] mt-0.5"></i>
+                                                <span><strong>UAT Coordination:</strong> End-to-end user acceptance scenario planning & execution.</span>
+                                            </li>
+                                            <li class="flex items-start gap-1.5">
+                                                <i class="fa-solid fa-check text-gold text-[10px] mt-0.5"></i>
+                                                <span><strong>Defect Management:</strong> Life-cycle tracking, severity classification & triage lead.</span>
+                                            </li>
+                                            <li class="flex items-start gap-1.5">
+                                                <i class="fa-solid fa-check text-gold text-[10px] mt-0.5"></i>
+                                                <span><strong>Delivery Support:</strong> Agile release readiness, quality gates & SOP compliance.</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- Key Differentiators -->
+                                    <div class="bg-slate-50 p-4 rounded border border-slate-200">
+                                        <h2 class="text-xs font-bold uppercase tracking-wider text-navy-900 border-b border-gold pb-1 mb-3">Company Differentiators</h2>
+                                        <ul class="text-[11px] text-slate-700 space-y-2">
+                                            <li class="flex items-start gap-1.5">
+                                                <i class="fa-solid fa-star text-gold text-[10px] mt-0.5"></i>
+                                                <span><strong>Specialized QA Focus:</strong> Dedicated entirely to testing & delivery assurance.</span>
+                                            </li>
+                                            <li class="flex items-start gap-1.5">
+                                                <i class="fa-solid fa-star text-gold text-[10px] mt-0.5"></i>
+                                                <span><strong>Founder Accountability:</strong> Direct oversight by owner Shawn Davis.</span>
+                                            </li>
+                                            <li class="flex items-start gap-1.5">
+                                                <i class="fa-solid fa-star text-gold text-[10px] mt-0.5"></i>
+                                                <span><strong>Repeatable Frameworks:</strong> Traceable requirement mapping and clear audits.</span>
+                                            </li>
+                                            <li class="flex items-start gap-1.5">
+                                                <i class="fa-solid fa-star text-gold text-[10px] mt-0.5"></i>
+                                                <span><strong>Federal Alignment:</strong> Built for prime subcontracting and agency standards.</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- NAICS & Company Codes Grid -->
+                                <div class="mb-6">
+                                    <h2 class="text-xs font-bold uppercase tracking-wider text-navy-900 border-b border-gold pb-1 mb-3">NAICS Codes & Classifications</h2>
+                                    
+                                    <div class="grid grid-cols-2 gap-4 text-[11px]">
+                                        <div class="bg-navy-900 text-white p-3 rounded">
+                                            <div class="text-gold font-bold">PRIMARY NAICS CODE</div>
+                                            <div class="font-mono text-sm font-bold">541511</div>
+                                            <div class="text-slate-300 text-[10px]">Custom Computer Programming Services</div>
+                                        </div>
+
+                                        <div class="bg-slate-100 p-3 rounded border border-slate-300">
+                                            <div class="text-navy-900 font-bold">ADDITIONAL NAICS CODES</div>
+                                            <div class="text-slate-700 font-mono text-[10px] space-y-0.5 mt-0.5">
+                                                <div><strong>541512</strong> — Computer Systems Design Services</div>
+                                                <div><strong>541519</strong> — Other Computer Related Services</div>
+                                                <div><strong>541611</strong> — Admin & Management Consulting</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Business Designations -->
+                                <div class="mb-6">
+                                    <h2 class="text-xs font-bold uppercase tracking-wider text-navy-900 border-b border-gold pb-1 mb-2">SAM.gov Business Designations</h2>
+                                    <p class="text-[10px] text-slate-500 mb-2">Self-certified business classifications selected in SAM.gov (Submitted Oct 31, 2026; IRS TIN Validated Nov 2, 2026):</p>
+                                    
+                                    <div class="flex flex-wrap gap-2 text-[10px] font-semibold text-navy-900">
+                                        <span class="bg-slate-100 border border-slate-300 px-2.5 py-1 rounded">Veteran-Owned Business</span>
+                                        <span class="bg-slate-100 border border-slate-300 px-2.5 py-1 rounded">Service-Disabled Veteran-Owned Business (Self-Certified)</span>
+                                        <span class="bg-slate-100 border border-slate-300 px-2.5 py-1 rounded">Minority-Owned Business (Black American)</span>
+                                        <span class="bg-slate-100 border border-slate-300 px-2.5 py-1 rounded">Self-Certified Small Disadvantaged Business</span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Footer Section inside PDF -->
+                            <div class="border-t-2 border-navy-900 pt-4 mt-auto">
+                                <div class="grid grid-cols-3 gap-4 text-[10px] text-slate-700">
+                                    <div>
+                                        <strong class="text-navy-900">Company Information:</strong><br>
+                                        Aegis Federal Quality Systems, LLC<br>
+                                        Raeford, NC | State of NC
+                                    </div>
+                                    <div>
+                                        <strong class="text-navy-900">SAM / Verification Data:</strong><br>
+                                        UEI: E13HDMQHBRH5<br>
+                                        CAGE: Pending | SAM: Submitted (TIN Validated)
+                                    </div>
+                                    <div class="text-right">
+                                        <strong class="text-navy-900">Leadership & Inquiries:</strong><br>
+                                        Shawn Davis, Founder & Owner<br>
+                                        <span class="text-gold font-bold">shawn@aegisfederalqa.com</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- PDF Bottom CTA -->
+                    <div class="mt-8 bg-white border border-slate-200 rounded-xl p-6 text-center space-y-3">
+                        <h3 class="font-heading font-bold text-navy-900 text-lg">Need a Printed Capability Package?</h3>
+                        <p class="text-slate-600 text-xs sm:text-sm max-w-xl mx-auto">
+                            Generate the high-resolution vector PDF above for internal procurement review, teaming discussions, or agency RFP submissions.
+                        </p>
+                        <div class="flex justify-center gap-4 pt-2">
+                            <button onclick="downloadPDF()" class="bg-navy-900 hover:bg-navy-800 text-white font-bold px-6 py-3 rounded text-xs uppercase tracking-wider">
+                                <i class="fa-solid fa-download text-gold mr-1.5"></i> Download PDF Document
+                            </button>
+                            <button onclick="navigateTo('contracting')" class="border border-navy-900 text-navy-900 hover:bg-slate-50 font-bold px-6 py-3 rounded text-xs uppercase tracking-wider">
+                                Subcontracting Inquiry
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- 6. CONTRACTING & SUB-CONTRACTING VIEW     -->
+        <!-- ========================================== -->
+        <section id="page-contracting" class="page-view hidden">
+            <div class="bg-navy-900 text-white py-16 border-b border-navy-700">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <span class="text-gold text-xs uppercase tracking-widest font-bold">Federal Teaming & Procurement</span>
+                    <h1 class="text-4xl font-heading font-extrabold mt-2">Your Partner in Federal Quality Assurance</h1>
+                    <p class="text-slate-300 mt-2 max-w-2xl text-base">
+                        Aegis supports government contracting officers, prime contractors, and program management leads seeking reliable IT software testing support.
+                    </p>
+                </div>
+            </div>
+
+            <div class="py-16 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+                    
+                    <!-- Procurement Data Table -->
+                    <div class="bg-slate-50 border border-slate-200 rounded-2xl p-8 space-y-6">
+                        <h2 class="text-2xl font-heading font-bold text-navy-900">Procurement & Government Data</h2>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm">
+                                <div class="text-xs text-slate-400 font-bold uppercase">Unique Entity ID (UEI)</div>
+                                <div class="font-mono font-bold text-navy-900 text-lg mt-1">E13HDMQHBRH5</div>
+                                <button onclick="copyToClipboard('E13HDMQHBRH5', 'UEI Code')" class="mt-2 text-[11px] text-gold font-bold hover:underline flex items-center gap-1">
+                                    <i class="fa-regular fa-copy"></i> Copy UEI Code
+                                </button>
+                            </div>
+
+                            <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm">
+                                <div class="text-xs text-slate-400 font-bold uppercase">CAGE Code</div>
+                                <div class="font-bold text-amber-600 text-lg mt-1">Pending</div>
+                                <span class="text-[11px] text-slate-500">Assignment Pending</span>
+                            </div>
+
+                            <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm">
+                                <div class="text-xs text-slate-400 font-bold uppercase">SAM Registration</div>
+                                <div class="font-bold text-emerald-600 text-lg mt-1">Submitted</div>
+                                <span class="text-[11px] text-slate-500">IRS TIN Validated Nov 2, 2026</span>
+                            </div>
+
+                            <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm">
+                                <div class="text-xs text-slate-400 font-bold uppercase">Entity Formation</div>
+                                <div class="font-bold text-navy-900 text-lg mt-1">Oct 16, 2026</div>
+                                <span class="text-[11px] text-slate-500">North Carolina LLC</span>
+                            </div>
+                        </div>
+
+                        <!-- NAICS Codes Grid -->
+                        <div class="border-t border-slate-200 pt-6">
+                            <h3 class="text-sm font-bold text-navy-900 uppercase tracking-wider mb-4">North American Industry Classification System (NAICS)</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                                <div class="p-3 bg-white rounded border border-slate-200 flex items-center justify-between">
+                                    <div>
+                                        <span class="font-mono font-bold text-navy-900 text-sm mr-2">541511</span>
+                                        <span class="text-slate-700">Custom Computer Programming Services (Primary)</span>
+                                    </div>
+                                    <button onclick="copyToClipboard('541511', 'Primary NAICS')" class="text-slate-400 hover:text-navy-900"><i class="fa-regular fa-copy"></i></button>
+                                </div>
+                                <div class="p-3 bg-white rounded border border-slate-200 flex items-center justify-between">
+                                    <div>
+                                        <span class="font-mono font-bold text-navy-900 text-sm mr-2">541512</span>
+                                        <span class="text-slate-700">Computer Systems Design Services</span>
+                                    </div>
+                                    <button onclick="copyToClipboard('541512', 'NAICS 541512')" class="text-slate-400 hover:text-navy-900"><i class="fa-regular fa-copy"></i></button>
+                                </div>
+                                <div class="p-3 bg-white rounded border border-slate-200 flex items-center justify-between">
+                                    <div>
+                                        <span class="font-mono font-bold text-navy-900 text-sm mr-2">541519</span>
+                                        <span class="text-slate-700">Other Computer Related Services</span>
+                                    </div>
+                                    <button onclick="copyToClipboard('541519', 'NAICS 541519')" class="text-slate-400 hover:text-navy-900"><i class="fa-regular fa-copy"></i></button>
+                                </div>
+                                <div class="p-3 bg-white rounded border border-slate-200 flex items-center justify-between">
+                                    <div>
+                                        <span class="font-mono font-bold text-navy-900 text-sm mr-2">541611</span>
+                                        <span class="text-slate-700">Admin & Management Consulting Services</span>
+                                    </div>
+                                    <button onclick="copyToClipboard('541611', 'NAICS 541611')" class="text-slate-400 hover:text-navy-900"><i class="fa-regular fa-copy"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Subcontracting & Teaming Inquiry Form -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                        <div class="lg:col-span-5 space-y-4">
+                            <span class="text-gold text-xs uppercase tracking-widest font-bold">Teaming Opportunities</span>
+                            <h2 class="text-3xl font-heading font-bold text-navy-900">Partner With Aegis</h2>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Prime contractors seeking a reliable, specialized QA and software testing partner for federal procurement bids or task orders can submit teaming inquiries directly to leadership.
+                            </p>
+
+                            <div class="space-y-3 text-xs text-slate-600 pt-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded bg-navy-900 text-gold flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-check"></i>
+                                    </div>
+                                    <span>Immediate responsiveness to teaming RFPs and SOW reviews.</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded bg-navy-900 text-gold flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-check"></i>
+                                    </div>
+                                    <span>Accurate representation of company status and SAM designations.</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded bg-navy-900 text-gold flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-check"></i>
+                                    </div>
+                                    <span>Direct founder involvement in task order proposal planning.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Subcontracting Form Container -->
+                        <div class="lg:col-span-7 bg-slate-50 border border-slate-200 rounded-2xl p-8 shadow-sm">
+                            <form id="contracting-form" onsubmit="handleFormSubmit(event, 'contracting')" class="space-y-4">
+                                <!-- FormSubmit Configuration Hidden Inputs -->
+                                <input type="hidden" name="_subject" value="New Subcontracting Inquiry - Aegis Federal Website">
+                                <input type="hidden" name="_template" value="table">
+                                <input type="text" name="_honey" style="display:none">
+
+                                <div>
+                                    <label for="sub-org" class="block text-xs font-bold uppercase tracking-wider text-navy-900 mb-1">Prime Contractor / Agency Organization *</label>
+                                    <input type="text" id="sub-org" name="Organization" required placeholder="e.g. Northrop Grumman, Leidos, VA Program Office" class="w-full bg-white border border-slate-300 rounded p-3 text-sm focus:ring-2 focus:ring-gold focus:border-navy-900 outline-none">
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="sub-name" class="block text-xs font-bold uppercase tracking-wider text-navy-900 mb-1">Contact Name *</label>
+                                        <input type="text" id="sub-name" name="Contact Name" required placeholder="Full Name" class="w-full bg-white border border-slate-300 rounded p-3 text-sm focus:ring-2 focus:ring-gold focus:border-navy-900 outline-none">
+                                    </div>
+                                    <div>
+                                        <label for="sub-email" class="block text-xs font-bold uppercase tracking-wider text-navy-900 mb-1">Business Email *</label>
+                                        <input type="email" id="sub-email" name="Email" required placeholder="name@company.com" class="w-full bg-white border border-slate-300 rounded p-3 text-sm focus:ring-2 focus:ring-gold focus:border-navy-900 outline-none">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="sub-phone" class="block text-xs font-bold uppercase tracking-wider text-navy-900 mb-1">Phone Number (Optional)</label>
+                                        <input type="tel" id="sub-phone" name="Phone" placeholder="(555) 000-0000" class="w-full bg-white border border-slate-300 rounded p-3 text-sm focus:ring-2 focus:ring-gold focus:border-navy-900 outline-none">
+                                    </div>
+                                    <div>
+                                        <label for="sub-type" class="block text-xs font-bold uppercase tracking-wider text-navy-900 mb-1">Inquiry Type *</label>
+                                        <select id="sub-type" name="Inquiry Type" required class="w-full bg-white border border-slate-300 rounded p-3 text-sm focus:ring-2 focus:ring-gold focus:border-navy-900 outline-none">
+                                            <option value="">Select Option</option>
+                                            <option value="Subcontracting Teaming">Subcontracting / Teaming</option>
+                                            <option value="Prime Contractor RFP Support">Prime Contractor RFP Support</option>
+                                            <option value="Government Agency Inquiry">Government Agency Inquiry</option>
+                                            <option value="General Capability Request">General Capability Request</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="sub-program" class="block text-xs font-bold uppercase tracking-wider text-navy-900 mb-1">Contract / Program Name (Optional)</label>
+                                    <input type="text" id="sub-program" name="Program Name" placeholder="e.g. T4NG2, CIO-SP3, TAC, Specific Solicitation" class="w-full bg-white border border-slate-300 rounded p-3 text-sm focus:ring-2 focus:ring-gold focus:border-navy-900 outline-none">
+                                </div>
+
+                                <div>
+                                    <label for="sub-message" class="block text-xs font-bold uppercase tracking-wider text-navy-900 mb-1">Message / Opportunity Scope *</label>
+                                    <textarea id="sub-message" name="Message" rows="4" required placeholder="Describe the required testing scope, timeline, or teaming requirements..." class="w-full bg-white border border-slate-300 rounded p-3 text-sm focus:ring-2 focus:ring-gold focus:border-navy-900 outline-none"></textarea>
+                                </div>
+
+                                <div class="bg-amber-50 border border-amber-200 p-3 rounded text-[11px] text-amber-800 flex items-start gap-2">
+                                    <i class="fa-solid fa-lock text-amber-600 mt-0.5"></i>
+                                    <span><strong>Security Notice:</strong> Please do not submit classified, Controlled Unclassified Information (CUI), or proprietary proposal pricing data through this form.</span>
+                                </div>
+
+                                <button type="submit" id="contracting-submit-btn" class="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold py-3.5 rounded text-xs uppercase tracking-wider transition-colors">
+                                    Submit Procurement Inquiry
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+<!-- ... existing code -->
+                                    <div class="flex items-start gap-3">
+                                        <div class="w-9 h-9 rounded bg-navy-900 text-gold flex items-center justify-center shrink-0 mt-0.5">
+                                            <i class="fa-solid fa-envelope"></i>
+                                        </div>
+                                        <div>
+                                            <strong class="text-navy-900">Direct Business Contact:</strong><br>
+                                            <a href="mailto:shawn@aegisfederalqa.com" class="text-navy-900 font-bold hover:text-gold">shawn@aegisfederalqa.com</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start gap-3">
+                                        <div class="w-9 h-9 rounded bg-navy-900 text-gold flex items-center justify-center shrink-0 mt-0.5">
+                                            <i class="fa-solid fa-globe"></i>
+                                        </div>
+                                        <div>
+                                            <strong class="text-navy-900">Web Domain:</strong><br>
+                                            <a href="https://aegisfederalqa.com" class="text-gold font-semibold hover:underline">www.aegisfederalqa.com</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+<!-- ... existing code -->
+                        <!-- General Contact Form -->
+                        <div class="lg:col-span-7 bg-slate-50 border border-slate-200 rounded-2xl p-8 shadow-sm">
+                            <h2 class="text-xl font-heading font-bold text-navy-900 mb-4">Send a Message</h2>
+                            <form id="contact-form" onsubmit="handleFormSubmit(event, 'contact')" class="space-y-4">
+                                <!-- FormSubmit Configuration Hidden Inputs -->
+                                <input type="hidden" name="_subject" value="New Website Contact Message - Aegis Federal">
+                                <input type="hidden" name="_template" value="table">
+                                <input type="text" name="_honey" style="display:none">
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="contact-name" class="block text-xs font-bold uppercase tracking-wider text-navy-900 mb-1">Your Name *</label>
+                                        <input type="text" id="contact-name" name="Sender Name" required placeholder="Full Name" class="w-full bg-white border border-slate-300 rounded p-3 text-sm focus:ring-2 focus:ring-gold focus:border-navy-900 outline-none">
+                                    </div>
+                                    <div>
+                                        <label for="contact-email" class="block text-xs font-bold uppercase tracking-wider text-navy-900 mb-1">Email Address *</label>
+                                        <input type="email" id="contact-email" name="Email" required placeholder="name@domain.com" class="w-full bg-white border border-slate-300 rounded p-3 text-sm focus:ring-2 focus:ring-gold focus:border-navy-900 outline-none">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="contact-org" class="block text-xs font-bold uppercase tracking-wider text-navy-900 mb-1">Organization / Agency</label>
+                                        <input type="text" id="contact-org" name="Organization" placeholder="Company Name" class="w-full bg-white border border-slate-300 rounded p-3 text-sm focus:ring-2 focus:ring-gold focus:border-navy-900 outline-none">
+                                    </div>
+                                    <div>
+                                        <label for="contact-cat" class="block text-xs font-bold uppercase tracking-wider text-navy-900 mb-1">Category *</label>
+                                        <select id="contact-cat" name="Category" required class="w-full bg-white border border-slate-300 rounded p-3 text-sm focus:ring-2 focus:ring-gold focus:border-navy-900 outline-none">
+                                            <option value="General Business Inquiry">General Business Inquiry</option>
+                                            <option value="Government Contracting">Government Contracting</option>
+                                            <option value="Subcontracting Partnership">Subcontracting Partnership</option>
+                                            <option value="Media or Other">Media or Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="contact-msg" class="block text-xs font-bold uppercase tracking-wider text-navy-900 mb-1">Message *</label>
+                                    <textarea id="contact-msg" name="Message" rows="5" required placeholder="How can Aegis Federal assist your organization?" class="w-full bg-white border border-slate-300 rounded p-3 text-sm focus:ring-2 focus:ring-gold focus:border-navy-900 outline-none"></textarea>
+                                </div>
+
+                                <div class="bg-amber-50 border border-amber-200 p-3 rounded text-[11px] text-amber-800">
+                                    Notice: Inquiries submitted via this portal are for unclassified communication only.
+                                </div>
+
+                                <button type="submit" id="contact-submit-btn" class="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold py-3.5 rounded text-xs uppercase tracking-wider transition-colors">
+                                    Send Message
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- 8. PRIVACY, TERMS & ACCESSIBILITY VIEWS   -->
+        <!-- ========================================== -->
+        <section id="page-legal" class="page-view hidden">
+            <div class="bg-navy-900 text-white py-16 border-b border-navy-700">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <span class="text-gold text-xs uppercase tracking-widest font-bold">Compliance & Legal</span>
+                    <h1 class="text-4xl font-heading font-extrabold mt-2">Privacy Policy & Governance</h1>
+                    <p class="text-slate-300 mt-2 max-w-xl text-base">
+                        Information handling practices, website terms of use, and WCAG accessibility commitments.
+                    </p>
+                </div>
+            </div>
+
+            <div class="py-16 bg-white">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 text-slate-700 leading-relaxed text-sm">
+                    
+                    <div>
+                        <h2 class="text-2xl font-heading font-bold text-navy-900 mb-3">1. Privacy Policy</h2>
+                        <p class="mb-3">
+                            Aegis Federal Quality Systems, LLC ("Aegis") respects the privacy of website visitors and procurement inquiries. We collect personal information (such as name, organization, email, and phone) solely when voluntarily submitted through our contracting and contact forms.
+                        </p>
+                        <p class="mb-3">
+                            We do not sell, rent, or lease website contact data to commercial third parties. Information submitted is strictly utilized to process procurement inquiries, evaluate potential teaming opportunities, and respond to official business requests.
+                        </p>
+                        <p class="bg-slate-50 p-4 rounded border-l-4 border-navy-900 text-xs">
+                            <strong>Sensitive Data Advisory:</strong> This public website is not designed to store or process classified, Controlled Unclassified Information (CUI), or protected healthcare records (HIPAA). Do not submit controlled government information through our public inquiry forms.
+                        </p>
+                    </div>
+
+                    <div class="border-t border-slate-200 pt-8">
+                        <h2 class="text-2xl font-heading font-bold text-navy-900 mb-3">2. Terms of Use</h2>
+                        <p class="mb-3">
+                            All content published on this domain—including logo graphics, text, service descriptors, and capability PDFs—is the corporate property of Aegis Federal Quality Systems, LLC.
+                        </p>
+                        <p class="mb-3">
+                            Disclosures regarding SAM.gov registration status, IRS TIN validation, UEI identification, and business classifications are represented accurately in accordance with federal procurement standards. Self-certified business classifications in SAM.gov do not imply formal SBA VetCert accreditation.
+                        </p>
+                    </div>
+
+                    <div class="border-t border-slate-200 pt-8">
+                        <h2 class="text-2xl font-heading font-bold text-navy-900 mb-3">3. Accessibility Statement (WCAG 2.2 AA)</h2>
+                        <p class="mb-3">
+                            Aegis is committed to digital accessibility across all public web assets, striving to conform with Section 508 and WCAG 2.2 Level AA accessibility guidelines.
+                        </p>
+                        <ul class="list-disc list-inside space-y-1 text-xs text-slate-600 mb-4">
+                            <li>Semantic HTML markup for screen reader compatibility.</li>
+                            <li>Visible focus indicators for keyboard navigation.</li>
+                            <li>High-contrast text ratios for enhanced legibility.</li>
+                            <li>Accessible interactive elements with proper ARIA attributes.</li>
+                        </ul>
+                        <p class="text-xs">
+                            If you encounter accessibility obstacles while accessing our website or downloadable capability statement, please notify our team via the <a href="#contact" onclick="navigateTo('contact')" class="text-navy-900 font-bold hover:underline">Contact Page</a>.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER SECTION -->
+    <footer class="bg-navy-900 text-slate-400 border-t border-navy-700 text-xs py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                
+                <!-- Col 1: Brand & Bio -->
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded bg-navy-800 border border-gold/40 flex items-center justify-center text-gold">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                <path d="M12 8v8"/>
+                                <path d="M8 12h8"/>
+                            </svg>
+                        </div>
+                        <span class="font-heading font-bold text-white text-base tracking-tight">AEGIS <span class="text-gold">FEDERAL</span></span>
+                    </div>
+                    <p class="text-slate-400 leading-relaxed text-xs pr-4">
+                        Specialized quality assurance, user acceptance testing (UAT), defect management, and IT delivery support for federal technology programs.
+                    </p>
+                    <div class="text-slate-300 font-mono text-[11px] space-y-1">
+                        <div>UEI: <strong class="text-white">E13HDMQHBRH5</strong></div>
+                        <div>CAGE: <span class="text-amber-400">Pending</span></div>
+                        <div>SAM Status: <span class="text-emerald-400">Submitted (TIN Validated)</span></div>
+                    </div>
+                </div>
+
+                <!-- Col 2: Navigation -->
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-wider mb-3">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><button onclick="navigateTo('home')" class="hover:text-gold transition-colors">Home</button></li>
+                        <li><button onclick="navigateTo('about')" class="hover:text-gold transition-colors">About Us</button></li>
+                        <li><button onclick="navigateTo('capabilities')" class="hover:text-gold transition-colors">Capabilities</button></li>
+                        <li><button onclick="navigateTo('industries')" class="hover:text-gold transition-colors">Industries</button></li>
+                        <li><button onclick="navigateTo('capability-statement')" class="hover:text-gold transition-colors">Capability Statement</button></li>
+                        <li><button onclick="navigateTo('contracting')" class="hover:text-gold transition-colors">Contracting</button></li>
+                        <li><button onclick="navigateTo('contact')" class="hover:text-gold transition-colors">Contact</button></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Primary NAICS -->
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-wider mb-3">NAICS Codes</h4>
+                    <ul class="space-y-2 font-mono text-[11px]">
+                        <li><strong class="text-gold">541511</strong> (Primary)</li>
+                        <li>541512 — Systems Design</li>
+                        <li>541519 — Other Computer</li>
+                        <li>541611 — Mgmt Consulting</li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Corporate Info -->
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-wider mb-3">Headquarters</h4>
+                    <div class="space-y-2 text-xs">
+                        <p class="text-slate-300">Aegis Federal Quality Systems, LLC</p>
+                        <p>Raeford, North Carolina, USA</p>
+                        <p>State of Formation: North Carolina</p>
+                        <p class="pt-1">Founder: Shawn Davis</p>
+                        <p><a href="mailto:shawn@aegisfederalqa.com" class="text-gold hover:underline font-mono">shawn@aegisfederalqa.com</a></p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Legal Strip -->
+            <div class="border-t border-navy-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px]">
+                <div>
+                    © 2026 Aegis Federal Quality Systems, LLC. All rights reserved.
+                </div>
+                <div class="flex space-x-6">
+                    <button onclick="navigateTo('legal')" class="hover:text-white">Privacy Policy</button>
+                    <button onclick="navigateTo('legal')" class="hover:text-white">Terms of Use</button>
+                    <button onclick="navigateTo('legal')" class="hover:text-white">Accessibility Statement</button>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <!-- INTERACTIVE JAVASCRIPT & SINGLE-PAGE APPLICATION CONTROLLER -->
+    <script>
+        // SPA NAVIGATION CONTROLLER
+        function navigateTo(pageId) {
+            // Hide all views
+            const views = document.querySelectorAll('.page-view');
+            views.forEach(view => view.classList.add('hidden'));
+
+            // Show target view
+            const target = document.getElementById(`page-${pageId}`);
+            if (target) {
+                target.classList.remove('hidden');
+            }
+
+            // Update header navigation active states
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                btn.classList.remove('text-gold', 'font-bold', 'bg-navy-800');
+                btn.classList.add('text-slate-300');
+            });
+
+            const activeBtn = document.getElementById(`nav-${pageId}`);
+            if (activeBtn) {
+                activeBtn.classList.add('text-gold', 'font-bold', 'bg-navy-800');
+                activeBtn.classList.remove('text-slate-300');
+            }
+
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                toggleMobileMenu();
+            }
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // MOBILE MENU TOGGLE
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const openIcon = document.getElementById('menu-icon-open');
+            const closeIcon = document.getElementById('menu-icon-close');
+
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                openIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+                openIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
+        }
+
+        // CLIPBOARD COPY UTILITY
+        function copyToClipboard(text, label) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast(`${label} copied to clipboard!`);
+                }).catch(() => {
+                    fallbackCopy(text, label);
+                });
+            } else {
+                fallbackCopy(text, label);
+            }
+        }
+
+        function fallbackCopy(text, label) {
+            const temp = document.createElement('textarea');
+            temp.value = text;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            showToast(`${label} copied to clipboard!`);
+        }
+
+        // TOAST NOTIFICATION SYSTEM
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            toast.className = `pointer-events-auto flex items-center gap-3 bg-navy-900 border ${type === 'success' ? 'border-gold text-white' : 'border-red-500 text-white'} px-4 py-3 rounded-lg shadow-2xl text-xs font-medium transition-all transform translate-y-2 opacity-0`;
+            toast.innerHTML = `
+                <i class="fa-solid ${type === 'success' ? 'fa-circle-check text-gold' : 'fa-triangle-exclamation text-red-400'} text-base"></i>
+                <span>${message}</span>
+            `;
+
+            container.appendChild(toast);
+
+            // Animate in
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            // Remove after 3.5 seconds
+            setTimeout(() => {
+                toast.classList.add('opacity-0');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 3500);
+        }
+
+        // REAL EMAIL DELIVERABILITY & FORM SUBMISSION HANDLER
+        async function handleFormSubmit(e, formType) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById(`${formType}-submit-btn`);
+            if (!submitBtn) {
+                console.error(`Submit button for ID '${formType}-submit-btn' not found.`);
+                return;
+            }
+
+            const originalText = submitBtn.innerText;
+            const formElement = e.target;
+            const formData = new FormData(formElement);
+
+            // Loading state UI update
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin mr-1"></i> Transmitting Inquiry...`;
+
+            try {
+                // REAL LIVE BACKEND API SUBMISSION TO SHAWN@AEGISFEDERALQA.COM VIA FORMSUBMIT
+                const response = await fetch("https://formsubmit.co/ajax/shawn@aegisfederalqa.com", {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    formElement.reset();
+                    showToast('Inquiry successfully transmitted to shawn@aegisfederalqa.com!', 'success');
+                } else {
+                    // Fallback to direct mailto if external endpoint encounters restrictive network policy
+                    const name = formData.get('Contact Name') || formData.get('Sender Name') || 'Inquirer';
+                    const msg = formData.get('Message') || '';
+                    window.location.href = `mailto:shawn@aegisfederalqa.com?subject=Aegis%20Inquiry%20from%20${encodeURIComponent(name)}&body=${encodeURIComponent(msg)}`;
+                    showToast('Opening default email client to send message directly...', 'success');
+                }
+            } catch (err) {
+                console.warn('Backend API submission dispatch exception. Triggering mailto fallback.', err);
+                const name = formData.get('Contact Name') || formData.get('Sender Name') || 'Inquirer';
+                const msg = formData.get('Message') || '';
+                window.location.href = `mailto:shawn@aegisfederalqa.com?subject=Aegis%20Inquiry%20from%20${encodeURIComponent(name)}&body=${encodeURIComponent(msg)}`;
+                showToast('Notice: Redirected to direct mailto client.', 'success');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = originalText;
+            }
+        }
+
+        // REAL SEARCHABLE TEXT PDF GENERATOR WITH HYBRID CANVAS FALLBACK
+        let pdfZoomLevel = 1.0;
+
+        function zoomPDF(factor) {
+            pdfZoomLevel *= factor;
+            if (pdfZoomLevel < 0.6) pdfZoomLevel = 0.6;
+            if (pdfZoomLevel > 1.5) pdfZoomLevel = 1.5;
+            const pdfDoc = document.getElementById('pdf-document');
+            pdfDoc.style.transform = `scale(${pdfZoomLevel})`;
+        }
+
+        function resetPDFZoom() {
+            pdfZoomLevel = 1.0;
+            const pdfDoc = document.getElementById('pdf-document');
+            pdfDoc.style.transform = `scale(1.0)`;
+        }
+
+        function downloadPDF() {
+            showToast('Generating official searchable PDF document...', 'success');
+            
+            const element = document.getElementById('pdf-document');
+            const originalTransform = element.style.transform;
+            element.style.transform = 'scale(1.0)'; // reset zoom state
+
+            try {
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF('portrait', 'pt', 'letter');
+
+                // Generate crisp printable vector text document natively
+                pdf.html(element, {
+                    callback: function (doc) {
+                        doc.save('Aegis_Federal_Quality_Systems_Capability_Statement.pdf');
+                        element.style.transform = originalTransform;
+                        showToast('Capability Statement PDF downloaded!', 'success');
+                    },
+                    x: 0,
+                    y: 0,
+                    width: 612, // Letter page width pt
+                    windowWidth: 800
+                });
+            } catch (e) {
+                // Fallback high-DPI canvas capture if vector engine encounters CSS rendering limits
+                html2canvas(element, { scale: 2, useCORS: true, backgroundColor: '#FFFFFF' }).then(canvas => {
+                    const imgData = canvas.toDataURL('image/jpeg', 0.98);
+                    const { jsPDF } = window.jspdf;
+                    const pdf = new jsPDF('portrait', 'pt', 'letter');
+                    pdf.addImage(imgData, 'JPEG', 0, 0, 612, 792);
+                    pdf.save('Aegis_Federal_Quality_Systems_Capability_Statement.pdf');
+                    element.style.transform = originalTransform;
+                    showToast('Capability Statement PDF downloaded!', 'success');
+                }).catch(err => {
+                    element.style.transform = originalTransform;
+                    showToast('Error generating PDF. Please use browser print option.', 'error');
+                });
+            }
+        }
+
+        function printPDF() {
+            window.print();
+        }
+
+        // INITIALIZE APP ON LOAD
+        window.onload = function() {
+            // Check hash in URL or default to home
+            const hash = window.location.hash.replace('#', '');
+            if (['home', 'about', 'capabilities', 'industries', 'capability-statement', 'contracting', 'contact', 'legal'].includes(hash)) {
+                navigateTo(hash);
+            } else {
+                navigateTo('home');
+            }
+        };
+    </script>
 </body>
 </html>
-
